@@ -5,5 +5,5 @@ View Storyboard Presentation: https://www.figma.com/proto/744FuVSeNm89ZIQ5JLpMo7
 
 UI Prototype Line: https://www.figma.com/file/744FuVSeNm89ZIQ5JLpMo7/Psychology-Search-Project?node-id=0%3A1
 
-Deployment Diagram:
+System Architecture (Feb 7 Class Assignment):
 ![Deployment Diagram](https://github.com/allenzhai/308-Project/blob/master/DeploymentDiagram_020920.jpg "Deployment Diagram")
