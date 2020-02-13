@@ -1,0 +1,13 @@
+.disorder-details {
+  display: inline-block;
+  align-self: center;
+  text-align: left;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px #999;
+  padding: 8px 24px;
+  width: 60%;
+}
+
+.disorder-subtitle {
+  color: #333;
+}
