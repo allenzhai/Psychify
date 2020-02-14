@@ -1,15 +1,18 @@
-## Database
+## Database Setup
 
 ### How to access datebase?
 
 #### Apporach 1: Through phpMyAdmin (Recommended)
-Using the following link to log into the phpMyAdmin interface. User name and passwords are already distributed through email.
+1. Using the following link to log into the phpMyAdmin interface.
 ```
 54.234.3.243/phpmyadmin
 ```
+2. Use the username and passwords in your calpoly email to log in.
+3. `Server Choice`, select the one other than `localhost`.
 
 #### Apporach 2: MySQL Workbench
 This approach requires knowledge of using SSH. The idea is to use EC2 instance to establish a tunneal to the database server, since the db server only allows access from EC2 instance. We will also be deploying our application to this EC2 instance.
+
 ```
 # Datebase Endpoint
 database-1.cfwynfjcelo6.us-east-1.rds.amazonaws.com
