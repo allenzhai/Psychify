@@ -1,20 +1,38 @@
-### Database
+## Database
 
-#### How to Connect to MySQL Server
-[Connecting to a DB Instance Running the MySQL Database Engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html)
+### How to access datebase?
 
-
-#### AWS Mysql Endpoint
+#### Apporach 1: Through phpMyAdmin (Recommended)
+Using the following link to log into the phpMyAdmin interface. User name and passwords are already distributed through email.
 ```
+54.234.3.243/phpmyadmin
+```
+
+#### Apporach 2: MySQL Workbench
+This approach requires knowledge of using SSH. The idea is to use EC2 instance to establish a tunneal to the database server, since the db server only allows access from EC2 instance. We will also be deploying our application to this EC2 instance.
+```
+# Datebase Endpoint
 database-1.cfwynfjcelo6.us-east-1.rds.amazonaws.com
+# Datebase Port
+3306
+
+# EC2 Instance
+EC2-54-234-3-243.compute-1.amazonaws.com
+# or ip address if you prefer, where our phpMyAdmin application is installed.
+54.234.3.243
 ```
 
-#### Preliminary Schema
-```sql
-name VARCHAR(100) NOT NULL,
-alias VARCHAR(100),
-category VARCHAR(100) NOT NULL,
-sub_category VARCHAR(100) NOT NULL,
-diagnostic_criteria VARCHAR(50),
-description TEXT NOT NULL,
+### Apporach 3: CommandLine
+You have to log on to EC2 instance to be able to access mysql command line interface
 ```
+ssh ec2 instance
+
+# on ec2 instance
+mysql -h db_endpoint -u username -p
+```
+
+### Tentative Data Format
+Use this link to see what to prepare for the data entries. [Disorders](https://docs.google.com/spreadsheets/d/1muYR-7ORx3vh3DgpiPlZzDNwvdzKJ9aF_BFvDGwp5M0/edit#gid=0)
+
+### References
+[Connecting To RDS MySQL Using phpMyAdmin (EC2, RDS)](https://www.youtube.com/watch?v=Bz-4wTGD2_Q)
