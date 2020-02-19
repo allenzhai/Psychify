@@ -1,0 +1,24 @@
+{
+  "name": "308-Project",
+  "version": "1.0.0",
+  "description": "Psychology Group 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allenzhai/308-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allenzhai/308-Project/issues"
+  },
+  "homepage": "https://github.com/allenzhai/308-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
