@@ -1,0 +1,57 @@
+.login {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.login a {
+  text-decoration: none;
+  display: block;
+  padding: 16px 50px;
+  border-radius: 90px;
+  text-align: center;
+  background-color: #FFFFFF;
+  color:#111111;
+  margin: 16px 48px;
+  font-family: sans-serif;
+  font-size: 18px;
+  transition-duration: 200ms;
+}
+
+.login a:hover{
+  color:#000000;
+  background-color: #dddddd;
+}
+
+.login a.profile-signup {
+  color: #fff;
+  background-color: #000000;
+}
+
+.login a.profile-signup:hover {
+  color: #fff;
+  background-color: #555;
+}
+
+.profile a {
+  text-decoration: none;
+  display: block;
+  padding: 16px 50px;
+  border-radius: 90px;
+  text-align: center;
+  background-color: #000000;
+  color:#FFFFFF;
+  margin: 16px 48px;
+  font-family: sans-serif;
+  font-size: 18px;
+  transition-duration: 200ms;
+  background-image: url('./images/account_circle-24px.svg');
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 36px;
+} 
+
+.profile a:hover {
+  color: #fff;
+  background-color: #555;
+}

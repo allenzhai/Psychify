@@ -1,0 +1,24 @@
+.disorder-result {
+  display: inline-block;
+  align-self: center;
+  text-align: left;
+  border-radius: 9px;
+  padding: 0px 16px;
+  box-shadow: 0px 4px 8px #999;
+  width: 60%;
+}
+
+.disorder-title {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.disorder-subtitle {
+  color: #333;
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.DisorderResult{
+  margin-top: 50px;
+}

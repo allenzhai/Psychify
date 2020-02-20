@@ -6,6 +6,9 @@
 
 .navbar a {
   text-decoration: none;
+}
+
+.navbar a.nav-item {
   display: block;
   padding: 16px 50px;
   border-radius: 90px;
@@ -18,17 +21,7 @@
   transition-duration: 200ms;
 }
 
-.navbar a.profile-signup {
-  color: #fff;
-  background-color: #000000;
-}
-
-.navbar a.profile-signup:hover {
-  color: #fff;
-  background-color: #555;
-}
-
-.navbar > a:hover{
+.navbar > a.nav-item:hover{
   color:#000000;
   background-color: #dddddd;
 }
