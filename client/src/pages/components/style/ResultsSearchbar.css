@@ -1,6 +1,7 @@
 .results-search {
   width: 85%;
   height: 100%;
+  margin: auto;
   padding: 14px 54px;
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 18px;

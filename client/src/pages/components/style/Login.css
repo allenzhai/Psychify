@@ -24,12 +24,14 @@
 
 .login a.profile-signup {
   color: #fff;
-  background: #f04a5e;
+  background: rgb(71,221,206);
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
 }
 
 .login a.profile-signup:hover {
   color: #fff;
-  background-color: #ec8491;
+  background: rgb(158,219,213);
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
 }
 
 .profile a {

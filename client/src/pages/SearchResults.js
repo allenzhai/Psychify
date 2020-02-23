@@ -26,6 +26,7 @@ export class SearchResults extends React.Component {
       <div className="results">
         <Navbar />
         <div className="search-results-container">
+          <h2 className="search-results-title">Search Results</h2>
           <ResultsSearchbar className="search-bar"/>
           <div className="results-entries">
             {this.state.results.map((entry) => <DisorderResult className="disorder-result" title={entry.title} subtitle={entry.subtitle} content={entry.content}/>)}

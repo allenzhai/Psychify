@@ -23,7 +23,7 @@ export class ResultsSearchbar extends React.Component {
 
   render() {
       return (
-        <div>
+        <div className="results-search-parent">
           <form onSubmit={this.handleSubmit} action="/results">
             <input 
               type="text" 
