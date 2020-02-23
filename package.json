@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/allenzhai/308-Project#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-modal": "^3.11.1"
   }
 }
