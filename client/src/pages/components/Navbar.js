@@ -7,9 +7,9 @@ export class Navbar extends React.Component {
 
     render() {
       return (
-        <div>
+        <div className="top-bar">
+          <a className="homepage" href="/">Psychify</a>
           <nav className="navbar">
-            <a className="nav-item" href="/">Home</a>
             <a className="nav-item" href="/forum">Forum</a>
             <a className="nav-item" href="/dsm">Index</a>
             <a className="login-tile" href="/"><Login /></a>

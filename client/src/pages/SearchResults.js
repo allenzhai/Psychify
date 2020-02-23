@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Navbar} from './components/Navbar.js';
-import { Searchbar } from './components/Searchbar.js';
+import { ResultsSearchbar } from './components/ResultsSearchbar.js';
 import { DisorderDetails } from './components/DisorderDetails.js';
 import { DisorderResult } from './components/DisorderResult';
 import './components/style/SearchResults.css';
@@ -25,10 +25,12 @@ export class SearchResults extends React.Component {
     return (
       <div className="results">
         <Navbar />
-        <Searchbar className="search-bar"/>
-        <div className="results-entries">
-          {this.state.results.map((entry) => <DisorderResult className="disorder-result" title={entry.title} subtitle={entry.subtitle} content={entry.content}/>)}
-          {/* <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/> */}
+        <div className="search-results-container">
+          <ResultsSearchbar className="search-bar"/>
+          <div className="results-entries">
+            {this.state.results.map((entry) => <DisorderResult className="disorder-result" title={entry.title} subtitle={entry.subtitle} content={entry.content}/>)}
+            {/* <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/> */}
+          </div>
         </div>
       </div>
     );

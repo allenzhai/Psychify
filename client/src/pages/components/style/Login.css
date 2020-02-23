@@ -12,8 +12,7 @@
   text-align: center;
   background-color: #FFFFFF;
   color:#111111;
-  margin: 16px 48px;
-  font-family: sans-serif;
+  margin: 16px 24px;
   font-size: 18px;
   transition-duration: 200ms;
 }
@@ -25,12 +24,12 @@
 
 .login a.profile-signup {
   color: #fff;
-  background-color: #000000;
+  background: #f04a5e;
 }
 
 .login a.profile-signup:hover {
   color: #fff;
-  background-color: #555;
+  background-color: #ec8491;
 }
 
 .profile a {
@@ -41,7 +40,7 @@
   text-align: center;
   background-color: #000000;
   color:#FFFFFF;
-  margin: 16px 48px;
+  margin: 16px 24px;
   font-family: sans-serif;
   font-size: 18px;
   transition-duration: 200ms;
