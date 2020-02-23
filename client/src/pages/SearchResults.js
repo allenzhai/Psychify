@@ -6,6 +6,20 @@ import { DisorderResult } from './components/DisorderResult';
 import './components/style/SearchResults.css';
 
 export class SearchResults extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      results: [{title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here"},]
+    }
+  }
+
 
   render() {
     return (
@@ -13,18 +27,8 @@ export class SearchResults extends React.Component {
         <Navbar />
         <Searchbar className="search-bar"/>
         <div className="results-entries">
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
-          <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/>
+          {this.state.results.map((entry) => <DisorderResult className="disorder-result" title={entry.title} subtitle={entry.subtitle} content={entry.content}/>)}
+          {/* <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/> */}
         </div>
       </div>
     );
