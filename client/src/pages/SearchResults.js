@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Navbar} from './components/Navbar.js';
 
 import { ResultsSearchbar } from './components/ResultsSearchbar.js';
-import { DisorderDetails } from './components/DisorderDetails.js';
 
 import { DisorderResult } from './components/DisorderResult';
 import './components/style/SearchResults.css';
@@ -13,30 +12,15 @@ export class SearchResults extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      results: [{title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, 
-            sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},]
+      results: [{title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "}]
     }
   }
 

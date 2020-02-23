@@ -25,7 +25,7 @@ export class DisorderResult extends React.Component {
       return (
         <div className="disorder-result">
           <h3 className="disorder-title" onClick={this.handleOpenModal}>{this.props.title}</h3>
-          <p className="disorder-subtitle" onClick={this.handleOpenModal}>{this.props.subtitle}</h3>
+          <p className="disorder-subtitle" onClick={this.handleOpenModal}>{this.props.subtitle}</p>
           <p className="disorder-content">{this.props.content}</p>
             <ReactModal 
               isOpen={this.state.showModal}
