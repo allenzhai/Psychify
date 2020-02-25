@@ -12,8 +12,7 @@
   text-align: center;
   background-color: #FFFFFF;
   color:#111111;
-  margin: 16px 48px;
-  font-family: sans-serif;
+  margin: 16px 24px;
   font-size: 18px;
   transition-duration: 200ms;
 }
@@ -25,12 +24,14 @@
 
 .login a.profile-signup {
   color: #fff;
-  background-color: #000000;
+  background: rgb(71,221,206);
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
 }
 
 .login a.profile-signup:hover {
   color: #fff;
-  background-color: #555;
+  background: rgb(158,219,213);
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
 }
 
 .profile a {
@@ -41,7 +42,7 @@
   text-align: center;
   background-color: #000000;
   color:#FFFFFF;
-  margin: 16px 48px;
+  margin: 16px 24px;
   font-family: sans-serif;
   font-size: 18px;
   transition-duration: 200ms;
