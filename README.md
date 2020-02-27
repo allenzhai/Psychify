@@ -1,12 +1,15 @@
 ### Server
-Run Serve
+Run Server
 ```
 # Build Client and start the server
+
+
 npm run start
 ```
 
-### Cient
-//Todo
+### For DevelopentClient
+```
+```
 
 
 #### References
