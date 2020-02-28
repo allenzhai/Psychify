@@ -37,3 +37,5 @@ npm run client
 #### References
 + [simple-react-full-stack](https://github.com/crsandeep/simple-react-full-stack)
 + [webpack documentation](https://webpack.js.org/)
++ [Client Side Routing](https://reacttraining.com/react-router/web/guides/primary-components)
++ [webpack.historyApiFallback](https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback)
