@@ -18,3 +18,14 @@ INSERT INTO Disorders(name, alias, category, sub_category, diagnostic_criteria, 
 A. Deficits in intellectual functions, such as reasoning, problem solving, planning, abstractthinking, judgment, academic learning, and learning from experience, confirmed byboth clinical assessment and individualized, standardized intelligence testing.
 B. Deficits in adaptive functioning that result in failure to meet developmental and sociocultural standards for personal independence and social responsibility. Without ongoing support, the adaptive deficits limit functioning in one or more activities of daily life, such as communication, social participation, and independent living, across multiple environments, such as home, school, work, and community.
 C. Onset of intellectual and adaptive deficits during the developmental period.");
+
+-- Create Table for User Accounts
+-- Password should be hashed
+CREATE TABLE IF NOT EXISTS Accounts (
+  ID INT AUTO_INCREMENT,
+  Password VARCHAR(30) NOT NULL, 
+  Email VARCHAR(100),
+  Type INT NOT NULL
+);
+  
+  
