@@ -20,8 +20,22 @@ export class SearchResults extends React.Component {
                 {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
                 {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
                 {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "},
-                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "}]
-    }
+                {title: "Disorder Name", subtitle: "Subtitle with some info", content: "Some more verbose content can be shown here", detailedContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper, sapien et luctus venenatis, magna risus sagittis lorem, sed euismod arcu massa vitae ligula. Vivamus pretium mi ut dui dignissim cursus. "}],
+      isLoaded: false,
+      example: []
+    };
+
+    fetch("http://localhost:5000/api/disorders")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(JSON.stringify(result));
+          this.setState({
+            isLoaded: true,
+            example: result
+          })
+        }
+      );
   }
 
   render() {
@@ -31,6 +45,7 @@ export class SearchResults extends React.Component {
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
           <ResultsSearchbar className="search-bar"/>
+          <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2>
           <div className="results-entries">
             {this.state.results.map((entry) => <DisorderResult className="disorder-result" title={entry.title} subtitle={entry.subtitle} content={entry.content} detailedContent={entry.detailedContent}/>)}
             {/* <DisorderResult className="disorder-result" title="Disorder Name" subtitle="Subtitle" content/> */}
