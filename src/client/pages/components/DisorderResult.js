@@ -31,14 +31,19 @@ export class DisorderResult extends React.Component {
           isOpen={this.state.showModal}
           contentLabel="onRequestClose Modal"
           onRequestClose={this.handleCloseModal}
+          className="disorder-modal"
         >
           <div className="disorder-detailed">
+            <button className="close" onClick={this.handleCloseModal}>X</button>
             <h3 className="disorder-title">{this.props.title}</h3>
             <h3 className="disorder-subtitle">{this.props.subtitle}</h3>
-            <text className="disorder-detailedContent">{this.props.detailedContent}</text>
-            <br />
-            <br />
-            <button onClick={this.handleCloseModal}>Close Details</button>
+            <h3 className="disorder-content">{this.props.content}</h3>
+            <h4 className="disorder-section-header">Section Header 1</h4>
+            <text className="disorder-section-content">{this.props.detailedContent}</text>
+            <h4 className="disorder-section-header">Section Header 2</h4>
+            <text className="disorder-section-content">{this.props.detailedContent}</text>
+            <h4 className="disorder-section-header">Section Header 3</h4>
+            <text className="disorder-section-content">{this.props.detailedContent}</text>
           </div>
         </ReactModal>
       </div>

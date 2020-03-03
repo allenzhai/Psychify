@@ -23,7 +23,7 @@ export class SearchResults extends React.Component {
           console.log(JSON.stringify(serverResult));
           this.setState({
             isLoaded: true,
-            //resultsList: serverResult,
+            resultsList: serverResult,
           })
         }
       );

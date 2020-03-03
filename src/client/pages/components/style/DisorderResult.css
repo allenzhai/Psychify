@@ -25,8 +25,45 @@
 .disorder-content{
   font-family: 'Open Sans', Arial, sans-serif;
   color: #333;
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 0px;
+}
+
+.disorder-section-header {
+  font-family: 'Merriweather', Times, serif;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.disorder-section-content {
+  font-family: 'Merriweather', Times, serif;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.disorder-modal{
+  border-radius: 16px;
+  padding: 16px 36px;
+  padding-bottom: 30px;
+  box-shadow: 0px 4px 8px #999;
+  margin: 128px;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.close{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 24px;
+  float: right;
+  background: none;
+  color: #333;
+  border: none;
+  outline: none;
+}
+
+.close:hover{
+  color: #666;
 }
 
 .DisorderResult{
