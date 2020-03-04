@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/disorders', (req, res) => {
-  api.listDisorders().then(rows => {
+  api.queryName("Intel").then(rows => {
     console.log(rows);
     res.json(rows);
   }).catch(err => {
