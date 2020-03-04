@@ -27,6 +27,19 @@ app.get('/api/disorders', (req, res) => {
 
 });
 
+app.get('/api/searchDisorders', (req, res) => {
+  api.queryName("Intel").then(rows => {
+    console.log(rows);
+    res.json(rows);
+  }).catch(err => {
+    console.log(err);
+    // should return user friendly error message here.
+    // future change is needed here;
+    res.json(err);
+  });
+
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 
