@@ -15,6 +15,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/disorders', (req, res) => {
+  api.listDisorders().then(rows => {
+    console.log(rows);
+    res.json(rows);
+  }).catch(err => {
+    console.log(err);
+    // should return user friendly error message here.
+    // future change is needed here;
+    res.json(err);
+  });
+
+});
+
+app.get('/api/searchDisorders', (req, res) => {
   api.queryName("Intel").then(rows => {
     console.log(rows);
     res.json(rows);
