@@ -27,8 +27,10 @@ app.get('/api/disorders', (req, res) => {
 
 });
 
-app.get('/api/searchDisorders', (req, res) => {
-  api.queryName("Intel").then(rows => {
+app.get('/api/searchDisorderName/:disorder', (req, res) => {
+    var disorder = req.params.disorder;
+
+  api.queryName(disorder).then(rows => {
     console.log(rows);
     res.json(rows);
   }).catch(err => {
