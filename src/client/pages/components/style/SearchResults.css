@@ -13,7 +13,7 @@
 .search-results-container{
   border-radius: 16px;
   padding: 8px 16px;
-  box-shadow: 0px 4px 8px #999;
+  box-shadow: 0px 4px 8px #bbbbbb;
   width: 75%;
   align-self: center;
   justify-content: center;
@@ -27,11 +27,19 @@ h1 {
   font-size: 24px;
 }
 
+.no-results {
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-align: center;   
+  font-size: 24px;
+  padding-top: 24px;
+}
+
 .results-entries{
   display: flex;
   margin-top: 0px;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 24px;
 }
 
 .disorder-result {
