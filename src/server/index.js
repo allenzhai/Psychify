@@ -15,7 +15,7 @@ app.get('/api/disorders', (req, res) => {
     alias: "Intellectual Developmental Disorder",
     category: "Neurodevelopmental Disorders",
     sub_category: "Intellectual Disabilities",
-    diagnostic_criteria: "",
+    diagnostic_criteria: "A: Lorem ipsum dolem...",
     description: "Intellectual disability is a disorder..."},
     {name: "Language Disorder",
     alias: "Language Disorder",

@@ -42,9 +42,10 @@ export class SearchResults extends React.Component {
              this.state.resultsList.length ? 
              this.state.resultsList.map((entry) => <DisorderResult className="disorder-result" 
               title={entry.name} 
-              subtitle={entry.alias} 
-              content={entry.category} 
-              detailedContent={entry.description}/>)
+              category={entry.category} 
+              subCategory={entry.sub_category} 
+              diagnosticCriteria={entry.diagnostic_criteria}
+              description={entry.description}/>)
               : <h2 className="no-results">No results</h2>
               : <p>{/*Fancy loading animation*/}</p>}
           </div>

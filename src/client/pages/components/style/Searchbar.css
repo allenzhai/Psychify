@@ -6,7 +6,7 @@
   font-size: 20px;
   border: none;
   border-radius: 90px;
-  box-shadow: 0px 3px 8px #999999;
+  box-shadow: 0px 3px 8px #aaaaaa;
   transition-duration: 300ms;
   background-image: url('./images/search-24px.svg');
   background-repeat: no-repeat;
@@ -16,8 +16,7 @@
 
 .search:focus {
   width: 47%;
-  transform: translateY(-3px);
-  box-shadow: 0px 3px 16px #999999;
+  box-shadow: 0px 3px 12px #999999;
   outline: none;
 }
 

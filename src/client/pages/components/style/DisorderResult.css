@@ -4,8 +4,9 @@
   text-align: left;
   border-radius: 9px;
   padding: 0px 16px;
-  box-shadow: 0px 4px 8px #999;
+  box-shadow: 0px 4px 8px #bbbbbb;
   width: 90%;
+  user-select: none;
 }
 
 .disorder-title {
@@ -14,28 +15,40 @@
   margin-bottom: 6px;
 }
 
-.disorder-subtitle {
+.disorder-title-modal{
+  font-family: 'Merriweather', Times, serif;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.disorder-category {
   font-family: 'Open Sans', Arial, sans-serif;
-  color: #333;
+  color: #666666;
   font-size: 16px;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-.disorder-content{
+.disorder-sub-category{
   font-family: 'Open Sans', Arial, sans-serif;
-  color: #333;
-  font-size: 14px;
+  color: #666666;
+  font-size: 16px;
   margin-top: 0px;
 }
 
 .disorder-section-header {
   font-family: 'Merriweather', Times, serif;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.disorder-diagnostic-criteria {
+  font-family: 'Merriweather', Times, serif;
   font-size: 14px;
   margin-bottom: 6px;
 }
 
-.disorder-section-content {
+.disorder-description {
   font-family: 'Merriweather', Times, serif;
   font-size: 14px;
   margin-bottom: 6px;
@@ -46,7 +59,7 @@
   padding: 16px 36px;
   padding-bottom: 30px;
   box-shadow: 0px 4px 8px #999;
-  margin: 128px;
+  margin: 10vh 10vw;
   background-color: #ffffff;
   outline: none;
 }
@@ -64,6 +77,19 @@
 
 .close:hover{
   color: #666;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
 }
 
 .DisorderResult{

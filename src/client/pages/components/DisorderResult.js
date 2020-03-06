@@ -14,6 +14,7 @@ export class DisorderResult extends React.Component {
   }
 
   handleOpenModal() {
+    if (!this.state.showModal)
     this.setState({ showModal: true });
   }
 
@@ -23,10 +24,10 @@ export class DisorderResult extends React.Component {
 
   render() {
     return (
-      <div className="disorder-result">
+      <div className="disorder-result" onClick={this.handleOpenModal}>
         <h3 className="disorder-title" onClick={this.handleOpenModal}>{this.props.title}</h3>
-        <p className="disorder-subtitle" onClick={this.handleOpenModal}>{this.props.subtitle}</p>
-        <p className="disorder-content">{this.props.content}</p>
+        <p className="disorder-category" onClick={this.handleOpenModal}>{this.props.category}</p>
+        <p className="disorder-sub-category">{this.props.subCategory}</p>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="onRequestClose Modal"
@@ -35,15 +36,13 @@ export class DisorderResult extends React.Component {
         >
           <div className="disorder-detailed">
             <button className="close" onClick={this.handleCloseModal}>X</button>
-            <h3 className="disorder-title">{this.props.title}</h3>
-            <h3 className="disorder-subtitle">{this.props.subtitle}</h3>
-            <h3 className="disorder-content">{this.props.content}</h3>
-            <h4 className="disorder-section-header">Section Header 1</h4>
-            <text className="disorder-section-content">{this.props.detailedContent}</text>
-            <h4 className="disorder-section-header">Section Header 2</h4>
-            <text className="disorder-section-content">{this.props.detailedContent}</text>
-            <h4 className="disorder-section-header">Section Header 3</h4>
-            <text className="disorder-section-content">{this.props.detailedContent}</text>
+            <h3 className="disorder-title-modal">{this.props.title}</h3>
+            <h3 className="disorder-category">{this.props.category}</h3>
+            <h3 className="disorder-sub-category">{this.props.subCategory}</h3>
+            <h4 className="disorder-section-header">Diagnostic Criteria</h4>
+            <text className="disorder-diagnostic-criteria">{this.props.diagnosticCriteria}</text>
+            <h4 className="disorder-section-header">Description</h4>
+            <text className="disorder-description">{this.props.description}</text>
           </div>
         </ReactModal>
       </div>
