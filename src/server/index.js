@@ -27,9 +27,9 @@ app.get('/api/disorders', (req, res) => {
 
 });
 
-app.get('/api/:disorder', (req, res) => {
+app.get('/api/searchDisorderName/:disorder', (req, res) => {
     var disorder = req.params.disorder;
-    
+
   api.queryName(disorder).then(rows => {
     console.log(rows);
     res.json(rows);
