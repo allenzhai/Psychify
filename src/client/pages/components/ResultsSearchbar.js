@@ -14,6 +14,7 @@ export class ResultsSearchbar extends React.Component {
   handleSubmit(event){
     //Called when you hit 'enter' in the searchbar
     //alert(this.state.searchTerms);
+    this.props.myFetch(event.target.value);
   }
 
   handleChange(event){
