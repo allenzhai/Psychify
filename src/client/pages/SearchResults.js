@@ -27,6 +27,23 @@ export class SearchResults extends React.Component {
           })
         }
       );
+
+      myFetch(props) 
+      {
+        fetch("http://localhost:5000/api/disorders")
+        .then(res => res.json())
+        .then(
+          (serverResult) => {
+            console.log(JSON.stringify(serverResult));
+            this.setState({
+              isLoaded: true,
+              resultsList: serverResult,
+            })
+          }
+        );
+      }
+
+
   }
 
   render() {
@@ -35,7 +52,7 @@ export class SearchResults extends React.Component {
         <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
-          <ResultsSearchbar className="search-bar"/>
+          <ResultsSearchbar onTemperatureChange={this.myFetch} className="search-bar"/>
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
             {this.state.isLoaded ?
