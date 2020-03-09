@@ -12,7 +12,7 @@ export class ResultsSearchbar extends React.Component {
 
   handleSubmit(event){
     //Called when you hit 'enter' in the searchbar
-    //alert(this.state.searchTerms);
+    this.props.onSearchbarSubmit(event.target.value);
   }
 
   handleChange(event){
@@ -25,7 +25,7 @@ export class ResultsSearchbar extends React.Component {
     const searchterms = this.props.searchterms;
       return (
         <div className="results-search-parent">
-          <form onSubmit={this.handleSubmit} action="/results">
+          <form onSubmit={this.handleSubmit} >
             <input 
               type="text" 
               className="results-search" 
