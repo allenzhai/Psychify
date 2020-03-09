@@ -17,7 +17,7 @@ var cnxn = mysql.createConnection({
 });
 
 // This set's the data source for our stream
-let stream = fs.createReadStream("csvTable.csv");
+let stream = fs.createReadStream("csvDisorders.csv");
 // empty array to put entries into
 let csvData = [];
 // This defines the behavior of the fast-csv stream
@@ -44,7 +44,7 @@ let csvStream = fastcsv
         
         // Create mySQL syntax for write operation
         let query = 
-          "INSERT INTO Disorders (id, name, alias, category, sub_category, diagnostic_criteria, description) VALUES ?";
+          "INSERT INTO Disorders (name, alias, category, sub_category, diagnostic_criteria, description, diagnostic_code) VALUES ?";
         
         // Write each entry into database
         cnxn.query(query, [csvData], (error, response) => {
