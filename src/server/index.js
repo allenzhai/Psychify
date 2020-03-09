@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/disorders', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   api.listDisorders().then(rows => {
     console.log(rows);
     res.json(rows);
@@ -28,7 +29,8 @@ app.get('/api/disorders', (req, res) => {
 });
 
 app.get('/api/searchDisorderName/:disorder', (req, res) => {
-    var disorder = req.params.disorder;
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  var disorder = req.params.disorder;
 
   api.queryName(disorder).then(rows => {
     console.log(rows);
