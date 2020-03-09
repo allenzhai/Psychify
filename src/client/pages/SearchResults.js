@@ -9,16 +9,14 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
-    this.state = {
-      searchterms: '',
-      resultsList: [],
-      isLoaded: false,
-    };
+  
+  handleSearchbarUpdate(searchterms) {
+    this.setState({searchterms});
+  }
 
-    fetch("http://localhost:5000/api/searchDisorderName/int")
+  handleSearchbarSubmit(searchterms) {
+    fetch("http://localhost:5000/api/disorders")
+    //fetch("http://localhost:5000/api/searchDisorderName/int")
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -30,12 +28,31 @@ export class SearchResults extends React.Component {
         }
       );
   }
+  
+  constructor(props){
+    super(props);
+    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
+    this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
+    this.state = {
+      searchterms: '',
+      resultsList: [],
+      isLoaded: false,
+    };
 
-  handleSearchbarUpdate(searchterms) {
-    
-    this.setState({searchterms});
-
+    /*fetch("http://localhost:5000/api/disorders")
+    //fetch("http://localhost:5000/api/searchDisorderName/int")
+      .then(res => res.json())
+      .then(
+        (serverResult) => {
+          console.log(JSON.stringify(serverResult));
+          this.setState({
+            isLoaded: true,
+            resultsList: serverResult,
+          })
+        }
+      );*/
   }
+
 
 
 
@@ -49,7 +66,8 @@ export class SearchResults extends React.Component {
           <ResultsSearchbar 
             className="search-bar"
             searchterms = {searchterms}
-            onSearchbarUpdate={this.handleSearchbarUpdate}/>
+            onSearchbarUpdate={this.handleSearchbarUpdate}
+            onSearchbarSubmit={this.handleSearchbarSubmit}/>
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
             {this.state.isLoaded ?
