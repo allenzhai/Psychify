@@ -9,14 +9,24 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
-  
+  constructor(props){
+    super(props);
+    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
+    this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
+    this.state = {
+      searchterms: '',
+      resultsList: [],
+      isLoaded: false,
+    }
+  }
+
   handleSearchbarUpdate(searchterms) {
-    this.setState({searchterms});
+    this.setState({searchterms: searchterms});
   }
 
   handleSearchbarSubmit(searchterms) {
-    fetch("http://localhost:5000/api/disorders")
-    //fetch("http://localhost:5000/api/searchDisorderName/int")
+    //alert(this.state.searchterms);
+    fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -27,30 +37,6 @@ export class SearchResults extends React.Component {
           })
         }
       );
-  }
-  
-  constructor(props){
-    super(props);
-    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
-    this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
-    this.state = {
-      searchterms: '',
-      resultsList: [],
-      isLoaded: false,
-    };
-
-    /*fetch("http://localhost:5000/api/disorders")
-    //fetch("http://localhost:5000/api/searchDisorderName/int")
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
-          console.log(JSON.stringify(serverResult));
-          this.setState({
-            isLoaded: true,
-            resultsList: serverResult,
-          })
-        }
-      );*/
   }
 
 
