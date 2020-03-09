@@ -11,12 +11,14 @@ ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
   constructor(props){
     super(props);
+    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
     this.state = {
+      searchterms: '',
       resultsList: [],
       isLoaded: false,
     };
 
-    fetch("http://localhost:5000/api/disorders")
+    fetch("http://localhost:5000/api/searchDisorderName/int")
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -27,32 +29,27 @@ export class SearchResults extends React.Component {
           })
         }
       );
+  }
 
-      myFetch(props) 
-      {
-        fetch("http://localhost:5000/api/disorders")
-        .then(res => res.json())
-        .then(
-          (serverResult) => {
-            console.log(JSON.stringify(serverResult));
-            this.setState({
-              isLoaded: true,
-              resultsList: serverResult,
-            })
-          }
-        );
-      }
-
+  handleSearchbarUpdate(searchterms) {
+    
+    this.setState({searchterms});
 
   }
 
+
+
   render() {
+    const searchterms = this.state.searchterms;
     return (
       <div className="results">
         <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
-          <ResultsSearchbar onTemperatureChange={this.myFetch} className="search-bar"/>
+          <ResultsSearchbar 
+            className="search-bar"
+            searchterms = {searchterms}
+            onSearchbarUpdate={this.handleSearchbarUpdate}/>
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
             {this.state.isLoaded ?
