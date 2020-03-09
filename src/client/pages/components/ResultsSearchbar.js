@@ -13,6 +13,7 @@ export class ResultsSearchbar extends React.Component {
   handleSubmit(event){
     //Called when you hit 'enter' in the searchbar
     this.props.onSearchbarSubmit(event.target.value);
+    event.preventDefault();
   }
 
   handleChange(event){
