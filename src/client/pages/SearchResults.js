@@ -16,7 +16,7 @@ export class SearchResults extends React.Component {
       isLoaded: false,
     };
 
-    fetch("http://localhost:5000/api/disorders")
+    fetch("http://localhost:5000/api/searchDisorderName/int")
       .then(res => res.json())
       .then(
         (serverResult) => {
