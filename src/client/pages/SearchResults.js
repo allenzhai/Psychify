@@ -26,7 +26,8 @@ export class SearchResults extends React.Component {
 
   handleSearchbarSubmit(searchterms) {
     //alert(this.state.searchterms);
-    fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
+    if (!(this.state.searchterms)) {
+      fetch("http://localhost:5000/api/disorders")
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -37,6 +38,22 @@ export class SearchResults extends React.Component {
           })
         }
       );
+    }
+    else {
+      fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
+      .then(res => res.json())
+      .then(
+        (serverResult) => {
+          console.log(JSON.stringify(serverResult));
+          this.setState({
+            isLoaded: true,
+            resultsList: serverResult,
+          })
+        }
+      );
+    }
+    
+
   }
 
 
