@@ -16,7 +16,7 @@ export class SearchResults extends React.Component {
       isLoaded: false,
     };
 
-    fetch("http://localhost:5000/api/searchDisorderName/int")
+    fetch("http://localhost:5000/api/disorders")
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -39,11 +39,11 @@ export class SearchResults extends React.Component {
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
             {this.state.isLoaded ?
-             this.state.resultsList.length ? 
-             this.state.resultsList.map((entry) => <DisorderResult className="disorder-result" 
-              title={entry.name} 
-              category={entry.category} 
-              subCategory={entry.sub_category} 
+             this.state.resultsList.length ?
+             this.state.resultsList.map((entry) => <DisorderResult className="disorder-result"
+              title={entry.name}
+              category={entry.category}
+              subCategory={entry.sub_category}
               diagnosticCriteria={entry.diagnostic_criteria}
               description={entry.description}/>)
               : <h2 className="no-results">No results</h2>
