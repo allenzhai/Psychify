@@ -1,9 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import Home from './components/Home';
+import React from "react";
+import { render } from "@testing-library/jest-dom/extend-expect";
+import { BrowserRouter } from 'react-router-dom';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<Home />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import App from "./App";
+
+it("renders the home page", () => {
+  const { container } = render(<BrowserRouter><App /></BrowserRouter>);
+  debugger;
+  console.log(container);
+  expect(container).toBeInTheDOM();
 });

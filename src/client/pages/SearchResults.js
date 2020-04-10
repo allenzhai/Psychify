@@ -11,12 +11,23 @@ ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
   constructor(props){
     super(props);
+    this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
+    this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
     this.state = {
+      searchterms: '',
       resultsList: [],
       isLoaded: false,
-    };
+    }
+  }
 
-    fetch("http://localhost:5000/api/disorders")
+  handleSearchbarUpdate(searchterms) {
+    this.setState({searchterms: searchterms});
+  }
+
+  handleSearchbarSubmit(searchterms) {
+    //alert(this.state.searchterms);
+    if (!(this.state.searchterms)) {
+      fetch("http://localhost:5000/api/disorders")
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -27,15 +38,39 @@ export class SearchResults extends React.Component {
           })
         }
       );
+    }
+    else {
+      fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
+      .then(res => res.json())
+      .then(
+        (serverResult) => {
+          console.log(JSON.stringify(serverResult));
+          this.setState({
+            isLoaded: true,
+            resultsList: serverResult,
+          })
+        }
+      );
+    }
+    
+
   }
 
+
+
+
   render() {
+    const searchterms = this.state.searchterms;
     return (
       <div className="results">
         <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
-          <ResultsSearchbar className="search-bar"/>
+          <ResultsSearchbar 
+            className="search-bar"
+            searchterms = {searchterms}
+            onSearchbarUpdate={this.handleSearchbarUpdate}
+            onSearchbarSubmit={this.handleSearchbarSubmit}/>
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
             {this.state.isLoaded ?
