@@ -16,10 +16,12 @@ export class DisorderResult extends React.Component {
   handleOpenModal() {
     if (!this.state.showModal)
     this.setState({ showModal: true });
+    //document.body.style.overflow = 'hidden';
   }
 
   handleCloseModal() {
     this.setState({ showModal: false });
+    document.body.style.overflow = 'scroll';
   }
 
   render() {
@@ -36,13 +38,17 @@ export class DisorderResult extends React.Component {
         >
           <div className="disorder-detailed">
             <button className="close" onClick={this.handleCloseModal}>X</button>
-            <h3 className="disorder-title-modal">{this.props.title}</h3>
-            <h3 className="disorder-category">{this.props.category}</h3>
-            <h3 className="disorder-sub-category">{this.props.subCategory}</h3>
-            <h4 className="disorder-section-header">Diagnostic Criteria</h4>
-            <text className="disorder-diagnostic-criteria">{this.props.diagnosticCriteria}</text>
-            <h4 className="disorder-section-header">Description</h4>
-            <text className="disorder-description">{this.props.description}</text>
+            <div className="modal-header">
+              <h3 className="disorder-title-modal">{this.props.title}</h3>
+              <p className="disorder-category-modal">{this.props.category}</p>
+              <p className="disorder-sub-category-modal">{this.props.subCategory}</p>
+            </div>
+            <div className="modal-body">
+              <h3 className="disorder-section-header">Diagnostic Criteria</h3>
+              <p className="disorder-diagnostic-criteria">{this.props.diagnosticCriteria}</p>
+              <h3 className="disorder-section-header">Diagnostic Features</h3>
+              <p className="disorder-description">{this.props.description}</p>
+            </div>
           </div>
         </ReactModal>
       </div>

@@ -72,6 +72,7 @@ export class SearchResults extends React.Component {
             onSearchbarUpdate={this.handleSearchbarUpdate}
             onSearchbarSubmit={this.handleSearchbarSubmit}/>
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
+          <p className="number-of-entries">{this.state.resultsList.length} entries</p>
           <div className="results-entries">
             {this.state.isLoaded ?
              this.state.resultsList.length ?
