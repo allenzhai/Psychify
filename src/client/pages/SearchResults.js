@@ -31,10 +31,12 @@ export class SearchResults extends React.Component {
       .then(res => res.json())
       .then(
         (serverResult) => {
-          console.log(JSON.stringify(serverResult));
+          // console.log(JSON.stringify(serverResult));
+          let filteredServerResult = this.filterServerResult(serverResult)
+          JSON.stringify();
           this.setState({
             isLoaded: true,
-            resultsList: serverResult,
+            resultsList: filteredServerResult,
           })
         }
       );
@@ -44,20 +46,68 @@ export class SearchResults extends React.Component {
       .then(res => res.json())
       .then(
         (serverResult) => {
-          console.log(JSON.stringify(serverResult));
+          // console.log(JSON.stringify(serverResult));
+          let filteredServerResult = this.filterServerResult(serverResult);
+          JSON.stringify(filteredServerResult);
           this.setState({
             isLoaded: true,
-            resultsList: serverResult,
+            resultsList: filteredServerResult,
           })
         }
       );
     }
-    
-
   }
 
+  filterServerResult(serverResult){
+    var matchArray = [];
+    var maxMatch = -1;
+    var idx;
+    var result;
+    var ans = [];
+    serverResult.sort(function(a, b) {
+      var A = a.name.toUpperCase();
+      var B = b.name.toUpperCase();
+      return (A < B) ? -1 : (A > B) ? 1 : 0;
+    });
+    // console.log(this.state.searchterms);
+    if (this.state.searchterms != null){
+      for (result = 0; result < serverResult.length; result++){
+        let x = this.MatchCount(serverResult[result].name.split(""));
+        matchArray.push(x);
+      }
+      // console.log(matchArray);
 
+      while (ans.length < serverResult.length){
+        maxMatch = -1;
+        for (result = 0; result < matchArray.length; result++){
+          if (matchArray[result] > maxMatch){
+            maxMatch = matchArray[result];
+            idx = result;
+          }
+        }
+        // console.log(serverResult[idx])
+        ans.push(serverResult[idx]);
+        matchArray[idx] = -1;
+      }
+    }
+    // console.log(matchArray);
+    return ans;
+  }
 
+  MatchCount(str){
+    var nameChar;
+    var match = 0;
+    var search = this.state.searchterms.split("");
+    for (nameChar = 0; nameChar < search.length && nameChar < str.length; nameChar++){
+      if (search[nameChar].toUpperCase() == str[nameChar].toUpperCase()){
+        match += 1;
+      }
+      else{
+        return match;
+      }
+    }
+    return match;
+  }
 
   render() {
     const searchterms = this.state.searchterms;

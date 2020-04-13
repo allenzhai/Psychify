@@ -6,6 +6,10 @@ exports.listDisorders = function () {
 }
 
 exports.queryName = function (disorderName) {
-  const stm = 'SELECT * FROM Disorders WHERE Name LIKE  \'' + disorderName + '%\' ';
+  const stm = 'SELECT DISTINCT * FROM Disorders' +
+              ' WHERE Name LIKE \'%' + disorderName + '%\'' + 
+              ' OR Alias LIKE \'%' + disorderName + '%\''  +
+              ' OR Category LIKE \'%' + disorderName + '%\'' +
+              ' OR Sub_category LIKE \'%' + disorderName + '%\'';
   return pool.query(stm);
 }
