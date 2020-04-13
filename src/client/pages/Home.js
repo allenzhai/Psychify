@@ -13,7 +13,7 @@ export class Home extends React.Component {
         <div className="landing-content">
           <h2 className="landing-title">The quick and easy DSM-V search.</h2>
           <h2 className="landing-subtitle">Find conditions. Connect with real people.</h2>
-          <Searchbar className="searchbar-home" />
+          <Searchbar className="searchbar-home"/>
         </div>
 
       </body>

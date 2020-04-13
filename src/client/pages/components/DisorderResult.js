@@ -16,12 +16,12 @@ export class DisorderResult extends React.Component {
   handleOpenModal() {
     if (!this.state.showModal)
     this.setState({ showModal: true });
-    //document.body.style.overflow = 'hidden';
+    // document.body.style.overflowY = 'hidden';
   }
 
   handleCloseModal() {
     this.setState({ showModal: false });
-    document.body.style.overflow = 'scroll';
+    document.body.style.overflowY = 'unset';
   }
 
   render() {

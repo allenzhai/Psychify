@@ -95,7 +95,7 @@
   margin: 10vh 10vw;
   background-color: #ffffff;
   outline: none;
-  max-height: calc(100vh - 210px);
+  max-height: 90vh;/*calc(100vh - 210px);*/
   overflow-y: scroll;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .close:hover{
-  color: #999;
+  color: rgb(209, 209, 209);
 }
 
 .ReactModal__Overlay {
