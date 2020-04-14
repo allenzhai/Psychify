@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import { Home } from './pages/Home';
+import Home from './pages/Home';
 import { Forum } from './pages/Forum';
 import { DSM } from './pages/DSM';
 import { SearchResults } from './pages/SearchResults';
