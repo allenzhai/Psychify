@@ -95,7 +95,7 @@
   margin: 10vh 10vw;
   background-color: #ffffff;
   outline: none;
-  max-height: 90vh;/*calc(100vh - 210px);*/
+  max-height: 75vh;
   overflow-y: scroll;
 }
 

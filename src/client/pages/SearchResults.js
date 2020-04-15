@@ -7,6 +7,13 @@ import { DisorderResult } from './components/DisorderResult';
 import './components/style/SearchResults.css';
 import ReactModal from 'react-modal';
 
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory({
+  forceRefresh: false
+});
+
+
 ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
   constructor(props){
@@ -20,13 +27,28 @@ export class SearchResults extends React.Component {
     }
   }
 
+  componentDidMount(event) {
+    const searchterms = history.location.search.substring(7).replace(/,/g,' ');
+    this.setState({
+      searchterms: searchterms,
+    });
+    this.querySearchTerms(searchterms);
+  }
+
   handleSearchbarUpdate(searchterms) {
     this.setState({searchterms: searchterms});
   }
 
   handleSearchbarSubmit(searchterms) {
-    //alert(this.state.searchterms);
-    if (!(this.state.searchterms)) {
+    history.push({
+      pathname: '/results',
+      search: '?terms=' + this.state.searchterms.split(' '),
+    });
+    this.querySearchTerms(this.state.searchterms);
+  }
+
+  querySearchTerms(searchterms) {
+    if (!(searchterms)) {
       fetch("http://localhost:5000/api/disorders")
       .then(res => res.json())
       .then(
@@ -38,9 +60,10 @@ export class SearchResults extends React.Component {
           })
         }
       );
+      
     }
     else {
-      fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
+      fetch("http://localhost:5000/api/searchDisorderName/" + searchterms)
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -75,14 +98,14 @@ export class SearchResults extends React.Component {
           <p className="number-of-entries">{this.state.resultsList.length} entries</p>
           <div className="results-entries">
             {this.state.isLoaded ?
-             this.state.resultsList.length ?
-             this.state.resultsList.map((entry) => <DisorderResult className="disorder-result"
-              title={entry.name}
-              category={entry.category}
-              subCategory={entry.sub_category}
-              diagnosticCriteria={entry.diagnostic_criteria}
-              description={entry.description}/>)
-              : <h2 className="no-results">No results</h2>
+              this.state.resultsList.length ?
+                this.state.resultsList.map((entry) => <DisorderResult className="disorder-result"
+                  title={entry.name}
+                  category={entry.category}
+                  subCategory={entry.sub_category}
+                  diagnosticCriteria={entry.diagnostic_criteria}
+                  description={entry.description}/>)
+                : <h2 className="no-results">No results</h2>
               : <p>{/*Fancy loading animation*/}</p>}
           </div>
         </div>
