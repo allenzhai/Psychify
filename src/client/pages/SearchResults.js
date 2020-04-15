@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Navbar} from './components/Navbar.js';
+import React, { Component } from 'react';
+import { Navbar } from './components/Navbar.js';
 
 import { ResultsSearchbar } from './components/ResultsSearchbar.js';
 
@@ -9,7 +9,7 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
 export class SearchResults extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
     this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
@@ -17,70 +17,68 @@ export class SearchResults extends React.Component {
       searchterms: '',
       resultsList: [],
       isLoaded: false,
-    }
+    };
   }
 
   handleSearchbarUpdate(searchterms) {
-    this.setState({searchterms: searchterms});
+    this.setState({ searchterms });
   }
 
   handleSearchbarSubmit(searchterms) {
-    //alert(this.state.searchterms);
+    // alert(this.state.searchterms);
     if (!(this.state.searchterms)) {
-      fetch("http://localhost:5000/api/disorders")
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
+      fetch('http://localhost:5000/api/disorders')
+        .then(res => res.json())
+        .then(
+          (serverResult) => {
           // console.log(JSON.stringify(serverResult));
-          let filteredServerResult = this.filterServerResult(serverResult)
-          JSON.stringify();
-          this.setState({
-            isLoaded: true,
-            resultsList: filteredServerResult,
-          })
-        }
-      );
-    }
-    else {
-      fetch("http://localhost:5000/api/searchDisorderName/" + this.state.searchterms)
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
+            const filteredServerResult = this.filterServerResult(serverResult);
+            JSON.stringify();
+            this.setState({
+              isLoaded: true,
+              resultsList: filteredServerResult,
+            });
+          }
+        );
+    } else {
+      fetch(`http://localhost:5000/api/searchDisorderName/${this.state.searchterms}`)
+        .then(res => res.json())
+        .then(
+          (serverResult) => {
           // console.log(JSON.stringify(serverResult));
-          let filteredServerResult = this.filterServerResult(serverResult);
-          JSON.stringify(filteredServerResult);
-          this.setState({
-            isLoaded: true,
-            resultsList: filteredServerResult,
-          })
-        }
-      );
+            const filteredServerResult = this.filterServerResult(serverResult);
+            JSON.stringify(filteredServerResult);
+            this.setState({
+              isLoaded: true,
+              resultsList: filteredServerResult,
+            });
+          }
+        );
     }
   }
 
-  filterServerResult(serverResult){
-    var matchArray = [];
-    var maxMatch = -1;
-    var idx;
-    var result;
-    var ans = [];
-    serverResult.sort(function(a, b) {
-      var A = a.name.toUpperCase();
-      var B = b.name.toUpperCase();
+  filterServerResult(serverResult) {
+    const matchArray = [];
+    let maxMatch = -1;
+    let idx;
+    let result;
+    const ans = [];
+    serverResult.sort((a, b) => {
+      const A = a.name.toUpperCase();
+      const B = b.name.toUpperCase();
       return (A < B) ? -1 : (A > B) ? 1 : 0;
     });
     // console.log(this.state.searchterms);
-    if (this.state.searchterms != null){
-      for (result = 0; result < serverResult.length; result++){
-        let x = this.MatchCount(serverResult[result].name.split(""));
+    if (this.state.searchterms != null) {
+      for (result = 0; result < serverResult.length; result++) {
+        const x = this.MatchCount(serverResult[result].name.split(''));
         matchArray.push(x);
       }
       // console.log(matchArray);
-
-      while (ans.length < serverResult.length){
+      while (ans.length < serverResult.length) {
         maxMatch = -1;
-        for (result = 0; result < matchArray.length; result++){
-          if (matchArray[result] > maxMatch){
+        for (result = 0; result < matchArray.length; result++) {
+          if (matchArray[result] > maxMatch) {
             maxMatch = matchArray[result];
             idx = result;
           }
@@ -94,15 +92,14 @@ export class SearchResults extends React.Component {
     return ans;
   }
 
-  MatchCount(str){
-    var nameChar;
-    var match = 0;
-    var search = this.state.searchterms.split("");
-    for (nameChar = 0; nameChar < search.length && nameChar < str.length; nameChar++){
-      if (search[nameChar].toUpperCase() == str[nameChar].toUpperCase()){
+  MatchCount(str) {
+    let nameChar;
+    let match = 0;
+    const search = this.state.searchterms.split('');
+    for (nameChar = 0; nameChar < search.length && nameChar < str.length; nameChar++) {
+      if (search[nameChar].toUpperCase() == str[nameChar].toUpperCase()) {
         match += 1;
-      }
-      else{
+      } else {
         return match;
       }
     }
@@ -110,29 +107,34 @@ export class SearchResults extends React.Component {
   }
 
   render() {
-    const searchterms = this.state.searchterms;
+    const { searchterms } = this.state;
     return (
       <div className="results">
         <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
-          <ResultsSearchbar 
+          <ResultsSearchbar
             className="search-bar"
-            searchterms = {searchterms}
+            searchterms={searchterms}
             onSearchbarUpdate={this.handleSearchbarUpdate}
-            onSearchbarSubmit={this.handleSearchbarSubmit}/>
+            onSearchbarSubmit={this.handleSearchbarSubmit}
+          />
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <div className="results-entries">
-            {this.state.isLoaded ?
-             this.state.resultsList.length ?
-             this.state.resultsList.map((entry) => <DisorderResult className="disorder-result"
-              title={entry.name}
-              category={entry.category}
-              subCategory={entry.sub_category}
-              diagnosticCriteria={entry.diagnostic_criteria}
-              description={entry.description}/>)
-              : <h2 className="no-results">No results</h2>
-              : <p>{/*Fancy loading animation*/}</p>}
+            {this.state.isLoaded
+              ? this.state.resultsList.length
+                ? this.state.resultsList.map(entry => (
+                  <DisorderResult
+                    className="disorder-result"
+                    title={entry.name}
+                    category={entry.category}
+                    subCategory={entry.sub_category}
+                    diagnosticCriteria={entry.diagnostic_criteria}
+                    description={entry.description}
+                  />
+                ))
+                : <h2 className="no-results">No results</h2>
+              : <p>{/* Fancy loading animation */}</p>}
           </div>
         </div>
       </div>
