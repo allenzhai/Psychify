@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './style/Login.css';
 
-export class Login extends React.Component {
+class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -37,3 +37,5 @@ export class Login extends React.Component {
     }
   }
 }
+
+export default Login;

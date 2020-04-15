@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Navbar} from './components/Navbar.js';
-
+import ReactModal from 'react-modal';
+import Navbar from './components/Navbar';
 import { ResultsSearchbar } from './components/ResultsSearchbar.js';
-
 import { DisorderResult } from './components/DisorderResult';
 import './components/style/SearchResults.css';
-import ReactModal from 'react-modal';
+
 
 import { createBrowserHistory } from 'history';
 
