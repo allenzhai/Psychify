@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import './style/Searchbar.css';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory({
+  forceRefresh: true
+});
 
 export class Searchbar extends React.Component {
   constructor(props){
@@ -12,8 +17,11 @@ export class Searchbar extends React.Component {
   }
 
   handleSubmit(event){
-    //Called when you hit 'enter' in the searchbar
-    //alert(this.state.searchTerms);
+    event.preventDefault();
+    history.push({
+      pathname: '/results',
+      search: '?terms=' + this.state.searchTerms.split(' '),
+    });
   }
 
   handleChange(event){
@@ -24,7 +32,7 @@ export class Searchbar extends React.Component {
   render() {
       return (
         <div>
-          <form onSubmit={this.handleSubmit} action="/results">
+          <form onSubmit={this.handleSubmit} >
             <input 
               type="text" 
               className="search" 
