@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
+
 import './style/Login.css';
 
 class Login extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
@@ -12,12 +12,12 @@ class Login extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(){
-    
+  handleClick() {
+
   }
 
   render() {
-    if (!this.state.loggedIn){
+    if (!this.state.loggedIn) {
       return (
         <div>
           <nav className="login">

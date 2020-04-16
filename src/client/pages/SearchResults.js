@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import Navbar from './components/Navbar';
 import { ResultsSearchbar } from './components/ResultsSearchbar.js';
@@ -14,8 +14,8 @@ const history = createBrowserHistory({
 
 
 ReactModal.setAppElement('#root');
-export class SearchResults extends React.Component {
-  constructor(props){
+export default class SearchResults extends React.Component {
+  constructor(props) {
     super(props);
     this.handleSearchbarUpdate = this.handleSearchbarUpdate.bind(this);
     this.handleSearchbarSubmit = this.handleSearchbarSubmit.bind(this);
@@ -27,7 +27,7 @@ export class SearchResults extends React.Component {
   }
 
   componentDidMount(event) {
-    const searchterms = history.location.search.substring(7).replace(/,/g,' ');
+    const searchterms = history.location.search.substring(7).replace(/,/g, ' ');
     this.setState({
       searchterms: searchterms,
     });
@@ -35,7 +35,7 @@ export class SearchResults extends React.Component {
   }
 
   handleSearchbarUpdate(searchterms) {
-    this.setState({searchterms: searchterms});
+    this.setState({ searchterms: searchterms });
   }
 
   handleSearchbarSubmit(searchterms) {
@@ -49,32 +49,32 @@ export class SearchResults extends React.Component {
   querySearchTerms(searchterms) {
     if (!(searchterms)) {
       fetch("http://localhost:5000/api/disorders")
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
-          console.log(JSON.stringify(serverResult));
-          this.setState({
-            isLoaded: true,
-            resultsList: serverResult,
-          })
-        }
-      );
-      
+        .then(res => res.json())
+        .then(
+          (serverResult) => {
+            console.log(JSON.stringify(serverResult));
+            this.setState({
+              isLoaded: true,
+              resultsList: serverResult,
+            })
+          }
+        );
+
     }
     else {
       fetch("http://localhost:5000/api/searchDisorderName/" + searchterms)
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
-          console.log(JSON.stringify(serverResult));
-          this.setState({
-            isLoaded: true,
-            resultsList: serverResult,
-          })
-        }
-      );
+        .then(res => res.json())
+        .then(
+          (serverResult) => {
+            console.log(JSON.stringify(serverResult));
+            this.setState({
+              isLoaded: true,
+              resultsList: serverResult,
+            })
+          }
+        );
     }
-    
+
 
   }
 
@@ -88,11 +88,11 @@ export class SearchResults extends React.Component {
         <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
-          <ResultsSearchbar 
+          <ResultsSearchbar
             className="search-bar"
-            searchterms = {searchterms}
+            searchterms={searchterms}
             onSearchbarUpdate={this.handleSearchbarUpdate}
-            onSearchbarSubmit={this.handleSearchbarSubmit}/>
+            onSearchbarSubmit={this.handleSearchbarSubmit} />
           {/* <h2 className = "example"> example: {JSON.stringify(this.state.example)} </h2> */}
           <p className="number-of-entries">{this.state.resultsList.length} entries</p>
           <div className="results-entries">
@@ -103,7 +103,7 @@ export class SearchResults extends React.Component {
                   category={entry.category}
                   subCategory={entry.sub_category}
                   diagnosticCriteria={entry.diagnostic_criteria}
-                  description={entry.description}/>)
+                  description={entry.description} />)
                 : <h2 className="no-results">No results</h2>
               : <p>{/*Fancy loading animation*/}</p>}
           </div>

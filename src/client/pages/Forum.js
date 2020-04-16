@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Navbar } from './components/Navbar.js';
+import React from 'react';
+import Navbar from './components/Navbar';
 
-export class Forum extends React.Component {
+export default class Forum extends React.Component {
   //Blank placeholder component for the Forum page
   //Also testing server responses
   constructor(props) {
