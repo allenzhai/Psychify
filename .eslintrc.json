@@ -1,15 +1,23 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:jest/all"
   ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
+  "plugins": [
+    "react-hooks",
+    "jest"
+  ],
   "rules": {
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

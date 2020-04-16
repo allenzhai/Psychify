@@ -1,47 +1,39 @@
-import React, {Component} from 'react';
-import './style/Searchbar.css';
+import React, { useState } from 'react';
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory({
-  forceRefresh: true
-});
+import './style/Searchbar.css';
+import { useHistory } from 'react-router-dom';
 
-export class Searchbar extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      searchTerms: '',
-    };
-  }
+export default function Searchbar() {
+  const [searchTerms, setSearchTerms] = useState('');
+  const history = createBrowserHistory({
+    forceRefresh: true
+  });
 
-  handleSubmit(event){
+  const handleSubmit = (event) => {
     event.preventDefault();
     history.push({
       pathname: '/results',
-      search: '?terms=' + this.state.searchTerms.split(' '),
+      search: '?terms=' + searchTerms.split(' '),
     });
   }
 
-  handleChange(event){
+  const handleChange = (event) => {
     //Called every time the searchbar text changes
-    this.setState({searchTerms: event.target.value});
+    setSearchTerms(event.target.value);
   }
 
-  render() {
-      return (
-        <div>
-          <form onSubmit={this.handleSubmit} >
-            <input 
-              type="text" 
-              className="search" 
-              placeholder="Enter Symptoms e.g. 'Trouble Sleeping'" 
-              autoComplete="off"
-              value={this.state.searchTerms}
-              onChange={this.handleChange}/>
-          </form>
-        </div>
-      );
-    }
+  return (
+    <div>
+      <form onSubmit={handleSubmit} >
+        <input
+          type="text"
+          className="search"
+          placeholder="Enter Symptoms e.g. 'Trouble Sleeping'"
+          autoComplete="off"
+          value={searchTerms}
+          onChange={handleChange} />
+      </form>
+    </div>
+  );
 }
