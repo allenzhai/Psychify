@@ -13,3 +13,25 @@ describe("Test the root path", () => {
       })
   });
 });
+
+describe("Test api call", () => {
+  test("It should response the GET method", done => {
+    request(app)
+      .get("/api/disorders")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        done();
+      })
+  });
+});
+
+describe("Test api call", () => {
+  test("It should response the GET method", done => {
+    request(app)
+      .get("/api/searchDisorderName/:disorder")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        done();
+      })
+  });
+});
