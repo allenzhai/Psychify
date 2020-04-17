@@ -45,3 +45,11 @@ h1 {
 .disorder-result {
   margin-top: 16px;
 }
+
+.sortedBy {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: gray;
+  text-align: left;
+  margin-left: 40px;
+  margin-bottom: 0;
+}
