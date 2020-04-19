@@ -38,4 +38,17 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dist/index.html'));
 });
 
+app.post('/api/register', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const dynamicSalt = hash.generateSalt()
+  const user = {
+    username: req.body.username,
+    passwordHash: hash.simpleHash(req.body.password + process.env.STATIC_SALT + dynamicSalt),
+    email: req.body.email,
+    salt: dynamicSalt
+  }
+  api.registerUser(user);
+  res.json(user);
+})
+
 module.exports = app;
