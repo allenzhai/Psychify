@@ -59,7 +59,6 @@ function Login() {
 
   if (!loggedIn) {
     return (
-      <div>
         <div className="login">
           <a onClick={handleOpenLoginModal}>Login</a>
 
@@ -149,7 +148,6 @@ function Login() {
 
           </ReactModal>
         </div>
-      </div>
     );
   }
   return (
