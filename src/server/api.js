@@ -16,5 +16,11 @@ exports.queryName = function (disorderName) {
 
 exports.registerUser = function (user) {
   const stm = `INSERT INTO Accounts(user, password, email, type, salt) VALUES("${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
+  console.log(stm);
+  return pool.query(stm);
+}
+
+exports.getUser = function (username) {
+  const stm = `SELECT * FROM Accounts WHERE user=${username}`;
   return pool.query(stm);
 }

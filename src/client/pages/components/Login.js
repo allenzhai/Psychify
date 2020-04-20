@@ -11,7 +11,18 @@ function Login() {
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
   function handleSubmit(event) {
-
+    const request = {
+      method: 'POST',
+      mode: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        username: 'test',
+        password: 'test',
+        email: 'test'
+      }
+    };
+    fetch('http://localhost:5000/api/register', request);
+    console.log('registration successful');
   }
 
   function handleOpenLoginModal() {
@@ -97,7 +108,7 @@ function Login() {
               <input type="file" accept="image/*" multiple="false" />
 
               <h3 className="registration-modal-section-header">Username</h3>
-              <input type="text" className="form-control" name="registration-password" />
+              <input type="text" className="form-control" name="registration-username" />
               <h3 className="registration-modal-section-header">Password</h3>
               <input type="text" className="form-control" name="registration-password" />
               <h3 className="registration-modal-section-header">Email</h3>
@@ -132,7 +143,7 @@ function Login() {
               </label>
               <br />
               <br />
-              <button type="button" className="button-registration">Create Account</button>
+              <button type="button" className="button-registration" onClick={handleSubmit}>Create Account</button>
             </div>
 
 
