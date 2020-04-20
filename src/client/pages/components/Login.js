@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import './style/Login.css';
+import ReactModal from 'react-modal';
 
 function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,7 +47,13 @@ function Login() {
     document.body.style.overflowY = 'unset';
   }
 
-  handleClick() {
+  function handleRegistrationClick() {
+    setShowLoginModal(false);
+    setShowRegistrationModal(true);
+  }
+
+
+  function handleClick() {
 
   }
 
@@ -141,9 +149,16 @@ function Login() {
 
           </ReactModal>
         </div>
-      );
-    }
+      </div>
+    );
   }
+  return (
+    <div>
+      <nav className="profile">
+        <a href="/">{username}</a>
+      </nav>
+    </div>
+  );
 }
 
 export default Login;
