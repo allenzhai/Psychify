@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Searchbar from './components/Searchbar';
+import Navbar from '../components/Navbar';
+import Searchbar from '../components/Searchbar';
 
 export default function DSM() {
-  //Blank placeholder component for the DSM Index
+  // Blank placeholder component for the DSM Index
   return (
     <body>
       <Navbar />
@@ -11,7 +11,7 @@ export default function DSM() {
         <Searchbar className="searchbar-home" />
         <br />
         <h1>Diagnostic Criteria and Codes</h1>
-        <ul className="disorder-category" style={{ listStyleType: "none" }}>
+        <ul className="disorder-category" style={{ listStyleType: 'none' }}>
           <li><a href="/">Neurodevelopmental Disorders</a></li>
           <li><a href="/stuff">Schizophrenia Spectrum and Other Psychotic Disorders</a></li>
           <li><a href="/contact">Bipolar and Related Disorders</a></li>

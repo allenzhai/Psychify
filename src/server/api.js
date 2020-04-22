@@ -1,26 +1,26 @@
 const pool = require('./database');
 
-exports.listDisorders = function () {
+exports.listDisorders = () => {
   const stm = 'SELECT * FROM Disorders';
   return pool.query(stm);
-}
+};
 
-exports.queryName = function (disorderName) {
-  const stm = 'SELECT DISTINCT * FROM Disorders' +
-              ' WHERE Name LIKE \'%' + disorderName + '%\'' +
-              ' OR Alias LIKE \'%' + disorderName + '%\''  +
-              ' OR Category LIKE \'%' + disorderName + '%\'' +
-              ' OR Sub_category LIKE \'%' + disorderName + '%\'';
+exports.queryName = (disorderName) => {
+  const stm = `${'SELECT DISTINCT * FROM Disorders'
+    + ' WHERE Name LIKE \'%'}${disorderName}%'`
+    + ` OR Alias LIKE '%${disorderName}%'`
+    + ` OR Category LIKE '%${disorderName}%'`
+    + ` OR Sub_category LIKE '%${disorderName}%'`;
   return pool.query(stm);
-}
+};
 
-exports.registerUser = function (user) {
+exports.registerUser = (user) => {
   const stm = `INSERT INTO Accounts(user, password, email, type, salt) VALUES("${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
   console.log(stm);
   return pool.query(stm);
-}
+};
 
-exports.getUser = function (username) {
+exports.getUser = (username) => {
   const stm = `SELECT * FROM Accounts WHERE user=${username}`;
   return pool.query(stm);
-}
+};

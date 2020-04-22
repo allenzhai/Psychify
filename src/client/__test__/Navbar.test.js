@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Navbar from '../pages/components/Navbar';
+import Navbar from '../components/Navbar';
 
 describe('test suite of Navbar', () => {
   it('should contain forum and dsm links', () => {

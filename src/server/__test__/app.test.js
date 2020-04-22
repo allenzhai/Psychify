@@ -1,64 +1,64 @@
 require('dotenv').config();
 
-const request = require("supertest");
-const app = require("../app");
+const request = require('supertest');
+const app = require('../app');
 
-describe("Test the root path", () => {
-  test("It should response the GET method", done => {
+describe('test the root path', () => {
+  it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get("/")
-      .then(response => {
+      .get('/')
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
-      })
-  });
+      });
+  }));
 });
 
-describe("Test api call", () => {
-  test("It should response the GET method", done => {
+describe('test api call', () => {
+  it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get("/api/disorders")
-      .then(response => {
+      .get('/api/disorders')
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
-      })
-  });
+      });
+  }));
 });
 
-describe("Test api call", () => {
-  test("It should response the GET method", done => {
+describe('test api call', () => {
+  it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get("/api/searchDisorderName/:disorder")
-      .then(response => {
+      .get('/api/searchDisorderName/:disorder')
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
-      })
-  });
+      });
+  }));
 });
 
-describe("Test api call", () => {
-  test("It should response the GET method", done => {
+describe('test api call', () => {
+  it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get("/api/login/testUsername")
-      .then(response => {
+      .get('/api/login/testUsername')
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
-      })
-  });
+      });
+  }));
 });
 
-describe("Test api call", () => {
-  test("It should response the POST method", done => {
+describe('test api call', () => {
+  it('should response the POST method', () => new Promise((done) => {
     const sampleUser = {
       username: 'test',
       password: 'test',
       email: 'test'
-    }
+    };
     request(app)
-      .post("/api/register", sampleUser)
-      .then(response => {
+      .post('/api/register', sampleUser)
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
-      })
-  });
+      });
+  }));
 });

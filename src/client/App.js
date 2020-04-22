@@ -6,7 +6,6 @@ import DSM from './pages/DSM';
 import SearchResults from './pages/SearchResults';
 
 export default function App() {
-
   return (
     <div>
       <Switch>
