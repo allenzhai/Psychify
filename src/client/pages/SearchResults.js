@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactModal from 'react-modal';
-import Navbar from './components/Navbar';
-import { ResultsSearchbar } from './components/ResultsSearchbar.js';
-import { SortMenu } from './components/SortMenu.js';
-import { DisorderResult } from './components/DisorderResult';
-import './components/style/SearchResults.css';
 
+import Navbar from '../components/Navbar';
+import { ResultsSearchbar } from '../components/ResultsSearchbar';
+import { SortMenu } from '../components/SortMenu';
+import { DisorderResult } from '../components/DisorderResult';
+
+import '../style/SearchResults.css';
 
 import { createBrowserHistory } from 'history';
 
@@ -28,53 +29,53 @@ export default class SearchResults extends React.Component {
       isLoaded: false,
       sortByList: [
         {
-           key : 0,
-           title : 'Name'
+          key: 0,
+          title: 'Name'
         },
         {
-            key : 1,
-            title : 'Alias'
+          key: 1,
+          title: 'Alias'
         },
         {
-            key : 2,
-            title : 'Sub-Category'
+          key: 2,
+          title: 'Sub-Category'
         },
         {
-            key : 3,
-            title : 'Category'
+          key: 3,
+          title: 'Category'
         }
-    ],
-    sortBy: 'Name'
+      ],
+      sortBy: 'Name'
     };
   }
 
   componentDidMount(event) {
     const searchterms = history.location.search.substring(7).replace(/,/g, ' ');
     this.setState({
-      searchterms: searchterms,
+      searchterms,
     });
     this.querySearchTerms(searchterms);
   }
 
   handleSearchbarUpdate(searchterms) {
-    this.setState({ searchterms: searchterms });
+    this.setState({ searchterms });
   }
 
-  handleSortUpdate(sortBy){
+  handleSortUpdate(sortBy) {
     this.setState({ sortBy });
   }
 
   handleSearchbarSubmit(searchterms) {
     history.push({
       pathname: '/results',
-      search: '?terms=' + this.state.searchterms.split(' '),
+      search: `?terms=${this.state.searchterms.split(' ')}`,
     });
     this.querySearchTerms(this.state.searchterms);
   }
 
   querySearchTerms(searchterms) {
     if (!(searchterms)) {
-      fetch("http://localhost:5000/api/disorders")
+      fetch('http://localhost:5000/api/disorders')
         .then(res => res.json())
         .then(
           (serverResult) => {
@@ -86,14 +87,12 @@ export default class SearchResults extends React.Component {
             });
           }
         );
-
-    }
-    else {
-      fetch("http://localhost:5000/api/searchDisorderName/" + searchterms)
+    } else {
+      fetch(`http://localhost:5000/api/searchDisorderName/${searchterms}`)
         .then(res => res.json())
         .then(
           (serverResult) => {
-          console.log(JSON.stringify(serverResult));
+            console.log(JSON.stringify(serverResult));
             const filteredServerResult = this.filterServerResult(serverResult);
             JSON.stringify(filteredServerResult);
             this.setState({
@@ -104,7 +103,6 @@ export default class SearchResults extends React.Component {
         );
     }
   }
-
 
 
   filterServerResult(serverResult) {
@@ -119,54 +117,45 @@ export default class SearchResults extends React.Component {
     serverResult.sort((a, b) => {
       A = a.category.toUpperCase();
       B = b.category.toUpperCase();
-      if (this.state.sortBy == "Name"){
-          A = a.name.toUpperCase();
-          B = b.name.toUpperCase();
-      }
-      else if (this.state.sortBy == "Alias"){
-          A = a.alias.toUpperCase();
-          B = b.alias.toUpperCase();
-      }
-      else if (this.state.sortBy == "Sub-Category") {
-          A = a.sub_category.toUpperCase();
-          B = b.sub_category.toUpperCase();
-      }
-      else if (this.state.sortBy == "Category"){
-          A = a.category.toUpperCase();
-          B = b.category.toUpperCase();
+      if (this.state.sortBy == 'Name') {
+        A = a.name.toUpperCase();
+        B = b.name.toUpperCase();
+      } else if (this.state.sortBy == 'Alias') {
+        A = a.alias.toUpperCase();
+        B = b.alias.toUpperCase();
+      } else if (this.state.sortBy == 'Sub-Category') {
+        A = a.sub_category.toUpperCase();
+        B = b.sub_category.toUpperCase();
+      } else if (this.state.sortBy == 'Category') {
+        A = a.category.toUpperCase();
+        B = b.category.toUpperCase();
       }
 
-      if (A == ''){
+      if (A == '') {
         return 1;
       }
-      else if (B == ''){
+      if (B == '') {
         return -1;
       }
-      else{
-        return (A < B) ? -1 : (A > B) ? 1 : 0;
-      }
+
+      return (A < B) ? -1 : (A > B) ? 1 : 0;
     });
 
     if (this.state.searchterms != null) {
       for (result = 0; result < serverResult.length; result++) {
-
-        if (this.state.sortBy == "Name"){
-            const x = this.MatchCount(serverResult[result].name.split(''));
-            matchArray.push(x);
+        if (this.state.sortBy == 'Name') {
+          const x = this.MatchCount(serverResult[result].name.split(''));
+          matchArray.push(x);
+        } else if (this.state.sortBy == 'Alias') {
+          const x = this.MatchCount(serverResult[result].alias.split(''));
+          matchArray.push(x);
+        } else if (this.state.sortBy == 'Sub-Category') {
+          const x = this.MatchCount(serverResult[result].sub_category.split(''));
+          matchArray.push(x);
+        } else if (this.state.sortBy == 'Category') {
+          const x = this.MatchCount(serverResult[result].category.split(''));
+          matchArray.push(x);
         }
-        else if (this.state.sortBy == "Alias"){
-            const x = this.MatchCount(serverResult[result].alias.split(''));
-            matchArray.push(x);
-        }
-        else if (this.state.sortBy == "Sub-Category") {
-            const x = this.MatchCount(serverResult[result].sub_category.split(''));
-            matchArray.push(x);
-        }
-        else if (this.state.sortBy == "Category"){
-            const x = this.MatchCount(serverResult[result].category.split(''));
-            matchArray.push(x);
-        }
-        
       }
 
       while (ans.length < serverResult.length) {
@@ -210,8 +199,8 @@ export default class SearchResults extends React.Component {
             list={this.state.sortByList}
             searchterms={searchterms}
             onSortSubmit={this.handleSearchbarSubmit}
-            onSortUpdate = {this.handleSortUpdate}
-            sortBy = {sortBy}
+            onSortUpdate={this.handleSortUpdate}
+            sortBy={sortBy}
           />
           <ResultsSearchbar
             className="search-bar"
@@ -219,7 +208,13 @@ export default class SearchResults extends React.Component {
             onSearchbarUpdate={this.handleSearchbarUpdate}
             onSearchbarSubmit={this.handleSearchbarSubmit}
           />
-          <p className = "sortedBy">{this.state.resultsList.length} entries sorted by {sortBy}</p>
+          <p className="sortedBy">
+            {this.state.resultsList.length}
+            {' '}
+            entries sorted by
+            {' '}
+            {sortBy}
+          </p>
           <div className="results-entries">
             {this.state.isLoaded
               ? this.state.resultsList.length

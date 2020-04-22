@@ -9,8 +9,13 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -18,6 +23,7 @@
     "express": "^4.17.1",
     "fast-csv": "^4.1.1",
     "mysql": "^2.18.1",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.5.2",
     "react-modal": "^3.11.2",
@@ -50,6 +56,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.3.0",
     "nodemon": "^1.17.3",
+    "pre-commit": "^1.2.2",
     "react-test-renderer": "^16.13.1",
     "style-loader": "^0.23.0",
     "supertest": "^4.0.2",

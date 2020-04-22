@@ -1,11 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Searchbar from './components/Searchbar';
+import Navbar from '../components/Navbar';
+import Searchbar from '../components/Searchbar';
 
-import './components/style/Home.css';
+import '../style/Home.css';
 
 export default function Home() {
-
   return (
     <body className="home-content">
       <Navbar />

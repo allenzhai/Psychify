@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const api = require('./api');
+
 const app = express();
 
 app.use(express.static('dist'));
@@ -8,10 +9,9 @@ app.use(express.static('dist'));
 
 app.get('/api/disorders', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  api.listDisorders().then(rows => {
-    console.log(rows);
+  api.listDisorders().then((rows) => {
     res.json(rows);
-  }).catch(err => {
+  }).catch((err) => {
     console.log(err);
     // should return user friendly error message here.
     // future change is needed here;
@@ -21,12 +21,11 @@ app.get('/api/disorders', (req, res) => {
 
 app.get('/api/searchDisorderName/:disorder', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  var disorder = req.params.disorder;
+  const { disorder } = req.params;
 
-  api.queryName(disorder).then(rows => {
-    console.log(rows);
+  api.queryName(disorder).then((rows) => {
     res.json(rows);
-  }).catch(err => {
+  }).catch((err) => {
     console.log(err);
     // should return user friendly error message here.
     // future change is needed here;
@@ -35,23 +34,22 @@ app.get('/api/searchDisorderName/:disorder', (req, res) => {
 });
 
 app.post('/api/register', (req, res) => {
-  const dynamicSalt = hash.generateSalt()
+  const dynamicSalt = hash.generateSalt();
   const user = {
     username: req.body.username,
     passwordHash: hash.simpleHash(req.body.password + process.env.STATIC_SALT + dynamicSalt),
     email: req.body.email,
     salt: dynamicSalt
-  }
-  console.log(user);
+  };
   api.registerUser(user);
   res.json(user);
 });
 
 app.get('/api/login/:username', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  const user = api.getUser(username)
+  const user = api.getUser(username);
   const checkPass = hash.simpleHash(req.body.password + process.env.STATIC_SALT + user.salt);
-  if (user.password == checkPass){
+  if (user.password == checkPass) {
     res.json(user);
     return true;
   }

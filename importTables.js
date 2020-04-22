@@ -4,48 +4,47 @@
  * new entries as we add more of them into the project.
  */
 
-var fs = require('fs');
-var mysql = require('mysql');
-var fastcsv = require('fast-csv');
+const fs = require('fs');
+const mysql = require('mysql');
+const fastcsv = require('fast-csv');
 
 // Create the connection to be used
-var cnxn = mysql.createConnection({
-  host: "database-1.cfwynfjcelo6.us-east-1.rds.amazonaws.com",
-  user: "gaprogg",
-  password: "nTxenFjsHbko44X0",
-  database: "dsm"
+const cnxn = mysql.createConnection({
+  host: 'database-1.cfwynfjcelo6.us-east-1.rds.amazonaws.com',
+  user: 'gaprogg',
+  password: 'nTxenFjsHbko44X0',
+  database: 'dsm'
 });
 
 // This set's the data source for our stream
-let stream = fs.createReadStream("csvDisorders.csv");
+const stream = fs.createReadStream('csvDisorders.csv');
 // empty array to put entries into
-let csvData = [];
+const csvData = [];
 // This defines the behavior of the fast-csv stream
-let csvStream = fastcsv
+const csvStream = fastcsv
   .parse()
   // There are 2 listens here
   // "data" triggers on a successful read from the csv
-  .on("data", function(data) {
+  .on('data', (data) => {
     csvData.push(data);
   })
   // "end" triggers at the end of the csv,
   // or after the last useable entry is pushed
-  .on("end", function() {
+  .on('end', () => {
     // Skip first line of input (this *should* be headers)
     csvData.shift();
-    
+
     // Connect to database
-    cnxn.connect(function(err) {
+    cnxn.connect((err) => {
       if (err) {
         cnxn.end();
         throw err;
       } else {
-        console.log("Connected, writing values:");
-        
+        console.log('Connected, writing values:');
+
         // Create mySQL syntax for write operation
-        let query = 
-          "INSERT INTO Disorders (name, alias, category, sub_category, diagnostic_criteria, description, diagnostic_code) VALUES ?";
-        
+        const query = 'INSERT INTO Disorders (name, alias, category, sub_category, diagnostic_criteria, description, diagnostic_code) VALUES ?';
+
         // Write each entry into database
         cnxn.query(query, [csvData], (error, response) => {
           console.log(error || response);

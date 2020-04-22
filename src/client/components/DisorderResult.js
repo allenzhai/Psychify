@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/DisorderResult.css';
+import '../style/DisorderResult.css';
 import ReactModal from 'react-modal';
 
 export class DisorderResult extends React.Component {
@@ -14,8 +14,7 @@ export class DisorderResult extends React.Component {
   }
 
   handleOpenModal() {
-    if (!this.state.showModal)
-    this.setState({ showModal: true });
+    if (!this.state.showModal) this.setState({ showModal: true });
     // document.body.style.overflowY = 'hidden';
   }
 
