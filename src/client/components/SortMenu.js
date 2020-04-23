@@ -60,37 +60,37 @@ export class SortMenu extends React.Component {
 
     return (
       <div ref={outer => this.outer = outer}>
-      <div className="sortbyList-container">
-        <div className="sortby-header" onClick={() => this.toggleList()}>
-          <div className="sortby-header-title">{headerTitle}</div>
+        <div className="sortbyList-container">
+          <div className="sortby-header" onClick={() => this.toggleList()}>
+            <div className="sortby-header-title">{headerTitle}</div>
+          </div>
+          {listOpen
+            && (
+            <ul className="sortbyList">
+              <li className="sortby-list-item" onClick={this.toggleSelected}>
+                {' '}
+                {this.props.list[0].title}
+                {' '}
+              </li>
+              <li className="sortby-list-item" onClick={this.toggleSelected}>
+                {' '}
+                {this.props.list[1].title}
+                {' '}
+              </li>
+              <li className="sortby-list-item" onClick={this.toggleSelected}>
+                {' '}
+                {this.props.list[2].title}
+                {' '}
+              </li>
+              <li className="sortby-list-item" onClick={this.toggleSelected}>
+                {' '}
+                {this.props.list[3].title}
+                {' '}
+              </li>
+            </ul>
+            )
+          }
         </div>
-        {listOpen
-          && (
-          <ul className="sortbyList">
-            <li className="sortby-list-item" onClick={this.toggleSelected}>
-              {' '}
-              {this.props.list[0].title}
-              {' '}
-            </li>
-            <li className="sortby-list-item" onClick={this.toggleSelected}>
-              {' '}
-              {this.props.list[1].title}
-              {' '}
-            </li>
-            <li className="sortby-list-item" onClick={this.toggleSelected}>
-              {' '}
-              {this.props.list[2].title}
-              {' '}
-            </li>
-            <li className="sortby-list-item" onClick={this.toggleSelected}>
-              {' '}
-              {this.props.list[3].title}
-              {' '}
-            </li>
-          </ul>
-          )
-        }
-      </div>
       </div> 
       
     );
