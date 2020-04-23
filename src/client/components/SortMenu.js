@@ -21,11 +21,11 @@ function SortMenu({ list, onSortSubmit, onSortUpdate }) {
   };
 
   const handleClickOutside = () => {
-    setListOpen(true);
+    setListOpen(false);
   };
 
   const handleClick = (e) => {
-    if (!outer.contains(e.target)) {
+    if (!outer.current.contains(e.target)) {
       handleClickOutside();
     }
     return 0;
@@ -64,13 +64,7 @@ function SortMenu({ list, onSortSubmit, onSortUpdate }) {
 SortMenu.propTypes = {
   list: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSortSubmit: PropTypes.func.isRequired,
-<<<<<<< HEAD
-  onSortUpdate: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired
-}
-=======
   onSortUpdate: PropTypes.func.isRequired
 };
 
 export default SortMenu;
->>>>>>> 927c80207d56ae72305d55b6dbff1561bab7275b
