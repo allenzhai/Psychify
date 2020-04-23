@@ -32,12 +32,34 @@ export class SortMenu extends React.Component {
     this.props.onSortSubmit();
   }
 
+  componentWillMount(){
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = (e) => {
+    console.log(e.target);
+    console.log(this.outer);
+    if (this.outer.contains(e.target)){
+      return;
+    }
+    else{
+      console.log("here");
+      this.handleClickOutside();
+    }
+  }
+
+
 
   render() {
     const { list } = this.props;
     const { listOpen, headerTitle } = this.state;
 
     return (
+      <div ref={outer => this.outer = outer}>
       <div className="sortbyList-container">
         <div className="sortby-header" onClick={() => this.toggleList()}>
           <div className="sortby-header-title">{headerTitle}</div>
@@ -69,6 +91,8 @@ export class SortMenu extends React.Component {
           )
         }
       </div>
+      </div> 
+      
     );
   }
 }
