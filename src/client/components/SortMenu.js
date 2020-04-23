@@ -1,105 +1,76 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import '../style/SortMenu.css';
 
-export default class SortMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleClickOutside.bind(this);
-    this.toggleList = this.toggleList.bind(this);
-    this.toggleSelected = this.toggleSelected.bind(this);
-    this.state = {
-      listOpen: false,
-      headerTitle: 'Sort By'
-    };
-  }
+function SortMenu({ list, onSortSubmit, onSortUpdate }) {
+  const [listOpen, setListOpen] = useState(false);
+  const headerTitle = 'Sort By';
+  const outer = useRef();
 
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
+  const toggleList = () => {
+    setListOpen(!listOpen);
+  };
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick, false);
-  }
-
-  handleClick = (e) => {
-    console.log(e.target);
-    console.log(this.outer);
-    if (!this.outer.contains(e.target)) {
-      this.handleClickOutside();
-    }
-    return 0;
-  }
-
-  handleClickOutside() {
-    this.setState({
-      listOpen: false
-    });
-  }
-
-  toggleList() {
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen
-    }));
-  }
-
-  toggleSelected(e) {
-    const { onSortUpdate, onSortSubmit } = this.props;
-    this.toggleList();
+  const toggleSelected = (e) => {
+    toggleList();
     onSortUpdate(e.target.innerText);
     onSortSubmit();
-  }
+  };
 
-  render() {
-    const { list } = this.props;
-    const { listOpen, headerTitle } = this.state;
+  const handleClickOutside = () => {
+    setListOpen(true);
+  };
 
-    return (
-      // eslint-disable-next-line no-return-assign
-      <div ref={outer => this.outer = outer}>
-        <div className="sortbyList-container">
-          <div className="sortby-header" onClick={() => this.toggleList()} role="button" tabIndex={0}>
-            <div className="sortby-header-title">{headerTitle}</div>
-          </div>
-          {listOpen
-            && (
-            <ul className="sortbyList">
-              <li className="sortby-list-item" onClick={this.toggleSelected}>
-                {' '}
-                {list[0].title}
-                {' '}
-              </li>
-              <li className="sortby-list-item" onClick={this.toggleSelected}>
-                {' '}
-                {list[1].title}
-                {' '}
-              </li>
-              <li className="sortby-list-item" onClick={this.toggleSelected}>
-                {' '}
-                {list[2].title}
-                {' '}
-              </li>
-              <li className="sortby-list-item" onClick={this.toggleSelected}>
-                {' '}
-                {list[3].title}
-                {' '}
-              </li>
-            </ul>
-            )
-          }
+  const handleClick = (e) => {
+    if (!outer.contains(e.target)) {
+      handleClickOutside();
+    }
+    return 0;
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => document.removeEventListener('mousedown', handleClick, false);
+  }, []);
+
+  const listView = listOpen
+    ? (
+      <ul className="sortbyList">
+        {
+          list.map(entry => (
+            <li className="sortby-list-item" onClick={toggleSelected}>
+              {entry}
+            </li>
+          ))}
+      </ul>
+    ) : '';
+
+  return (
+    // eslint-disable-next-line no-return-assign
+    <div ref={outer}>
+      <div className="sortbyList-container">
+        <div className="sortby-header" onClick={() => toggleList()} role="button" tabIndex={0}>
+          <div className="sortby-header-title">{headerTitle}</div>
         </div>
+        {listView}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-SortMenu.PropTypes = {
-  list: PropTypes.array.isRequired,
-  searchterms: PropTypes.string.isRequired,
+SortMenu.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSortSubmit: PropTypes.func.isRequired,
+<<<<<<< HEAD
   onSortUpdate: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired
 }
+=======
+  onSortUpdate: PropTypes.func.isRequired
+};
+
+export default SortMenu;
+>>>>>>> 927c80207d56ae72305d55b6dbff1561bab7275b
