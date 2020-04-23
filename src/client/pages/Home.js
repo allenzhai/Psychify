@@ -6,13 +6,13 @@ import '../style/Home.css';
 
 export default function Home() {
   return (
-    <body className="home-content">
+    <div className="home-content">
       <Navbar />
       <div className="landing-content">
         <h2 className="landing-title">The quick and easy DSM-V search.</h2>
         <h2 className="landing-subtitle">Find conditions. Connect with real people.</h2>
         <Searchbar className="searchbar-home" />
       </div>
-    </body>
+    </div>
   );
 }

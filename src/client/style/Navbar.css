@@ -1,9 +1,9 @@
-.top-bar{
+.top-bar {
   display: flex;
   justify-content: space-between;
 }
 
-.homepage{
+.homepage {
   text-decoration: none;
   font-family: 'Open Sans', Arial, sans-serif;
   font-style: italic;
@@ -37,7 +37,17 @@
   transition-duration: 200ms;
 }
 
-.navbar > a.nav-item:hover{
+.navbar a.nav-item:hover {
   color:#000000;
   background-color: #dddddd;
+}
+
+.navbar a.signup {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+}
+
+.navbar a.signup:hover {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
 }
