@@ -176,6 +176,26 @@ export default class SearchResults extends React.Component {
     return match;
   }
 
+  displayDisorderResults() {
+    const { isLoaded, resultsList } = this.state;
+    if (isLoaded) {
+      if (resultsList.length > 0) {
+        return resultsList.map(entry => (
+          <DisorderResult
+            className="disorder-result"
+            title={entry.name}
+            category={entry.category}
+            subCategory={entry.sub_category}
+            diagnosticCriteria={entry.diagnostic_criteria}
+            description={entry.description}
+          />
+        ));
+      }
+      return <h2 className="no-results">No results</h2>;
+    }
+    return <p>{/* Fancy loading animation */}</p>;
+  }
+
   render() {
     const {
       searchterms, sortBy, sortByList, resultsList, isLoaded
@@ -207,21 +227,7 @@ export default class SearchResults extends React.Component {
             {sortBy}
           </p>
           <div className="results-entries">
-            {
-              isLoaded
-                ? resultsList.length
-                  ? resultsList.map(entry => (
-                    <DisorderResult
-                      className="disorder-result"
-                      title={entry.name}
-                      category={entry.category}
-                      subCategory={entry.sub_category}
-                      diagnosticCriteria={entry.diagnostic_criteria}
-                      description={entry.description}
-                    />
-                  ))
-                  : <h2 className="no-results">No results</h2>
-                : <p>{/* Fancy loading animation */}</p>}
+            {this.displayDisorderResults(isLoaded, resultsList)}
           </div>
         </div>
       </div>
