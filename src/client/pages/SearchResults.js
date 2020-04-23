@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-
+import { createBrowserHistory } from 'history';
 import Navbar from '../components/Navbar';
 import { ResultsSearchbar } from '../components/ResultsSearchbar';
-import { SortMenu } from '../components/SortMenu';
+import SortMenu from '../components/SortMenu';
 import { DisorderResult } from '../components/DisorderResult';
 
 import '../style/SearchResults.css';
 
-import { createBrowserHistory } from 'history';
-
 const history = createBrowserHistory({
   forceRefresh: false
 });
-
 
 ReactModal.setAppElement('#root');
 
@@ -29,19 +26,15 @@ export default class SearchResults extends React.Component {
       isLoaded: false,
       sortByList: [
         {
-          key: 0,
           title: 'Name'
         },
         {
-          key: 1,
           title: 'Alias'
         },
         {
-          key: 2,
           title: 'Sub-Category'
         },
         {
-          key: 3,
           title: 'Category'
         }
       ],
@@ -49,7 +42,7 @@ export default class SearchResults extends React.Component {
     };
   }
 
-  componentDidMount(event) {
+  componentDidMount() {
     const searchterms = history.location.search.substring(7).replace(/,/g, ' ');
     this.setState({
       searchterms,
@@ -65,12 +58,13 @@ export default class SearchResults extends React.Component {
     this.setState({ sortBy });
   }
 
-  handleSearchbarSubmit(searchterms) {
+  handleSearchbarSubmit() {
+    const { searchterms } = this.state;
     history.push({
       pathname: '/results',
-      search: `?terms=${this.state.searchterms.split(' ')}`,
+      search: `?terms=${searchterms.split(' ')}`,
     });
-    this.querySearchTerms(this.state.searchterms);
+    this.querySearchTerms(searchterms);
   }
 
   querySearchTerms(searchterms) {
@@ -113,46 +107,53 @@ export default class SearchResults extends React.Component {
     const ans = [];
     let A;
     let B;
+    const { sortBy, searchterms } = this.state;
 
     serverResult.sort((a, b) => {
       A = a.category.toUpperCase();
       B = b.category.toUpperCase();
-      if (this.state.sortBy == 'Name') {
+      if (sortBy === 'Name') {
         A = a.name.toUpperCase();
         B = b.name.toUpperCase();
-      } else if (this.state.sortBy == 'Alias') {
+      } else if (sortBy === 'Alias') {
         A = a.alias.toUpperCase();
         B = b.alias.toUpperCase();
-      } else if (this.state.sortBy == 'Sub-Category') {
+      } else if (sortBy === 'Sub-Category') {
         A = a.sub_category.toUpperCase();
         B = b.sub_category.toUpperCase();
-      } else if (this.state.sortBy == 'Category') {
+      } else if (sortBy === 'Category') {
         A = a.category.toUpperCase();
         B = b.category.toUpperCase();
       }
 
-      if (A == '') {
+      if (A === '') {
         return 1;
       }
-      if (B == '') {
+      if (B === '') {
         return -1;
       }
 
-      return (A < B) ? -1 : (A > B) ? 1 : 0;
+      if (A < B) {
+        return -1;
+      }
+      if (A > B) {
+        return 1;
+      }
+      return 0;
     });
 
-    if (this.state.searchterms != null) {
-      for (result = 0; result < serverResult.length; result++) {
-        if (this.state.sortBy == 'Name') {
+    if (searchterms != null) {
+      for (result = 0; result < serverResult.length; result += 1) {
+        if (sortBy === 'Name') {
           const x = this.MatchCount(serverResult[result].name.split(''));
           matchArray.push(x);
-        } else if (this.state.sortBy == 'Alias') {
+        } else if (sortBy === 'Alias') {
           const x = this.MatchCount(serverResult[result].alias.split(''));
           matchArray.push(x);
-        } else if (this.state.sortBy == 'Sub-Category') {
+        } else if (sortBy === 'Sub-Category') {
           const x = this.MatchCount(serverResult[result].sub_category.split(''));
           matchArray.push(x);
-        } else if (this.state.sortBy == 'Category') {
+        } else if (sortBy === 'Category') {
           const x = this.MatchCount(serverResult[result].category.split(''));
           matchArray.push(x);
         }
@@ -160,7 +161,7 @@ export default class SearchResults extends React.Component {
 
       while (ans.length < serverResult.length) {
         maxMatch = -1;
-        for (result = 0; result < matchArray.length; result++) {
+        for (result = 0; result < matchArray.length; result += 1) {
           if (matchArray[result] > maxMatch) {
             maxMatch = matchArray[result];
             idx = result;
@@ -176,9 +177,10 @@ export default class SearchResults extends React.Component {
   MatchCount(str) {
     let nameChar;
     let match = 0;
-    const search = this.state.searchterms.split('');
-    for (nameChar = 0; nameChar < search.length && nameChar < str.length; nameChar++) {
-      if (search[nameChar].toUpperCase() == str[nameChar].toUpperCase()) {
+    const { searchterms } = this.state;
+    const search = searchterms.split('');
+    for (nameChar = 0; nameChar < search.length && nameChar < str.length; nameChar += 1) {
+      if (search[nameChar].toUpperCase() === str[nameChar].toUpperCase()) {
         match += 1;
       } else {
         return match;
@@ -188,7 +190,9 @@ export default class SearchResults extends React.Component {
   }
 
   render() {
-    const { searchterms, sortBy } = this.state;
+    const {
+      searchterms, sortBy, sortByList, resultsList, isLoaded 
+    } = this.state;
 
     return (
       <div className="results">
@@ -196,7 +200,7 @@ export default class SearchResults extends React.Component {
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
           <SortMenu
-            list={this.state.sortByList}
+            list={sortByList}
             searchterms={searchterms}
             onSortSubmit={this.handleSearchbarSubmit}
             onSortUpdate={this.handleSortUpdate}
@@ -209,16 +213,17 @@ export default class SearchResults extends React.Component {
             onSearchbarSubmit={this.handleSearchbarSubmit}
           />
           <p className="sortedBy">
-            {this.state.resultsList.length}
+            {resultsList.length}
             {' '}
             entries sorted by
             {' '}
             {sortBy}
           </p>
           <div className="results-entries">
-            {this.state.isLoaded
-              ? this.state.resultsList.length
-                ? this.state.resultsList.map(entry => (
+            {
+            isLoaded
+              ? resultsList.length
+                ? resultsList.map(entry => (
                   <DisorderResult
                     className="disorder-result"
                     title={entry.name}

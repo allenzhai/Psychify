@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../style/SortMenu.css';
 
-export class SortMenu extends React.Component {
+export default class SortMenu extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleClickOutside.bind(this);
@@ -12,6 +15,23 @@ export class SortMenu extends React.Component {
       listOpen: false,
       headerTitle: 'Sort By'
     };
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = (e) => {
+    console.log(e.target);
+    console.log(this.outer);
+    if (!this.outer.contains(e.target)) {
+      this.handleClickOutside();
+    }
+    return 0;
   }
 
   handleClickOutside() {
@@ -27,41 +47,21 @@ export class SortMenu extends React.Component {
   }
 
   toggleSelected(e) {
+    const { onSortUpdate, onSortSubmit } = this.props;
     this.toggleList();
-    this.props.onSortUpdate(e.target.innerText);
-    this.props.onSortSubmit();
+    onSortUpdate(e.target.innerText);
+    onSortSubmit();
   }
-
-  componentWillMount(){
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
-
-  componentWillUnmount(){
-    document.removeEventListener('mousedown', this.handleClick, false);
-  }
-
-  handleClick = (e) => {
-    console.log(e.target);
-    console.log(this.outer);
-    if (this.outer.contains(e.target)){
-      return;
-    }
-    else{
-      console.log("here");
-      this.handleClickOutside();
-    }
-  }
-
-
 
   render() {
     const { list } = this.props;
     const { listOpen, headerTitle } = this.state;
 
     return (
+      // eslint-disable-next-line no-return-assign
       <div ref={outer => this.outer = outer}>
         <div className="sortbyList-container">
-          <div className="sortby-header" onClick={() => this.toggleList()}>
+          <div className="sortby-header" onClick={() => this.toggleList()} role="button" tabIndex={0}>
             <div className="sortby-header-title">{headerTitle}</div>
           </div>
           {listOpen
@@ -69,30 +69,37 @@ export class SortMenu extends React.Component {
             <ul className="sortbyList">
               <li className="sortby-list-item" onClick={this.toggleSelected}>
                 {' '}
-                {this.props.list[0].title}
+                {list[0].title}
                 {' '}
               </li>
               <li className="sortby-list-item" onClick={this.toggleSelected}>
                 {' '}
-                {this.props.list[1].title}
+                {list[1].title}
                 {' '}
               </li>
               <li className="sortby-list-item" onClick={this.toggleSelected}>
                 {' '}
-                {this.props.list[2].title}
+                {list[2].title}
                 {' '}
               </li>
               <li className="sortby-list-item" onClick={this.toggleSelected}>
                 {' '}
-                {this.props.list[3].title}
+                {list[3].title}
                 {' '}
               </li>
             </ul>
             )
           }
         </div>
-      </div> 
-      
+      </div>
     );
   }
+}
+
+SortMenu.PropTypes = {
+  list: PropTypes.array.isRequired,
+  searchterms: PropTypes.string.isRequired,
+  onSortSubmit: PropTypes.func.isRequired,
+  onSortUpdate: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired
 }
