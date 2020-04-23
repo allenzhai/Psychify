@@ -24,20 +24,7 @@ export default class SearchResults extends React.Component {
       searchterms: '',
       resultsList: [],
       isLoaded: false,
-      sortByList: [
-        {
-          title: 'Name'
-        },
-        {
-          title: 'Alias'
-        },
-        {
-          title: 'Sub-Category'
-        },
-        {
-          title: 'Category'
-        }
-      ],
+      sortByList: ['Name', 'Alias', 'Sub-Category', 'Category'],
       sortBy: 'Name'
     };
   }
@@ -191,7 +178,7 @@ export default class SearchResults extends React.Component {
 
   render() {
     const {
-      searchterms, sortBy, sortByList, resultsList, isLoaded 
+      searchterms, sortBy, sortByList, resultsList, isLoaded
     } = this.state;
 
     return (
@@ -221,20 +208,20 @@ export default class SearchResults extends React.Component {
           </p>
           <div className="results-entries">
             {
-            isLoaded
-              ? resultsList.length
-                ? resultsList.map(entry => (
-                  <DisorderResult
-                    className="disorder-result"
-                    title={entry.name}
-                    category={entry.category}
-                    subCategory={entry.sub_category}
-                    diagnosticCriteria={entry.diagnostic_criteria}
-                    description={entry.description}
-                  />
-                ))
-                : <h2 className="no-results">No results</h2>
-              : <p>{/* Fancy loading animation */}</p>}
+              isLoaded
+                ? resultsList.length
+                  ? resultsList.map(entry => (
+                    <DisorderResult
+                      className="disorder-result"
+                      title={entry.name}
+                      category={entry.category}
+                      subCategory={entry.sub_category}
+                      diagnosticCriteria={entry.diagnostic_criteria}
+                      description={entry.description}
+                    />
+                  ))
+                  : <h2 className="no-results">No results</h2>
+                : <p>{/* Fancy loading animation */}</p>}
           </div>
         </div>
       </div>
