@@ -22,18 +22,6 @@
   background-color: #dddddd;
 }
 
-.login a.profile-signup {
-  color: #fff;
-  background: rgb(71,221,206);
-  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
-}
-
-.login a.profile-signup:hover {
-  color: #fff;
-  background: rgb(158,219,213);
-  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
-}
-
 .profile a {
   text-decoration: none;
   display: block;
@@ -50,7 +38,7 @@
   background-repeat: no-repeat;
   background-position: 15px center;
   background-size: 36px;
-} 
+}
 
 .profile a:hover {
   color: #fff;
@@ -64,31 +52,6 @@
   color: #fff;
 }
 
-.login-modal{
-  border-radius: 8px;
-  /* padding: 16px 50px; */
-  padding-bottom: 30px;
-  box-shadow: 0px 4px 8px #999, 0px 0px 24px #ccc;
-  margin: 10vh 10vw;
-  background-color: #ffffff;
-  outline: none;
-  max-height: 75vh;
-  overflow-y: scroll;
-}
-
-.close{
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 600;
-  font-size: 24px;
-  margin: 16px;
-  float: right;
-  background: none;
-  color: #fff;
-  border: none;
-  outline: none;
-}
-
-
 .login-modal-header{
   /* background-color: #222; */
   background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
@@ -99,22 +62,21 @@
   padding: 16px 50px;
 }
 
-.login-modal-section-header {
-  font-family: 'Merriweather', Times, serif;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.button-href {
+.login-modal-body a {
   background: none!important;
   border: none;
   padding: 0!important;
   /*optional*/
   font-family: arial, sans-serif;
-  /*input has OS specific font-family*/
   color: #069;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.login-modal-section-header {
+  font-family: 'Merriweather', Times, serif;
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
 .button-login {
@@ -125,7 +87,7 @@
   background: rgb(71,221,206);
   background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
   font-size: 16px;
-  
+
 }
 
 .button-login:hover {
@@ -142,18 +104,6 @@
   font-size: 24px;
   margin-bottom: 6px;
   color: #fff;
-}
-
-.registration-modal{
-  border-radius: 8px;
-  /* padding: 16px 50px; */
-  padding-bottom: 30px;
-  box-shadow: 0px 4px 8px #999, 0px 0px 24px #ccc;
-  margin: 10vh 10vw;
-  background-color: #ffffff;
-  outline: none;
-  max-height: 75vh;
-  overflow-y: scroll;
 }
 
 .registration-modal-header{
@@ -180,7 +130,7 @@
   background: rgb(71,221,206);
   background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
   font-size: 16px;
-  
+
 }
 
 .button-registration:hover {

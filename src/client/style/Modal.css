@@ -1,0 +1,32 @@
+.modal-overlay {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal{
+  border-radius: 8px;
+  /* padding: 16px 50px; */
+  padding-bottom: 30px;
+  box-shadow: 0px 4px 8px #999, 0px 0px 24px #ccc;
+  margin: 10vh 10vw;
+  background-color: #ffffff;
+  outline: none;
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+
+.close{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 16px;
+  float: right;
+  background: none;
+  color: #fff;
+  border: none;
+  outline: none;
+}

@@ -1,4 +1,4 @@
-body.home-content {
+.home-content {
   /* text-align: center; */
   padding-bottom: 50vh;
   background-image: url('./images/blue-books@2x.png');
@@ -34,4 +34,3 @@ body.home-content {
   margin-bottom: 40px;
   margin-left: 16px;
 }
-
