@@ -1,17 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Button from './Button';
 import Modal from './Modal';
 
 function RegistrationModal() {
+  const location = useLocation();
   const history = useHistory();
-  const params = new URLSearchParams(history.location.search);
 
   const handleClose = () => {
-    history.push(history.location.pathname);
+    history.push({ ...location, hash: '' });
   };
-
 
   const handleSubmit = () => {
     const request = {
@@ -28,7 +27,7 @@ function RegistrationModal() {
     console.log('registration successful');
   };
 
-  if (!params.get('registration')) {
+  if (location.hash !== '#registration') {
     return null;
   }
 

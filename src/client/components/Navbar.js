@@ -13,8 +13,8 @@ function Navbar() {
       </nav>
     ) : (
       <>
-        <a href="?login=true" className="nav-item">Login</a>
-        <a href="?registration=true" className="nav-item signup">Sign Up</a>
+        <a href="#login" className="nav-item">Login</a>
+        <a href="#registration" className="nav-item signup">Sign Up</a>
       </>
     );
 
