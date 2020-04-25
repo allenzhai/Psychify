@@ -1,0 +1,31 @@
+.index-list-con{
+    background-color: rgb(252, 246, 239);
+    border-radius: 30px;
+    width: 80vw;
+    margin: auto;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size:  1rem;
+    box-shadow: 0px 4px 8px #bbbbbb;
+    padding: 2rem;
+}
+
+.col{
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.index-list li{
+    margin: 2rem;
+}
+
+.index-list li a{
+    color: black;
+    
+}
+
+@media only screen and (max-width: 768px){
+    .col{
+        width: 100%;
+    }
+}
