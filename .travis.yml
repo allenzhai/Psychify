@@ -9,7 +9,7 @@ script:
   
 deploy:
   provider: heroku
-  api_key: $H_API
+  api_key: ${H_API}
   on:
     branch: "CD-Integration"
   app: "Psychify"
