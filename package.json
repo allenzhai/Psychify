@@ -5,12 +5,14 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "node src/server/index.js",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "test": "jest --detectOpenHandles --forceExit",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
+    "heroku-postbuild": "webpack -p" 
+    
   },
   "pre-commit": [
     "lint",
