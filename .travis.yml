@@ -9,7 +9,5 @@ script:
   
 deploy:
   provider: heroku
-  api_key: $H_API
+  api_key: H_API
   app: Psychify
-   on:
-    branch: CD-Integration
