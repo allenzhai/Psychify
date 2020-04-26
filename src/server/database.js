@@ -11,6 +11,5 @@ const pool = mysql.createPool({
 
 pool.query = util.promisify(pool.query);
 
-pool.releaseConnection();
 
 module.exports = pool;
