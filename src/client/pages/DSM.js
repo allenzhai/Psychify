@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Searchbar from '../components/Searchbar';
 
-import "../style/DSM.css";
+import '../style/DSM.css';
 
 export default function DSM() {
   // Blank placeholder component for the DSM Index
