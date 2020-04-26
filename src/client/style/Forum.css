@@ -34,3 +34,17 @@ hr {
   padding: 0px;
   margin: 0px;
 }
+
+.fa-stop {
+  color: #ddd;
+  margin-bottom: 2%;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.fa-stop:hover {
+  transform: rotateZ(360deg);
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  color: rgba(71,221,206,1);
+}

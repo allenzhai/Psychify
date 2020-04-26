@@ -8,55 +8,64 @@ function Forum() {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   },
   {
     title: 'Lorem ispsum this is a post title',
     author: 'username',
     age: '20h',
-    category: 'Anxiety'
+    category: 'Anxiety',
+    likes: '1'
   }]);
 
   return (
@@ -73,6 +82,7 @@ function Forum() {
                 author={e.author}
                 age={e.age}
                 category={e.category}
+                likes={e.likes}
               />
             );
             // Displays dividing line after post if not the last post
@@ -87,6 +97,7 @@ function Forum() {
             return post;
           })}
         </div>
+        <i className="fas fa-stop" />
       </div>
     </div>
   );
