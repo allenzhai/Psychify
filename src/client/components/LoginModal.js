@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import Button from './Button';
 import Modal from './Modal';
@@ -7,14 +7,14 @@ import Modal from './Modal';
 import '../style/LoginModal.css';
 
 function LoginModal() {
+  const location = useLocation();
   const history = useHistory();
-  const params = new URLSearchParams(history.location.search);
 
   const handleClose = () => {
-    history.push(history.location.pathname);
+    history.push({ ...location, hash: '' });
   };
 
-  if (!params.get('login')) {
+  if (location.hash !== '#login') {
     return null;
   }
 
@@ -32,9 +32,9 @@ function LoginModal() {
         <h3 className="login-modal-section-header">Password</h3>
         <input type="text" className="form-control" name="login-password" />
         <br />
-        <a href="?registration=true">Registration</a>
+        <a href="#registration">Registration</a>
         <br />
-        <a href="?registration=true">Forgot your password?</a>
+        <a href="#registration">Forgot your password?</a>
         <br />
         <br />
         <Button className="button-login">Login</Button>
