@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "7"
+  - "10.16.1"
 
 script: 
   - npm run build 
-  - npm run test
+  - npm test
