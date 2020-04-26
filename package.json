@@ -4,7 +4,13 @@
   "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
   "main": "src/server/index.js",
   "scripts": {
-    "start": "node src/server/index.js",
+    "build": "webpack --mode production",
+    "start": "npm run build && node src/server/index.js",
+    "server": "nodemon src/server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "test": "jest --detectOpenHandles --forceExit",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
     "heroku-postbuild": "webpack -p" 
     
   },
