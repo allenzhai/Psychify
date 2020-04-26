@@ -21,6 +21,42 @@ function Forum() {
     author: 'username',
     age: '20h',
     category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety'
   }]);
 
   return (
@@ -32,6 +68,7 @@ function Forum() {
           {posts.map((e, i) => {
             let post = (
               <ForumPost
+                className="post"
                 title={e.title}
                 author={e.author}
                 age={e.age}
