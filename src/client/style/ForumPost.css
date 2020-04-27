@@ -35,7 +35,7 @@
 .post-title {
   text-align: left;
   font-family: 'Merriweather', Times, serif;
-  font-size: 18px;
+  font-size: 1.25em;
   font-weight: bold;
   margin: 0%;
   margin-top: 0%;
@@ -47,7 +47,7 @@
 .post-information {
   text-align: left;
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 0.7em;
   margin-left: 1%;
   margin-bottom: 0%;
   padding: 0%;
@@ -57,14 +57,15 @@
 
 .post-category {
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   margin: 0%;
   /* margin-top: 1.7%; */
   margin-left: 2vw;
   color: #fff;
   /* background-color: #e0e0e0; */
   background: linear-gradient(90deg, rgb(104, 221, 209) 0%, rgb(83, 221, 157) 100%);
-  padding: .25% 2vw;
+  padding: 0.75% 2vw;
+  max-height: 1.5em;
   border-radius: 90px;
 }
 
@@ -81,7 +82,7 @@
 
 .post-title-modal {
   font-family: 'Merriweather', Times, serif;
-  font-size: 24px;
+  font-size: 1.5em;
   margin-top: 0%;
   margin-bottom: 6px;
   color: #fff;
@@ -98,7 +99,7 @@
 .post-information-modal {
   text-align: left;
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 12px;
+  font-size: .7em;
   margin-left: 0%;
   margin-bottom: 0%;
   padding: 0%;
@@ -108,7 +109,7 @@
 
 .comment {
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 1em;
   padding-left: 2%;
   padding-bottom: 0%;
 }
@@ -137,7 +138,7 @@
   cursor: pointer;
   font-family: 'Open Sans', Arial, sans-serif;
   text-decoration: none;
-  width: 10%;
+  width: 20vw;
   height: 10%;
   margin-top: 1%;
   padding: 10px 2px;
