@@ -56,7 +56,7 @@ export default class SearchResults extends React.Component {
 
   querySearchTerms(searchterms) {
     if (!(searchterms)) {
-      fetch('http://localhost:5000/api/disorders')
+      fetch('/api/disorders')
         .then(res => res.json())
         .then(
           (serverResult) => {
@@ -69,7 +69,7 @@ export default class SearchResults extends React.Component {
           }
         );
     } else {
-      fetch(`http://localhost:5000/api/searchDisorderName/${searchterms}`)
+      fetch(`/api/searchDisorderName/${searchterms}`)
         .then(res => res.json())
         .then(
           (serverResult) => {
