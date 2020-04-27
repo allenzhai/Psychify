@@ -7,6 +7,7 @@ import DSM from './pages/DSM';
 import SearchResults from './pages/SearchResults';
 import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
+import ProfileModal from './components/ProfileModal';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       </Switch>
       <Route path="/" component={LoginModal} />
       <Route path="/" component={RegistrationModal} />
+      <Route path="/" component={ProfileModal} />
     </>
   );
 }

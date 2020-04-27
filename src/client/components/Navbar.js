@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import '../style/Navbar.css';
 
 function Navbar() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [username, setUsername] = useState('Username');
 
   const component = loggedIn
     ? (
       <nav className="profile">
-        <a href="/">{username}</a>
+        <a href="#profile" className="nav-item registration">{username}</a>
       </nav>
     ) : (
       <>
