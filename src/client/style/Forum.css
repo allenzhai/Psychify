@@ -1,0 +1,119 @@
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+}
+
+.forum-title {
+  font-family: 'Merriweather', Arial, sans-serif;
+  /* width: 85vw; */
+  font-size: 48px;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+.create-post-button {
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  padding: 16px 50px;
+  border-radius: 90px;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 8px #bbbbbb;
+  color:#111111;
+  margin: 16px 24px;
+  font-size: 18px;
+  transition-duration: 200ms;
+}
+
+.create-post-button:hover {
+  background-color: #eee;
+  box-shadow: 0px 0px 8px #bbbbbb, 0px 4px 8px #bbbbbb;
+}
+
+.forum-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.forum-posts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  
+  box-shadow: 0px 4px 8px #bbbbbb;
+  border-radius: 8px;
+  width: 90vw;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+  padding: 0px;
+}
+
+hr {
+  background-color: #e0e0e0;
+  height: 1px;
+  border-width: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.fa-stop {
+  color: #ddd;
+  margin-bottom: 2%;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.fa-stop:hover {
+  transform: rotateZ(360deg);
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  color: rgba(71,221,206,1);
+}
+
+.new-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-left: 2%;
+  padding-top: 2%;
+}
+
+.new-post-text {
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.new-post-field {
+  font-family: 'Open Sans', Arial, sans-serif;
+  border-radius: 8px;
+  padding: 0.5%;
+  min-width: 96%;
+  max-width: 96%;
+}
+
+.new-post-submit {
+  cursor: pointer;
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  width: 20vw;
+  height: 10%;
+  margin-top: 1%;
+  padding: 10px 2px;
+  border-radius: 90px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+}
+
+.new-post-submit:hover {
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+  /* box-shadow: 0px 0px 8px #bbbbbb; */
+}

@@ -1,0 +1,209 @@
+/*This styling is very similar to DisorderResult.css*/
+*:focus {
+  outline: none;
+}
+
+.forum-post:hover {
+  transition-duration: 200ms;
+  box-shadow: 0px 0px 8px #bbbbbb;
+  border-radius: 8px;
+}
+
+.forum-post {
+  transition-duration: 200ms;
+  user-select: none;
+}
+
+.line-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0%;
+  padding: 0%;
+  padding-top: 1%;
+}
+
+.title {
+  padding: 0%;
+  margin: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-width: 60%;
+}
+
+.post-title {
+  text-align: left;
+  font-family: 'Merriweather', Times, serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 0%;
+  margin-top: 0%;
+  margin-left: 1%;
+  padding: 0%;
+  cursor: pointer;
+}
+
+.post-information {
+  text-align: left;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 0.7em;
+  margin-left: 1%;
+  margin-bottom: 0%;
+  padding: 0%;
+  padding-bottom: 1%;
+  color: #666666;
+}
+
+.post-category {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  margin: 0%;
+  /* margin-top: 1.7%; */
+  margin-left: 2vw;
+  color: #fff;
+  /* background-color: #e0e0e0; */
+  background: linear-gradient(90deg, rgb(104, 221, 209) 0%, rgb(83, 221, 157) 100%);
+  padding: 0.75% 2vw;
+  max-height: 1.5em;
+  border-radius: 90px;
+}
+
+.post-modal {
+  border-radius: 8px;
+  padding-bottom: 30px;
+  box-shadow: 0px 4px 8px #999, 0px 0px 24px #ccc;
+  margin: 10vh 10vw;
+  background-color: #ffffff;
+  outline: none;
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+
+.post-title-modal {
+  font-family: 'Merriweather', Times, serif;
+  font-size: 1.5em;
+  margin-top: 0%;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.line-1-modal {
+  display: flex;
+  align-items: center;
+  margin: 0%;
+  padding: 0%;
+  padding-top: 2%;
+}
+
+.post-information-modal {
+  text-align: left;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: .7em;
+  margin-left: 0%;
+  margin-bottom: 0%;
+  padding: 0%;
+  padding-bottom: 1%;
+  color: #fff;
+}
+
+.comment {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  padding-left: 2%;
+  padding-bottom: 0%;
+}
+
+.comment-information {
+  color: #666;
+}
+
+.new-comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-left: 2%;
+  padding-top: 2%;
+}
+
+.new-comment-field {
+  font-family: 'Open Sans', Arial, sans-serif;
+  border-radius: 8px;
+  padding: 0.5%;
+  min-width: 96%;
+  max-width: 96%;
+}
+
+.new-comment-submit {
+  cursor: pointer;
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  width: 20vw;
+  height: 10%;
+  margin-top: 1%;
+  padding: 10px 2px;
+  border-radius: 90px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+}
+
+.new-comment-submit:hover {
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+  /* box-shadow: 0px 0px 8px #bbbbbb; */
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0%;
+  margin-top: 0%;
+  margin-right: 1%;
+  cursor: pointer;
+}
+
+.likes-number {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  align-self: center;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 18px;
+  color: #000;
+}
+
+@keyframes liked {
+  33% {color: rgb(241, 18, 18); transform: scale(0.8); animation-timing-function: ease-out;}
+  67% {color: rgb(241, 23, 23); transform: scale(1.3); animation-timing-function: ease-in-out;}
+  100% {color: rgb(214, 58, 92); transform: scale(1); animation-timing-function: ease-in-out;}
+  /* Make heart beat when clicked */
+}
+
+@keyframes unliked {
+  33% {color: rgb(146, 146, 146); transform: scale(0.7); animation-timing-function: ease-out;}
+  100% {color: rgb(146, 146, 146); transform: scale(1); animation-timing-function: ease-in;}
+  /* Make heart beat when unclicked */
+}
+
+.fa-heart {
+  justify-content: center;
+  font-size: 24px;
+  color:rgb(214, 58, 92);
+  margin-top: 0%;
+  padding-top: 0%;
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.fas.fa-heart{
+  animation-name: liked;
+  animation-duration: .3s;
+  
+}
+
+.far.fa-heart{
+  animation-name: unliked;
+  animation-duration: .3s;
+  color: rgb(146, 146, 146)
+}
