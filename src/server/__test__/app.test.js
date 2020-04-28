@@ -36,29 +36,29 @@ describe('test api call', () => {
   }));
 });
 
-describe('test api call', () => {
-  it('should response the GET method', () => new Promise((done) => {
-    request(app)
-      .get('/api/login/testUsername')
-      .then((response) => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  }));
-});
+// describe('test api call', () => {
+//   it('should response the GET method', () => new Promise((done) => {
+//     request(app)
+//       .get('/api/login/testUsername')
+//       .then((response) => {
+//         expect(response.statusCode).toBe(200);
+//         done();
+//       });
+//   }));
+// });
 
-describe('test api call', () => {
-  it('should response the POST method', () => new Promise((done) => {
-    const sampleUser = {
-      username: 'test',
-      password: 'test',
-      email: 'test'
-    };
-    request(app)
-      .post('/api/register', sampleUser)
-      .then((response) => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  }));
-});
+// describe('test api call', () => {
+//   it('should response the POST method', () => new Promise((done) => {
+//     const sampleUser = {
+//       username: 'test',
+//       password: 'test',
+//       email: 'test'
+//     };
+//     request(app)
+//       .post('/api/register', sampleUser)
+//       .then((response) => {
+//         expect(response.statusCode).toBe(200);
+//         done();
+//       });
+//   }));
+// });
