@@ -9,7 +9,7 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore"
   },
   "pre-commit": [
