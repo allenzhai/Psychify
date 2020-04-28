@@ -117,3 +117,22 @@ hr {
   background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
   /* box-shadow: 0px 0px 8px #bbbbbb; */
 }
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+.loading-icon {
+  padding: 2%;
+}
+
+.fa-circle-notch {
+  font-size: 2em;
+  color: #666;
+  margin: 5%;
+  animation: spin;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
