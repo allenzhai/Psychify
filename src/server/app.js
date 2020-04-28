@@ -56,6 +56,17 @@ app.get('/api/login/:username', (req, res) => {
   return false;
 });
 
+//  Forum
+app.get('/api/forum/posts', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.json({ post: 'generic request to get all posts on the forum' });
+});
+
+app.get('/api/forum/post/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.json({ post: 'request for specific post - to display on its own page' });
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dist/index.html'));
 });
