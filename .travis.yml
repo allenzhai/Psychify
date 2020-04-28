@@ -7,4 +7,9 @@ script:
   - npm run build 
   - npm test
   
-  
+deploy:
+  provider: heroku
+  api_key: $H_API
+  on:
+    branch: "CD-Integration"
+  app: "psychify"
