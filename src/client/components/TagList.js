@@ -6,37 +6,54 @@ import Button from './Button';
 
 import '../style/TagList.css';
 
-function Tag({ name, remove }) {
-  const onRemove = () => {
-    remove(name);
-  };
+const extractTags = (datasource, filterKey) => {
+  if (filterKey === 'name') {
+    return [];
+  }
 
-  return (
-    <Button className="tag-btn " onClick={onRemove}>
-      {name}
-      <i className="far fa-times-circle" />
-    </Button>
-  );
-}
+  const tags = {};
+  datasource.forEach((entry) => {
+    let count = 1;
+    const keyContent = entry[filterKey];
+    if (Object.prototype.hasOwnProperty.call(tags, keyContent)) {
+      count = tags[keyContent] + 1;
+    }
+    tags[keyContent] = count;
+  });
 
-Tag.propTypes = {
-  name: PropTypes.string.isRequired,
-  remove: PropTypes.func.isRequired
+  const tagArray = Object.keys(tags).map(key => ({
+    name: key,
+    count: tags[key]
+  }));
+
+  return tagArray;
 };
 
-function TagList({ tags }) {
-  const [noShowList, setNoShowList] = useState([]);
+function TagList({ datasource, filterKey, onSelectionChange }) {
+  const tags = extractTags(datasource, filterKey);
+  // null and undefined are two different things
+  const [selection, setSelection] = useState(null);
+  console.log('selection', selection);
 
-  const onTagRemove = (name) => {
-    const updated = noShowList.concat(name);
-    setNoShowList(updated);
+  const onTagClick = (event) => {
+    const tagName = event.target.value;
+    tags.filter(tag => tagName === tag.name).forEach((value) => {
+      const newSelection = value.name === selection ? null : value.name;
+      setSelection(newSelection);
+      onSelectionChange(newSelection);
+    });
   };
 
-  const showList = tags
-    .filter(tag => noShowList.indexOf(tag) === -1)
-    .map(value => (
-      <Tag key={value} name={value} remove={onTagRemove} />
-    ));
+  const uiList = tags.map((tag) => {
+    let cls = 'tag-btn';
+    cls += selection === tag.name ? ' tag-btn-selected' : '';
+    return (
+      <Button key={tag.name} className={cls} onClick={onTagClick} value={tag.name}>
+        <span>{tag.count}</span>
+        {tag.name === '' ? 'Other' : tag.name}
+      </Button>
+    );
+  });
 
   if (tags.length === 0) {
     return '';
@@ -44,13 +61,24 @@ function TagList({ tags }) {
 
   return (
     <div className="taglist">
-      {showList}
+      {uiList}
     </div>
   );
 }
 
 TagList.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired
+  datasource: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    sub_category: PropTypes.string,
+    alias: PropTypes.string,
+    diagnostic_code: PropTypes.string,
+    diagnostic_criteria: PropTypes.string
+  })).isRequired,
+  filterKey: PropTypes.string.isRequired,
+  onSelectionChange: PropTypes.func.isRequired
 };
 
 export default TagList;

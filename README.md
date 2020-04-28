@@ -39,3 +39,7 @@ Examples of different testing techniques are provided in the project. **More exa
 + [How to mock history.push](https://stackoverflow.com/questions/58524183/how-to-mock-history-push-with-the-new-react-router-hooks-using-jest)
 + [expect](https://jestjs.io/docs/en/expect)
 + [Firing Events](https://testing-library.com/docs/dom-testing-library/api-events)
++ [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)
++ [Inside Fiber: an in-depth overview of the new reconciliation algorithm in React](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react/)
++ [How Does setState Know What to Do?](https://overreacted.io/how-does-setstate-know-what-to-do/)
++ [Under the hood of React’s hooks system](https://medium.com/the-guild/under-the-hood-of-reacts-hooks-system-eb59638c9dba)

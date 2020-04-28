@@ -6,7 +6,7 @@ const app = require('../app');
 describe('test the root path', () => {
   it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get('/')
+      .get('/*')
       .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
@@ -14,10 +14,10 @@ describe('test the root path', () => {
   }));
 });
 
-describe('test api call', () => {
+describe('test api call /api/disorder/search', () => {
   it('should response the GET method', () => new Promise((done) => {
     request(app)
-      .get('/api/disorders')
+      .get('/api/disorder/search?terms=p&sortBy=')
       .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
@@ -25,18 +25,8 @@ describe('test api call', () => {
   }));
 });
 
-describe('test api call', () => {
-  it('should response the GET method', () => new Promise((done) => {
-    request(app)
-      .get('/api/searchDisorderName/:disorder')
-      .then((response) => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  }));
-});
 
-describe('test api call', () => {
+describe('test api call /api/login/testUserName', () => {
   it('should response the GET method', () => new Promise((done) => {
     request(app)
       .get('/api/login/testUsername')
@@ -47,7 +37,7 @@ describe('test api call', () => {
   }));
 });
 
-describe('test api call', () => {
+describe('test api call /api/register', () => {
   it('should response the POST method', () => new Promise((done) => {
     const sampleUser = {
       username: 'test',
