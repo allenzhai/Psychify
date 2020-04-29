@@ -21,6 +21,6 @@ exports.registerUser = (user) => {
 };
 
 exports.getUser = (username) => {
-  const stm = `SELECT * FROM Accounts WHERE user=${username}`;
+  const stm = `SELECT * FROM Accounts\nWHERE user="${username}"`;
   return pool.query(stm);
 };

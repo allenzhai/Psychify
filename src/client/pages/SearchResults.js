@@ -203,7 +203,6 @@ export default class SearchResults extends React.Component {
 
     return (
       <div className="results">
-        <Navbar />
         <div className="search-results-container">
           <h2 className="search-results-title">Search Results</h2>
           <SortMenu

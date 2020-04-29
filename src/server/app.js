@@ -1,14 +1,18 @@
 const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const path = require('path');
 const api = require('./api');
+const hash = require('./hash');
 
 const app = express();
 
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static('dist'));
 // Handles any requests that don't match the ones above
 
 app.get('/api/disorders', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   api.listDisorders().then((rows) => {
     res.json(rows);
   }).catch((err) => {
@@ -20,7 +24,6 @@ app.get('/api/disorders', (req, res) => {
 });
 
 app.get('/api/searchDisorderName/:disorder', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { disorder } = req.params;
 
   api.queryName(disorder).then((rows) => {
@@ -34,6 +37,10 @@ app.get('/api/searchDisorderName/:disorder', (req, res) => {
 });
 
 app.post('/api/register', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  console.log(req);
+  console.log(res);
+  console.log(req.body);
   const dynamicSalt = hash.generateSalt();
   const user = {
     username: req.body.username,
@@ -45,15 +52,26 @@ app.post('/api/register', (req, res) => {
   res.json(user);
 });
 
-app.get('/api/login/:username', (req, res) => {
+app.post('/api/login', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  const user = api.getUser(username);
-  const checkPass = hash.simpleHash(req.body.password + process.env.STATIC_SALT + user.salt);
-  if (user.password == checkPass) {
-    res.json(user);
-    return true;
-  }
-  return false;
+
+  const username = req.body.username;
+
+  api.getUser(username).then((users) => {
+    const user = users[0];
+    const checkPass = hash.simpleHash(req.body.password + process.env.STATIC_SALT + user.salt);
+    if (user.password === checkPass) {
+      res.status(201);
+      res.json(user);
+    } else {
+      const error = {"error": "invalid login creds"}
+      res.status(401).send({message: "invalid login creds"});
+      res.json(error);
+    }
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
 });
 
 app.get('/*', (req, res) => {

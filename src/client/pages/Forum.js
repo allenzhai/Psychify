@@ -82,7 +82,6 @@ function Forum() {
 
   return (
     <div>
-      <Navbar />
       <div className="forum-content">
         <div className="forum-header">
           <h1 className="forum-title">Forum</h1>

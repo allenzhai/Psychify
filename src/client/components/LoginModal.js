@@ -6,7 +6,7 @@ import Modal from './Modal';
 
 import '../style/LoginModal.css';
 
-function LoginModal() {
+function LoginModal(props) {
   const location = useLocation();
   const history = useHistory();
 
@@ -16,6 +16,36 @@ function LoginModal() {
 
   if (location.hash !== '#login') {
     return null;
+  }
+
+  const handleSubmit = () => {
+    console.log("attempting login");
+    const data = {
+      'username': 'test',
+      'password': 'test'
+    }
+    const request = {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json',
+        'Content-Length': data.toString().length.toString()},
+      body: JSON.stringify(data)
+    };
+    fetch('http://localhost:5000/api/login', request)
+      .then((response) => {
+        console.log(response);
+        if (response.status == 201){
+          handleClose();
+          console.log('login successful');
+          props.loginUser();
+        }
+        else {
+          console.log('login unsuccessful');
+        }
+    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -37,7 +67,7 @@ function LoginModal() {
         <a href="#registration">Forgot your password?</a>
         <br />
         <br />
-        <Button className="button-login">Login</Button>
+        <Button className="button-login" onClick={handleSubmit}>Login</Button>
       </div>
     </Modal>
   );

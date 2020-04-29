@@ -8,7 +8,6 @@ export default function DSM() {
   // Blank placeholder component for the DSM Index
   return (
     <body>
-      <Navbar />
       <div className="landing-content">
         <Searchbar className="searchbar-home" />
       </div>
