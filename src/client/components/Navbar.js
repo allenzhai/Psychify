@@ -9,7 +9,8 @@ function Navbar() {
   const component = loggedIn
     ? (
       <nav className="profile">
-        <a href="#profile" className="nav-item registration">{username}</a>
+        <a href="/profile" className="nav-item registration">{username}</a>
+        {/* MODAL: <a href="#profile" className="nav-item registration">{username}</a> */}
       </nav>
     ) : (
       <>

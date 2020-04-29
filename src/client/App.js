@@ -7,7 +7,7 @@ import DSM from './pages/DSM';
 import SearchResults from './pages/SearchResults';
 import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
-import ProfileModal from './components/ProfileModal';
+import Profile from './pages/Profile';
 
 export default function App() {
   return (
@@ -16,11 +16,11 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route path="/forum" component={Forum} />
         <Route path="/dsm" component={DSM} />
+        <Route path="/profile" component={Profile} />
         <Route path="/results" component={SearchResults} />
       </Switch>
       <Route path="/" component={LoginModal} />
       <Route path="/" component={RegistrationModal} />
-      <Route path="/" component={ProfileModal} />
     </>
   );
 }
