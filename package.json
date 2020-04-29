@@ -9,9 +9,11 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "test": "jest",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
+    "test": "jest --detectOpenHandles --forceExit",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
+    "heroku-postbuild": "webpack -p" 
   },
+  "proxy": "http://localhost:5000",
   "pre-commit": [
     "lint",
     "test"

@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "10.16.1"
+
+
+script: 
+  - npm run build 
+  - npm test
+  
+deploy:
+  provider: heroku
+  api_key: $H_API
+  on:
+    branch: "master"
+  app: "psychify"
