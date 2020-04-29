@@ -9,6 +9,9 @@ function Forum() {
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState();
   const [isLoaded, setLoaded] = useState(false);
+  const [newPostTitle, setNewPostTitle] = useState();
+  const [newPostBody, setNewPostBody] = useState();
+  const [newPostCategory, setNewPostCategory] = useState();
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -19,12 +22,23 @@ function Forum() {
     document.body.style.overflowY = 'unset';
   }
 
+  function handleNewPostTitleChange(event) {
+    setNewPostTitle(event.target.value);
+  }
+
+  function handleNewPostBodyChange(event) {
+    setNewPostBody(event.target.value);
+  }
+
+  function handleNewPostCategoryChange(event) {
+    setNewPostCategory(event.target.value);
+  }
+
   function queryPosts() {
     fetch('/api/forum/posts')
       .then(res => res.json())
       .then(
         (serverResult) => {
-          JSON.stringify();
           setPosts(serverResult);
           setLoaded(true);
         }
@@ -37,11 +51,14 @@ function Forum() {
       mode: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: {
-        title: document.getElementById('new-post-field title'),
-        body: document.getElementById('new-post-field body'),
-        category: document.getElementById('new-post-field category')
+        title: newPostTitle,
+        body: newPostBody,
+        category: newPostCategory
       }
     };
+    setNewPostTitle('');
+    setNewPostBody('');
+    setNewPostCategory('');
     fetch('/api/forum/create/post', request);
     console.log('Post successful');
     // alert('Post function called');
@@ -105,11 +122,11 @@ function Forum() {
         </div>
         <div className="new-post">
           <p className="new-post-text">Title</p>
-          <textarea className="new-post-field title" rows="1" placeholder="Enter a descriptive title" />
+          <textarea className="new-post-field title" rows="1" placeholder="Enter a descriptive title" value={newPostTitle} onChange={handleNewPostTitleChange} />
           <p className="new-post-text">Body</p>
-          <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" />
+          <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" value={newPostBody} onChange={handleNewPostBodyChange} />
           <p className="new-post-text">Category</p>
-          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" />
+          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange}/>
           <button className="new-post-submit" type="submit" onClick={handlePostSubmit}>Post</button>
         </div>
       </ReactModal>

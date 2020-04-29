@@ -15,6 +15,7 @@ function ForumPost(props) {
   const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
+  const [newCommentBody, setNewCommentBody] = useState();
 
   function handleCloseModal() {
     setShowModal(false);
@@ -35,11 +36,14 @@ function ForumPost(props) {
       .then(res => res.json())
       .then(
         (serverResult) => {
-          JSON.stringify();
           setComments(serverResult);
           setLoaded(true);
         }
       );
+  }
+
+  function handleNewCommentBodyUpdate(event) {
+    setNewCommentBody(event.target.value);
   }
 
   function handleCommentSubmit() {
@@ -51,6 +55,7 @@ function ForumPost(props) {
         body: document.getElementById('new-comment-field'),
       }
     };
+    setNewCommentBody('');
     fetch('/api/forum/create/comment', request);
     console.log('Comment successful');
     // alert('Comment function called');
@@ -112,7 +117,7 @@ function ForumPost(props) {
           }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
         </div>
         <div className="new-comment">
-          <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" />
+          <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" value={newCommentBody} onChange={handleNewCommentBodyUpdate} />
           <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit}>Comment</button>
         </div>
       </ReactModal>
