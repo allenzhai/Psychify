@@ -33,13 +33,22 @@ function ForumPost(props) {
 
   function queryComments() {
     fetch('/api/forum/post/comments/postID')
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
       .then(res => res.json())
       .then(
         (serverResult) => {
           setComments(serverResult);
           setLoaded(true);
         }
-      );
+      )
+      .catch(() => {
+        console.log('Post query failed');
+      });
   }
 
   function handleNewCommentBodyUpdate(event) {
@@ -56,9 +65,19 @@ function ForumPost(props) {
       }
     };
     setNewCommentBody('');
-    fetch('/api/forum/create/comment', request);
-    console.log('Comment successful');
-    // alert('Comment function called');
+    fetch('/api/forum/create/comment', request)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(() => {
+        console.log('Comment successful');
+      })
+      .catch(() => {
+        console.log('Comment failed');
+      });
   }
 
   useEffect(() => {

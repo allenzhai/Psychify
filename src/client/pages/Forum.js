@@ -36,13 +36,22 @@ function Forum() {
 
   function queryPosts() {
     fetch('/api/forum/posts')
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
       .then(res => res.json())
       .then(
         (serverResult) => {
           setPosts(serverResult);
           setLoaded(true);
         }
-      );
+      )
+      .catch(() => {
+        console.log('Post query failed');
+      });
   }
 
   function handlePostSubmit() {
@@ -59,9 +68,19 @@ function Forum() {
     setNewPostTitle('');
     setNewPostBody('');
     setNewPostCategory('');
-    fetch('/api/forum/create/post', request);
-    console.log('Post successful');
-    // alert('Post function called');
+    fetch('/api/forum/create/post', request)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(() => {
+        console.log('Post successful');
+      })
+      .catch(() => {
+        console.log('Post failed');
+      });
     setShowModal(false);
   }
 
