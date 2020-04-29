@@ -20,7 +20,7 @@ function Forum() {
   }
 
   function queryPosts() {
-    fetch('http://localhost:5000/api/forum/posts')
+    fetch('/api/forum/posts')
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -42,9 +42,9 @@ function Forum() {
         category: document.getElementById('new-post-field category')
       }
     };
-    fetch('http://localhost:5000/api/forum/create/post', request);
+    fetch('/api/forum/create/post', request);
     console.log('Post successful');
-    alert('Post function called');
+    // alert('Post function called');
     setShowModal(false);
   }
 

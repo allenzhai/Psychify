@@ -31,7 +31,7 @@ function ForumPost(props) {
   }
 
   function queryComments() {
-    fetch('http://localhost:5000/api/forum/post/comments/postID')
+    fetch('/api/forum/post/comments/postID')
       .then(res => res.json())
       .then(
         (serverResult) => {
@@ -51,9 +51,9 @@ function ForumPost(props) {
         body: document.getElementById('new-comment-field'),
       }
     };
-    fetch('http://localhost:5000/api/forum/create/comment', request);
+    fetch('/api/forum/create/comment', request);
     console.log('Comment successful');
-    alert('Comment function called');
+    // alert('Comment function called');
   }
 
   useEffect(() => {
