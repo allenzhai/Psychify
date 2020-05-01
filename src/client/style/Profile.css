@@ -112,6 +112,12 @@
     min-height: 8em;
     max-height: 70vh;
   }
+  .col-left{
+    width: 100%;
+  }
+  .col-right{
+    width: 100%;
+  }
   
 
 }
