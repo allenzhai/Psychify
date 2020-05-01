@@ -2,9 +2,10 @@
   width: 85%;
   height: 100%;
   margin: auto;
-  padding: 14px 54px;
+  padding: 1em 4em;
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 18px;
+  box-sizing: border-box;
   border: none;
   border-radius: 90px;
   box-shadow: 0px 3px 8px #aaa;

@@ -1,7 +1,11 @@
 .search-results-title {
+  /* text-align: left; */
   float: left;
-  margin-left: 48px;
   font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.search-margin {
+  padding: 0 4vw;
 }
 
 .results {
@@ -12,9 +16,9 @@
 
 .search-results-container{
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: .5rem 1rem;
   box-shadow: 0px 4px 8px #bbbbbb; /* absolutle units don't matter here */
-  width: 75%;
+  width: 85%;
   align-self: center;
   justify-content: center;
   align-items: center;
@@ -55,6 +59,7 @@ h1 {
   font-family: 'Open Sans', Arial, sans-serif;
   color: gray;
   text-align: left;
-  margin-left: 40px;
+  /* margin-left: 40px; */
+  margin-left: 4em;
   margin-bottom: 0;
 }

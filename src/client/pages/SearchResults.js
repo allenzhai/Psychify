@@ -67,8 +67,10 @@ function SearchResults() {
     <div className="results">
       <Navbar />
       <div className="search-results-container">
-        <h2 className="search-results-title">Search Results</h2>
-        <SortMenu list={sortByList} onSortUpdate={handleSortUpdate} sortBy={sortBy} />
+        <div className="search-margin">
+          <h2 className="search-results-title">Search Results</h2>
+          <SortMenu list={sortByList} onSortUpdate={handleSortUpdate} sortBy={sortBy} />
+        </div>
         <ResultsSearchbar terms={terms} onSubmit={handleSearchbarSubmit} />
         {sortedBy}
         <TagList datasource={resultList} filterKey={escapedSortBy} onSelectionChange={tagChange} />
