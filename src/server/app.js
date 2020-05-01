@@ -19,6 +19,19 @@ app.get('/api/disorders', (req, res) => {
   });
 });
 
+app.get('/api/getProfile/:username', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const { username } = req.params;
+  api.getProfile(username).then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    // should return user friendly error message here.
+    // future change is needed here;
+    res.json(err);
+  });
+});
+
 app.get('/api/searchDisorderName/:disorder', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { disorder } = req.params;
