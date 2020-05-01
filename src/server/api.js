@@ -24,3 +24,8 @@ exports.getUser = (username) => {
   const stm = `SELECT * FROM Accounts WHERE user=${username}`;
   return pool.query(stm);
 };
+
+exports.getProfile = (ID) => {
+  const stm = `SELECT * FROM Accounts WHERE ID = ${ID}`;
+  return pool.query(stm);
+};
