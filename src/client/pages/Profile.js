@@ -31,70 +31,68 @@ function Profile() {
   };
 
   return (
-    <body>
+    <div>
       <Navbar />
       <div className="profile-card">
-        <main>
-          <div className="registration-modal-body">
-            <div className="col-left">
-              <h3 className="registration-modal-section-header">Profile picture</h3>
-              <img src="/src/client/style/images/sample_profile_pic.png" alt="profile pic" />
-              <br />
-              <a href="#profilePicEdit">Edit</a>
-              {' '}
-              |
-              {' '}
-              <a href="#profilePicRemove">Remove</a>
-              <br />
-              <br />
-              {username}
-              <br />
-              {email}
-              <br />
-              <br />
-            </div>
-            <div className="col-right">
-              <h3 className="registration-modal-section-header">About</h3>
-              <textarea className="about" readOnly value={about} />
-              <br />
-              <br />
-              <h3 className="registration-modal-section-header">Personal Information</h3>
-              <div className="registration-personal-info">
-                <h3 className="registration-modal-section-header">Name</h3>
-                <input type="text" className="form-control" name="registration-fullname" />
-                <h3 className="registration-modal-section-header">Username</h3>
-                <input type="text" className="form-control" name="registration-username" />
-                <h3 className="registration-modal-section-header">Email</h3>
-                <input type="text" className="form-control" name="registration-email" />
-                <h3 className="registration-modal-section-header">Occupation</h3>
-                <input type="text" className="form-control" name="profile-occupation" />
-                <h3 className="registration-modal-section-header">Location</h3>
-                <input type="text" className="form-control" name="profile-location" />
-                <h3 className="registration-modal-section-header">Verified?</h3>
-                <div className="radio">
-                  <label htmlFor="radioOption1">
-                    <input type="radio" value="option1" id="radioOption1" />
-                    Yes
-                  </label>
-                </div>
-                <div className="radio">
-                  <label htmlFor="radioOption2">
-                    <input type="radio" value="option2" id="radioOption1" checked />
-                    No
-                  </label>
-                </div>
-                <h3 className="registration-modal-section-header">Date of birth</h3>
-                <input type="text" className="form-control" name="profile-dob" />
-                <br />
-                <br />
-                <br />
-                <Button className="button-update-info" onClick={handleEdit}>Update Information</Button>
+        <div className="registration-modal-body">
+          <div className="col-left">
+            <h3 className="registration-modal-section-header">Profile picture</h3>
+            <img src="/src/client/style/images/sample_profile_pic.png" alt="profile pic" />
+            <br />
+            <a href="#profilePicEdit">Edit</a>
+            {' '}
+            |
+            {' '}
+            <a href="#profilePicRemove">Remove</a>
+            <br />
+            <br />
+            {username}
+            <br />
+            {email}
+            <br />
+            <br />
+          </div>
+          <div className="col-right">
+            <h3 className="registration-modal-section-header">About</h3>
+            <textarea className="about" readOnly value={about} />
+            <br />
+            <br />
+            <h3 className="registration-modal-section-header">Personal Information</h3>
+            <div className="registration-personal-info">
+              <h3 className="registration-modal-section-header">Name</h3>
+              <input type="text" className="form-control" name="registration-fullname" />
+              <h3 className="registration-modal-section-header">Username</h3>
+              <input type="text" className="form-control" name="registration-username" />
+              <h3 className="registration-modal-section-header">Email</h3>
+              <input type="text" className="form-control" name="registration-email" />
+              <h3 className="registration-modal-section-header">Occupation</h3>
+              <input type="text" className="form-control" name="profile-occupation" />
+              <h3 className="registration-modal-section-header">Location</h3>
+              <input type="text" className="form-control" name="profile-location" />
+              <h3 className="registration-modal-section-header">Verified?</h3>
+              <div className="radio">
+                <label htmlFor="radioOption1">
+                  <input type="radio" value="option1" id="radioOption1" />
+                  Yes
+                </label>
               </div>
+              <div className="radio">
+                <label htmlFor="radioOption2">
+                  <input type="radio" value="option2" id="radioOption1" checked />
+                  No
+                </label>
+              </div>
+              <h3 className="registration-modal-section-header">Date of birth</h3>
+              <input type="text" className="form-control" name="profile-dob" />
+              <br />
+              <br />
+              <br />
+              <Button className="button-update-info" onClick={handleEdit}>Update Information</Button>
             </div>
           </div>
-        </main>
+        </div>
       </div>
-    </body>
+    </div>
   );
 }
 
