@@ -55,22 +55,18 @@ app.post('/api/register', (req, res) => {
 app.post('/api/login', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
-  const username = req.body.username;
+  const { username } = req.body;
 
   api.getUser(username).then((users) => {
     const user = users[0];
     const checkPass = hash.simpleHash(req.body.password + process.env.STATIC_SALT + user.salt);
     if (user.password === checkPass) {
-      res.status(201);
-      res.json(user);
+      res.status(201).send({ message: 'successful login' });
     } else {
-      const error = {"error": "invalid login creds"}
-      res.status(401).send({message: "invalid login creds"});
-      res.json(error);
+      res.status(401).send({ message: 'invalid login creds' });
     }
   }).catch((err) => {
     console.log(err);
-    res.json(err);
   });
 });
 

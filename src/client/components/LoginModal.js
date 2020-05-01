@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
 import Button from './Button';
 import Modal from './Modal';
 
@@ -10,6 +11,14 @@ function LoginModal(props) {
   const location = useLocation();
   const history = useHistory();
 
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  LoginModal.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    setUsername: PropTypes.func.isRequired
+  };
+
   const handleClose = () => {
     history.push({ ...location, hash: '' });
   };
@@ -18,35 +27,38 @@ function LoginModal(props) {
     return null;
   }
 
-  const handleSubmit = () => {
-    console.log("attempting login");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('attempting login');
     const data = {
-      'username': 'test',
-      'password': 'test'
-    }
+      username,
+      password,
+    };
     const request = {
       method: 'POST',
       mode: 'cors',
-      headers: { 'Content-Type': 'application/json',
-        'Content-Length': data.toString().length.toString()},
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': data.toString().length.toString()
+      },
       body: JSON.stringify(data)
     };
-    fetch('http://localhost:5000/api/login', request)
+    fetch('/api/login', request)
       .then((response) => {
         console.log(response);
-        if (response.status == 201){
-          handleClose();
+        if (response.status === 201) {
           console.log('login successful');
           props.loginUser();
-        }
-        else {
+          props.setUsername(username);
+          handleClose();
+        } else {
           console.log('login unsuccessful');
         }
-    })
+      })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <Modal>
@@ -57,20 +69,39 @@ function LoginModal(props) {
         <h3 className="login-title-modal">Login with your email address</h3>
       </div>
       <div className="login-modal-body">
-        <h3 className="login-modal-section-header">Email</h3>
-        <input type="text" className="form-control" name="login-username" />
-        <h3 className="login-modal-section-header">Password</h3>
-        <input type="text" className="form-control" name="login-password" />
-        <br />
-        <a href="#registration">Registration</a>
-        <br />
-        <a href="#registration">Forgot your password?</a>
-        <br />
-        <br />
-        <Button className="button-login" onClick={handleSubmit}>Login</Button>
+        <LoginForm onSubmit={handleSubmit} setUsername={setUsername} setPassword={setPassword} />
       </div>
     </Modal>
   );
 }
+
+const LoginForm = ({ onSubmit, setUsername, setPassword }) => {
+  LoginForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    setUsername: PropTypes.func.isRequired,
+    setPassword: PropTypes.func.isRequired,
+  };
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="form-group">
+        <label htmlFor="username">
+          Username
+          <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
+        </label>
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">
+          Password
+          <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
+        </label>
+      </div>
+      <div className="form-group">
+        <button className="form-control btn btn-primary" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default LoginModal;

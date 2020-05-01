@@ -15,12 +15,12 @@ exports.queryName = (disorderName) => {
 };
 
 exports.registerUser = (user) => {
-  const stm = `INSERT INTO Accounts(user, password, email, type, salt) VALUES("${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
+  const stm = `INSERT INTO LoginInfo(user, password, email, type, salt) VALUES("${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
   console.log(stm);
   return pool.query(stm);
 };
 
 exports.getUser = (username) => {
-  const stm = `SELECT * FROM Accounts\nWHERE user="${username}"`;
+  const stm = `SELECT * FROM LoginInfo\nWHERE user="${username}"`;
   return pool.query(stm);
 };

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
-import Navbar from '../components/Navbar';
 import ForumPost from '../components/ForumPost';
 
 import '../style/Forum.css';

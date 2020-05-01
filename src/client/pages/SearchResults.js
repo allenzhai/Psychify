@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import { createBrowserHistory } from 'history';
-import Navbar from '../components/Navbar';
 import { ResultsSearchbar } from '../components/ResultsSearchbar';
 import SortMenu from '../components/SortMenu';
 import { DisorderResult } from '../components/DisorderResult';

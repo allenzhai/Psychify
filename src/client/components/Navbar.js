@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import '../style/Navbar.css';
 
 function Navbar(props) {
-  const {loggedIn, username} = props;
+  const { loggedIn, username } = props;
 
   console.log(props);
   const component = loggedIn
