@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 
-.registration-personal-info {
+.profile-personal-info {
   width: 60%;
   border: 0.1vh solid #999999; 
   padding: 1.5vh;
@@ -75,28 +75,28 @@
   margin: auto;
 }
 
-.registration-title-modal{
+.profile-title-modal{
   font-family: 'Merriweather', Times, serif;
   font-size:  2rem;
   margin-bottom: 1rem;
   color: #fff;
 }
 
-.registration-modal-header{
+.profile-modal-header{
   /* background-color: #222; */
   background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
   padding: 1rem 2rem;
 }
 
 
-.registration-modal-section-header {
+.profile-modal-section-header {
   font-family: 'Merriweather', Times, serif;
   font-size:  1rem;
   margin-bottom: 6px;
 }
 
 @media only screen and (max-width: 1314px){
-  .registration-personal-info {
+  .profile-personal-info {
     width: 95%;
     border: 0.1vh solid #999999; 
     padding: 1.5vh;
@@ -131,7 +131,7 @@
   .col-right{
     width: 100%;
   }
-  .registration-personal-info {
+  .profile-personal-info {
     width: 95%;
     border: 0.1vh solid #999999; 
     padding: 0.5vh;
