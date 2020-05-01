@@ -7,28 +7,14 @@ const app = express();
 app.use(express.static('dist'));
 // Handles any requests that don't match the ones above
 
-app.get('/api/disorders', (req, res) => {
+app.get('/api/disorder/search', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  api.listDisorders().then((rows) => {
+  const { terms, sortBy } = req.query;
+
+  api.queryName(terms, sortBy).then((rows) => {
     res.json(rows);
   }).catch((err) => {
     console.log(err);
-    // should return user friendly error message here.
-    // future change is needed here;
-    res.json(err);
-  });
-});
-
-app.get('/api/searchDisorderName/:disorder', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  const { disorder } = req.params;
-
-  api.queryName(disorder).then((rows) => {
-    res.json(rows);
-  }).catch((err) => {
-    console.log(err);
-    // should return user friendly error message here.
-    // future change is needed here;
     res.json(err);
   });
 });
