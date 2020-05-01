@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Button from './Button';
 import Modal from './Modal';
 
-import '../style/LoginModal.css';
+import '../style/RegistrationModal.css';
 
 function RegistrationModal() {
   const location = useLocation();
