@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../style/DisorderResult.css';
 import ReactModal from 'react-modal';
 
 import Button from './Button';
 
-import '../style/DisorderResult.css';
 
 ReactModal.setAppElement('#root');
 

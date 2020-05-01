@@ -1,9 +1,5 @@
 const cryptoRandomString = require('crypto-random-string');
 
-function simpleHash(password) {
-  return password;
-}
+exports.simpleHash = password => password;
 
-function generateSalt() {
-  return cryptoRandomString({ length: 8 });
-}
+exports.generateSalt = () => cryptoRandomString(8);

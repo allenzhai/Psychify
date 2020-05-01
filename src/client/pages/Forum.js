@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
-import Navbar from '../components/Navbar';
 import ForumPost from '../components/ForumPost';
 
 import '../style/Forum.css';
@@ -82,7 +81,6 @@ function Forum() {
 
   return (
     <div>
-      <Navbar />
       <div className="forum-content">
         <div className="forum-header">
           <h1 className="forum-title">Forum</h1>
