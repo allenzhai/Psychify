@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
+import ReactModal from 'react-modal';
+import { createBrowserHistory } from 'history';
 import ResultsSearchbar from '../components/ResultsSearchbar';
 import ResultList from '../components/ResultList';
+
 import SortMenu from '../components/SortMenu';
 import TagList from '../components/TagList';
 import useFetch from '../hooks/useFetch';
@@ -59,13 +61,13 @@ function SearchResults() {
     console.log(error);
   }
 
+
   const tagChange = (tagName) => {
     setSelectedTag(tagName);
   };
 
   return (
     <div className="results">
-      <Navbar />
       <div className="search-results-container">
         <h2 className="search-results-title">Search Results</h2>
         <SortMenu list={sortByList} onSortUpdate={handleSortUpdate} sortBy={sortBy} />

@@ -8,10 +8,23 @@ import SearchResults from './pages/SearchResults';
 import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
 import Profile from './pages/Profile';
+import Navbar from './components/Navbar';
 
 export default function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [username, changeUsername] = React.useState('');
+
+  function loginUser() {
+    setLoggedIn(true);
+  }
+
+  function setUsername(user) {
+    changeUsername(user);
+  }
+
   return (
     <>
+      <Navbar loggedIn={loggedIn} username={username} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/forum" component={Forum} />
@@ -19,8 +32,8 @@ export default function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/results" component={SearchResults} />
       </Switch>
-      <Route path="/" component={LoginModal} />
-      <Route path="/" component={RegistrationModal} />
+      <Route path="/" render={props => <LoginModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
+      <Route path="/" render={props => <RegistrationModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
     </>
   );
 }

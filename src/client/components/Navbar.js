@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import '../style/Navbar.css';
 
-function Navbar() {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [username, setUsername] = useState('Username');
 
+function Navbar(props) {
+  const { loggedIn, username } = props;
+  console.log(props);
   const component = loggedIn
     ? (
       <nav className="profile">
