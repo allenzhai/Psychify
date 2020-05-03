@@ -97,7 +97,6 @@ function Profile() {
 
   return (
     <div>
-      <Navbar />
       <div className="profile-card">
         <div className="profile-modal-body">
           <div className="col-left">
