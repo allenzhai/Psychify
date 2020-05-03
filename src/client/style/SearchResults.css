@@ -23,13 +23,13 @@
 }
 
 h1 {
-  text-align: center;   
+  text-align: center;
   font-size: 24px;
 }
 
 .number-of-entries{
   font-family: 'Open Sans', Arial, sans-serif;
-  text-align: left;   
+  text-align: left;
   color: #666;
   font-size: 16px;
   padding-top: 0px;
@@ -38,21 +38,17 @@ h1 {
 
 .no-results {
   font-family: 'Open Sans', Arial, sans-serif;
-  text-align: center;   
+  text-align: center;
   font-size: 24px;
   padding-top: 8px;
 }
 
-.results-entries{
+.resultlist{
   display: flex;
   margin-top: 0px;
   justify-content: center;
   flex-direction: column;
   padding-bottom: 24px;
-}
-
-.disorder-result {
-  margin-top: 16px;
 }
 
 .sortedBy {

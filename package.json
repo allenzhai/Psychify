@@ -11,6 +11,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore",
+    "lint-fix": "eslint ./ --cache --ignore-pattern .gitignore --fix",
     "heroku-postbuild": "webpack -p"
   },
   "proxy": "http://localhost:5000",
@@ -21,6 +22,8 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fast-csv": "^4.1.1",
@@ -45,7 +48,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "concurrently": "^4.0.0",
     "css-loader": "^2.0.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^23.8.2",

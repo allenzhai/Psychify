@@ -7,6 +7,7 @@
   box-shadow: 0px 4px 8px #bbbbbb;
   width: 90%;
   user-select: none;
+  margin-top: 16px;
 }
 
 .disorder-result:active{

@@ -1,56 +1,71 @@
-import React, { Component } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import '../style/DisorderResult.css';
 import ReactModal from 'react-modal';
 
-export class DisorderResult extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false
-    };
+import Button from './Button';
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
 
-  handleOpenModal() {
-    if (!this.state.showModal) this.setState({ showModal: true });
+ReactModal.setAppElement('#root');
+
+function DisorderResult({ result }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    if (!showModal) {
+      setShowModal(true);
+    }
     // document.body.style.overflowY = 'hidden';
-  }
+  };
 
-  handleCloseModal() {
-    this.setState({ showModal: false });
+  const handleCloseModal = () => {
+    setShowModal(false);
     document.body.style.overflowY = 'unset';
-  }
+  };
 
-  render() {
-    return (
-      <div className="disorder-result" onClick={this.handleOpenModal}>
-        <h3 className="disorder-title" onClick={this.handleOpenModal}>{this.props.title}</h3>
-        <p className="disorder-category" onClick={this.handleOpenModal}>{this.props.category}</p>
-        <p className="disorder-sub-category">{this.props.subCategory}</p>
-        <ReactModal
-          isOpen={this.state.showModal}
-          contentLabel="onRequestClose Modal"
-          onRequestClose={this.handleCloseModal}
-          className="disorder-modal"
-        >
-          <div className="disorder-detailed">
-            <button className="close" onClick={this.handleCloseModal}>X</button>
-            <div className="modal-header">
-              <h3 className="disorder-title-modal">{this.props.title}</h3>
-              <p className="disorder-category-modal">{this.props.category}</p>
-              <p className="disorder-sub-category-modal">{this.props.subCategory}</p>
-            </div>
-            <div className="modal-body">
-              <h3 className="disorder-section-header">Diagnostic Criteria</h3>
-              <p className="disorder-diagnostic-criteria">{this.props.diagnosticCriteria}</p>
-              <h3 className="disorder-section-header">Diagnostic Features</h3>
-              <p className="disorder-description">{this.props.description}</p>
-            </div>
+  const {
+    name, category, description
+  } = result;
+
+  return (
+    <div className="disorder-result" onClick={handleOpenModal}>
+      <h3 className="disorder-title" onClick={handleOpenModal}>{name}</h3>
+      <p className="disorder-category" onClick={handleOpenModal}>{category}</p>
+      <p className="disorder-sub-category">{result.sub_category}</p>
+      <ReactModal
+        isOpen={showModal}
+        contentLabel="onRequestClose Modal"
+        onRequestClose={handleCloseModal}
+        className="disorder-modal"
+      >
+        <div className="disorder-detailed">
+          <Button className="close" onClick={handleCloseModal}>X</Button>
+          <div className="modal-header">
+            <h3 className="disorder-title-modal">{name}</h3>
+            <p className="disorder-category-modal">{category}</p>
+            <p className="disorder-sub-category-modal">{result.sub_category}</p>
           </div>
-        </ReactModal>
-      </div>
-    );
-  }
+          <div className="modal-body">
+            <h3 className="disorder-section-header">Diagnostic Criteria</h3>
+            <p className="disorder-diagnostic-criteria">{result.diagnostic_criteria}</p>
+            <h3 className="disorder-section-header">Diagnostic Features</h3>
+            <p className="disorder-description">{description}</p>
+          </div>
+        </div>
+      </ReactModal>
+    </div>
+  );
 }
+
+DisorderResult.propTypes = {
+  result: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string,
+    sub_category: PropTypes.string,
+    diagnostic_criteria: PropTypes.string,
+    description: PropTypes.string.isRequired
+  }).isRequired
+};
+
+export default DisorderResult;
