@@ -18,7 +18,6 @@ app.get('/api/disorder/search', (req, res) => {
   });
 });
 
-
 app.get('/api/getProfile/:ID', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { ID } = req.params;
@@ -39,6 +38,105 @@ app.put('/api/updateProfile/:ID', (req) => {
   };
   console.log('profile', profile);
   api.updateProfile(profile);
+});
+
+//  Forum
+app.get('/api/forum/posts', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.json([{
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  },
+  {
+    title: 'Lorem ispsum this is a post title',
+    author: 'username',
+    age: '20h',
+    category: 'Anxiety',
+    likes: '1'
+  }]);
+});
+
+app.get('/api/forum/post/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.json({ post: 'request for specific post - to display on its own page' });
+});
+
+app.get('/api/forum/post/comments/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.json([{ author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
+    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
+    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
+    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },]);
+});
+
+app.post('/api/forum/create/post', (req, res) => {
+  const post = {
+    title: req.body.title,
+    body: req.body.body,
+    category: req.body.category,
+  };
+  api.createPost(post);
+  res.json(post);
+});
+
+app.post('/api/forum/create/comment', (req, res) => {
+  const comment = {
+    body: req.body.body,
+  };
+  api.createComment(comment);
+  res.json(comment);
 });
 
 app.get('/*', (req, res) => {

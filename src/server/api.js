@@ -36,3 +36,19 @@ exports.updateProfile = (profile) => {
   const stm = `UPDATE Accounts SET Email="${profile.email}", Username="${profile.username}", About="${profile.about}", FirstName="${profile.name}", Local="${profile.loc}", DOB="${profile.DOB}" WHERE ID = ${profile.ID}`;
   return pool.query(stm);
 };
+
+exports.listPosts = () => {
+
+};
+
+exports.createPost = () => {
+  // Database insertion goes here
+  console.log('New Post Created');
+  return true;
+};
+
+exports.createComment = () => {
+  // Database insertion goes here
+  console.log('New Comment Created');
+  return true;
+};
