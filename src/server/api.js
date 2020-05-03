@@ -31,3 +31,8 @@ exports.getProfile = (ID) => {
   const stm = `SELECT * FROM Accounts WHERE ID = ${ID}`;
   return pool.query(stm);
 };
+
+exports.updateProfile = (profile) => {
+  const stm = `UPDATE Accounts SET Email="${profile.email}", Username="${profile.username}", About="${profile.about}", FirstName="${profile.name}", Local="${profile.loc}", DOB="${profile.DOB}" WHERE ID = ${profile.ID}`;
+  return pool.query(stm);
+};

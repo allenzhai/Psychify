@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Accounts (
   Password VARCHAR(30) NOT NULL, 
   Email VARCHAR(100),
   Username VARCHAR(100),
-  About VARCHAR(100),
+  About VARCHAR(2000),
   FirstName VARCHAR(100),
   Locat VARCHAR(100),
   DOB VARCHAR(100),

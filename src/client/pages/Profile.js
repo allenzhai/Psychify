@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import useFetch from '../hooks/useFetch';
 
 import Button from '../components/Button';
 
@@ -9,16 +10,90 @@ import '../style/Profile.css';
 function Profile() {
   const location = useLocation();
   const history = useHistory();
-  const [username, setUsername] = useState('Username');
-  const [email, setEmail] = useState('username@gmail.com');
-  const [about, setAbout] = useState('Ernest Miller Hemingway (July 21, 1899 – July 2, 1961) was an American journalist, novelist, short-story writer, and sportsman. His economical and understated style—which he termed the iceberg theory—had a strong influence on 20th-century fiction, while his adventurous lifestyle and his public image brought him admiration from later generations. Hemingway produced most of his work between the mid-1920s and the mid-1950s, and he won the Nobel Prize in Literature in 1954. He published seven novels, six short-story collections, and two nonfiction works. Three of his novels, four short-story collections, and three nonfiction works were published posthumously. Many of his works are considered classics of American literature. ');
-  const [ID, setID] = useState(1);
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [about, setAbout] = useState();
+  const [name, setName] = useState();
+  const [loc, setLocation] = useState();
+  const [verified, setVerified] = useState();
+  const [DOB, setDOB] = useState();
+  const [ID, setID] = useState(2);
+
+  const endPoint = `/api/getProfile/${ID}`;
+  const [isLoading, data, error] = useFetch(endPoint);
+  const dataList = data || [];
 
 
+  useEffect(() => {
+    setUsername(dataList.Username);
+    setEmail(dataList.Email);
+    setAbout(dataList.About);
+    setName(dataList.FirstName);
+    setLocation(dataList.Locat);
+    setDOB(dataList.DOB);
+    setVerified(dataList.Type);
+  }, [dataList.About, dataList.DOB, dataList.Email, dataList.FirstName, dataList.Locat,
+    dataList.Type, dataList.Username]);
 
-  const handleEdit = () => {
+  let verifiedStatus;
+  if (verified === 1) {
+    verifiedStatus = <h3 className="profile-verified-yes"> &#x2714; Verified</h3>;
+  } else {
+    verifiedStatus = <h3 className="profile-verified-no">  &#10007; Not Verified</h3>;
+  }
 
+  const handleUpdate = (event) => {
+    const updatePoint = `/api/updateProfile/${ID}`;
+    event.preventDefault();
+    const profileData = {
+      email,
+      username,
+      about,
+      name,
+      loc,
+      DOB,
+      ID
+    };
+    const request = {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': profileData.toString().length.toString()
+      },
+      body: JSON.stringify(profileData)
+    };
+    fetch(updatePoint, request);
   };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleAboutChange = (event) => {
+    setAbout(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleLocChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleDOBChange = (event) => {
+    setDOB(event.target.value);
+  };
+
+  if (error) {
+    console.log(error);
+  }
+
 
   return (
     <div>
@@ -36,48 +111,34 @@ function Profile() {
             <a href="#profilePicRemove">Remove</a>
             <br />
             <br />
-            {username}
+            {dataList.Username}
             <br />
-            {email}
+            {dataList.Email}
             <br />
             <br />
           </div>
           <div className="col-right">
             <h3 className="profile-modal-section-header">About</h3>
-            <textarea className="about" readOnly value={about} />
+            <textarea className="about" value={about} onChange={handleAboutChange} />
             <br />
             <br />
             <h3 className="profile-modal-section-header">Personal Information</h3>
             <div className="profile-personal-info">
               <h3 className="profile-modal-section-header">Name</h3>
-              <input type="text" className="form-control" name="profile-fullname" />
+              <input type="text" value={name} onChange={handleNameChange} className="form-control" name="profile-fullname" />
               <h3 className="profile-modal-section-header">Username</h3>
-              <input type="text" className="form-control" name="profile-username" />
+              <input type="text" value={username} onChange={handleUsernameChange} className="form-control" name="profile-username" />
               <h3 className="profile-modal-section-header">Email</h3>
-              <input type="text" className="form-control" name="profile-email" />
-              <h3 className="profile-modal-section-header">Occupation</h3>
-              <input type="text" className="form-control" name="profile-occupation" />
+              <input type="text" value={email} onChange={handleEmailChange} className="form-control" name="profile-email" />
               <h3 className="profile-modal-section-header">Location</h3>
-              <input type="text" className="form-control" name="profile-location" />
-              <h3 className="profile-modal-section-header">Verified?</h3>
-              <div className="radio">
-                <label htmlFor="radioOption1">
-                  <input type="radio" value="option1" id="radioOption1" />
-                  Yes
-                </label>
-              </div>
-              <div className="radio">
-                <label htmlFor="radioOption2">
-                  <input type="radio" value="option2" id="radioOption1" checked />
-                  No
-                </label>
-              </div>
+              <input type="text" value={loc} onChange={handleLocChange} className="form-control" name="profile-location" />
+              {verifiedStatus}
               <h3 className="profile-modal-section-header">Date of birth</h3>
-              <input type="text" className="form-control" name="profile-dob" />
+              <input value={DOB} onChange={handleDOBChange} type="text" className="form-control" name="profile-dob" />
               <br />
               <br />
               <br />
-              <Button className="button-update-info" onClick={handleEdit}>Update Information</Button>
+              <Button className="button-update-info" onClick={handleUpdate}>Update Information</Button>
             </div>
           </div>
         </div>

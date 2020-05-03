@@ -95,6 +95,11 @@
   margin-bottom: 6px;
 }
 
+.profile-verified-yes {
+  font-family: 'Merriweather', Times, serif;
+  font-size:  1rem;
+}
+
 @media only screen and (max-width: 1314px){
   .profile-personal-info {
     width: 95%;
