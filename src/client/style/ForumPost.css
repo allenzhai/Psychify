@@ -107,11 +107,19 @@
   color: #fff;
 }
 
+.post-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
 .comment {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1em;
   padding-left: 2%;
   padding-bottom: 0%;
+  width: 100%;
 }
 
 .comment-information {

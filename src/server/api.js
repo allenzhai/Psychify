@@ -26,3 +26,18 @@ exports.getUser = (username) => {
   const stm = `SELECT * FROM LoginInfo\nWHERE user="${username}"`;
   return pool.query(stm);
 };
+
+exports.listPosts = () => {
+
+};
+
+exports.createPost = () => {
+  // Database insertion goes here
+  console.log('New Post Created');
+  return true;
+};
+exports.createComment = () => {
+  // Database insertion goes here
+  console.log('New Comment Created');
+  return true;
+};

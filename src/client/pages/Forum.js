@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import ForumPost from '../components/ForumPost';
 
@@ -6,69 +6,11 @@ import '../style/Forum.css';
 
 function Forum() {
   const [showModal, setShowModal] = useState(false);
-  const [posts] = useState([{
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  }]);
+  const [posts, setPosts] = useState();
+  const [isLoaded, setLoaded] = useState(false);
+  const [newPostTitle, setNewPostTitle] = useState();
+  const [newPostBody, setNewPostBody] = useState();
+  const [newPostCategory, setNewPostCategory] = useState();
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -78,6 +20,74 @@ function Forum() {
     setShowModal(false);
     document.body.style.overflowY = 'unset';
   }
+
+  function handleNewPostTitleChange(event) {
+    setNewPostTitle(event.target.value);
+  }
+
+  function handleNewPostBodyChange(event) {
+    setNewPostBody(event.target.value);
+  }
+
+  function handleNewPostCategoryChange(event) {
+    setNewPostCategory(event.target.value);
+  }
+
+  function queryPosts() {
+    fetch('/api/forum/posts')
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(res => res.json())
+      .then(
+        (serverResult) => {
+          setPosts(serverResult);
+          setLoaded(true);
+        }
+      )
+      .catch(() => {
+        console.log('Post query failed');
+      });
+  }
+
+  function handlePostSubmit() {
+    const request = {
+      method: 'POST',
+      mode: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        title: newPostTitle,
+        body: newPostBody,
+        category: newPostCategory
+      }
+    };
+    setNewPostTitle('');
+    setNewPostBody('');
+    setNewPostCategory('');
+    fetch('/api/forum/create/post', request)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(() => {
+        console.log('Post successful');
+      })
+      .catch(() => {
+        console.log('Post failed');
+      });
+    setShowModal(false);
+  }
+
+  useEffect(() => {
+    if (!isLoaded) {
+      queryPosts();
+    }
+  });
 
   return (
     <div>
@@ -89,7 +99,7 @@ function Forum() {
           </button>
         </div>
         <div className="forum-posts-container">
-          {posts.map((e, i) => {
+          {isLoaded ? posts.map((e, i) => {
             let post = (
               <ForumPost
                 className="post"
@@ -110,7 +120,7 @@ function Forum() {
               );
             }
             return post;
-          })}
+          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
         </div>
         <i className="fas fa-stop" />
       </div>
@@ -129,12 +139,12 @@ function Forum() {
         </div>
         <div className="new-post">
           <p className="new-post-text">Title</p>
-          <textarea className="new-post-field title" rows="1" placeholder="Enter a descriptive title" />
+          <textarea className="new-post-field title" rows="1" placeholder="Enter a descriptive title" value={newPostTitle} onChange={handleNewPostTitleChange} />
           <p className="new-post-text">Body</p>
-          <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" />
+          <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" value={newPostBody} onChange={handleNewPostBodyChange} />
           <p className="new-post-text">Category</p>
-          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" />
-          <button className="new-post-submit" type="submit">Post</button>
+          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange}/>
+          <button className="new-post-submit" type="submit" onClick={handlePostSubmit}>Post</button>
         </div>
       </ReactModal>
     </div>

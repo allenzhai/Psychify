@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 
@@ -11,12 +11,11 @@ function ForumPost(props) {
     title, author, age, category, likes
   } = props;
 
-  const [comments] = useState([{ author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-    { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },]);
+  const [comments, setComments] = useState();
   const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
+  const [newCommentBody, setNewCommentBody] = useState();
 
   function handleCloseModal() {
     setShowModal(false);
@@ -31,6 +30,61 @@ function ForumPost(props) {
   function handleOpenModal() {
     if (!showModal) setShowModal(true);
   }
+
+  function queryComments() {
+    fetch('/api/forum/post/comments/postID')
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(res => res.json())
+      .then(
+        (serverResult) => {
+          setComments(serverResult);
+          setLoaded(true);
+        }
+      )
+      .catch(() => {
+        console.log('Post query failed');
+      });
+  }
+
+  function handleNewCommentBodyUpdate(event) {
+    setNewCommentBody(event.target.value);
+  }
+
+  function handleCommentSubmit() {
+    const request = {
+      method: 'POST',
+      mode: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        body: document.getElementById('new-comment-field'),
+      }
+    };
+    setNewCommentBody('');
+    fetch('/api/forum/create/comment', request)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(() => {
+        console.log('Comment successful');
+      })
+      .catch(() => {
+        console.log('Comment failed');
+      });
+  }
+
+  useEffect(() => {
+    if (!isLoaded) {
+      queryComments();
+    }
+  });
 
   return (
     <div className="forum-post">
@@ -62,7 +116,7 @@ function ForumPost(props) {
           <p className="post-information-modal">{`${author}   |   ${age}`}</p>
         </div>
         <div className="post-comments">
-          {comments.map((e, i) => {
+          {isLoaded ? comments.map((e, i) => {
             let comment = (
               <div className="comment">
                 <p className="comment-text">{e.text}</p>
@@ -79,11 +133,11 @@ function ForumPost(props) {
               );
             }
             return comment;
-          })}
+          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
         </div>
         <div className="new-comment">
-          <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" />
-          <button className="new-comment-submit" type="submit">Comment</button>
+          <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" value={newCommentBody} onChange={handleNewCommentBodyUpdate} />
+          <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit}>Comment</button>
         </div>
       </ReactModal>
     </div>
