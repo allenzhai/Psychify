@@ -24,8 +24,13 @@ CREATE TABLE IF NOT EXIST Disorders (
 -- Create Table for User Accounts
 -- Password should be hashed
 CREATE TABLE IF NOT EXISTS Accounts (
-  ID INT AUTO_INCREMENT,
-  Password VARCHAR(30) NOT NULL,
+  ID INT primary key AUTO_INCREMENT,
+  Password VARCHAR(30) NOT NULL, 
   Email VARCHAR(100),
+  Username VARCHAR(100),
+  About VARCHAR(2000),
+  FirstName VARCHAR(100),
+  Locat VARCHAR(100),
+  DOB VARCHAR(100),
   Type INT NOT NULL
 );

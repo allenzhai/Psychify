@@ -1,62 +1,27 @@
-.login {
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: auto;
-}
-
-.login a {
-  text-decoration: none;
-  display: block;
-  padding: 16px 50px;
-  border-radius: 90px;
-  text-align: center;
-  background-color: #FFFFFF;
-  color:#111111;
-  margin: 16px 24px;
-  font-size: 18px;
-  transition-duration: 200ms;
-}
-
-.login a:hover{
-  color:#000000;
-  background-color: #dddddd;
-}
-
-.login-title-modal{
+.registration-title-modal{
   font-family: 'Merriweather', Times, serif;
   font-size: 24px;
   margin-bottom: 6px;
   color: #fff;
 }
 
-.login-modal-header{
+.registration-modal-header{
   /* background-color: #222; */
   background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
   padding: 6px 50px;
 }
 
-.login-modal-body {
+.registration-modal-body {
   padding: 16px 50px;
 }
 
-.login-modal-body a {
-  background: none!important;
-  border: none;
-  padding: 0!important;
-  /*optional*/
-  font-family: arial, sans-serif;
-  color: #069;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.login-modal-section-header {
+.registration-modal-section-header {
   font-family: 'Merriweather', Times, serif;
   font-size: 16px;
   margin-bottom: 6px;
 }
 
-.button-login {
+.button-registration {
   text-decoration: none;
   padding: 8px 25px;
   border-radius: 90px;
@@ -67,7 +32,7 @@
 
 }
 
-.button-login:hover {
+.button-registration:hover {
   text-decoration: none;
   padding: 8px 25px;
   border-radius: 90px;

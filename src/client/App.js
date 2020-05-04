@@ -7,6 +7,7 @@ import DSM from './pages/DSM';
 import SearchResults from './pages/SearchResults';
 import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
+import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route path="/forum" component={Forum} />
         <Route path="/dsm" component={DSM} />
+        <Route path="/profile" component={Profile} />
         <Route path="/results" component={SearchResults} />
       </Switch>
       <Route path="/" render={props => <LoginModal {...props} loginUser={loginUser} setUsername={setUsername} />} />

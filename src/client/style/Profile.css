@@ -1,0 +1,162 @@
+.col-left{
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.col-right{
+  width: 80%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.profile-personal-info {
+  width: 60%;
+  border: 0.1vh solid #999999; 
+  padding: 1.5vh;
+  overflow: auto;
+}
+
+
+.about { 
+  width: 60%; 
+  border: 0.1vh solid #999999; 
+  padding: 1.5vh; 
+  overflow: auto;
+  min-height: 8em;
+	max-height: 70vh;
+}
+
+
+
+.profile-card{
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    width: 80vw;
+    margin: auto;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size:  1rem;
+    box-shadow: 0px 4px 8px #bbbbbb;
+    padding: 2rem;
+}
+
+
+.button-update-info {
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  color:#fff;
+  background: rgb(71,221,206);
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+  font-size:  1rem;
+
+}
+
+.button-update-info:hover {
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  color: #fff;
+  background: rgb(158,219,213);
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+}
+
+
+.login {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.profile-title-modal{
+  font-family: 'Merriweather', Times, serif;
+  font-size:  2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.profile-modal-header{
+  /* background-color: #222; */
+  background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
+  padding: 1rem 2rem;
+}
+
+
+.profile-modal-section-header {
+  font-family: 'Merriweather', Times, serif;
+  font-size:  1rem;
+  margin-bottom: 6px;
+}
+
+.profile-verified-yes {
+  font-family: 'Merriweather', Times, serif;
+  font-size:  1rem;
+}
+
+@media only screen and (max-width: 1314px){
+  .profile-personal-info {
+    width: 95%;
+    border: 0.1vh solid #999999; 
+    padding: 1.5vh;
+    overflow: auto;
+  }
+  
+  
+  .about { 
+    width: 95%; 
+    border: 0.1vh solid #999999; 
+    padding: 1.5vh; 
+    overflow: auto;
+    min-height: 8em;
+    max-height: 70vh;
+  }
+	
+  .col-left{
+    width: 100%;
+  }
+	
+  .col-right{
+    width: 100%;
+  }
+  
+
+}
+
+@media only screen and (max-width: 768px){
+  .col-left{
+    width: 100%;
+  }
+  .col-right{
+    width: 100%;
+  }
+  .profile-personal-info {
+    width: 95%;
+    border: 0.1vh solid #999999; 
+    padding: 0.5vh;
+    overflow: auto;
+  }
+  .about {
+    width: 95%;
+    border: 0.1vh solid #999999; 
+    padding: 0.5vh;
+    overflow: auto;
+  }
+
+  .profile-card{
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    width: 99vw;
+    margin: auto;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size:  1rem;
+    box-shadow: 0px 0px 0px #bbbbbb;
+    padding: 0.1rem;
+  }
+}

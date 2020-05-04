@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 import '../style/Navbar.css';
 
+
 function Navbar(props) {
   const { loggedIn, username } = props;
-
   console.log(props);
   const component = loggedIn
     ? (
       <nav className="profile">
-        <a href="/">{username}</a>
+        <a href="/profile" className="nav-item registration">{username}</a>
+        {/* MODAL: <a href="#profile" className="nav-item registration">{username}</a> */}
       </nav>
     ) : (
       <>

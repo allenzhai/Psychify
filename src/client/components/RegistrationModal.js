@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import Modal from './Modal';
 
+import '../style/RegistrationModal.css';
 function RegistrationModal(props) {
   const location = useLocation();
   const history = useHistory();

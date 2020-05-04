@@ -18,6 +18,27 @@ app.get('/api/disorder/search', (req, res) => {
   });
 });
 
+app.get('/api/getProfile/:ID', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const { ID } = req.params;
+  api.getProfile(ID).then(( rows) => {
+    res.json(rows[0]);
+  });
+});
+
+app.put('/api/updateProfile/:ID', (req) => {
+  const profile = {
+    email: req.body.email,
+    username: req.body.username,
+    about: req.body.about,
+    name: req.body.name,
+    loc: req.body.loc,
+    DOB: req.body.DOB,
+    ID: req.body.ID
+  };
+  console.log('profile', profile);
+  api.updateProfile(profile);
+});
 
 //  Forum
 app.get('/api/forum/posts', (req, res) => {
