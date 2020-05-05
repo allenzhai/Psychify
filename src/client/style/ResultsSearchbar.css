@@ -17,7 +17,7 @@
 }
 
 .results-search:focus {
-  width: 100%;
+  width: 95%;
   box-shadow: 0px 3px 12px #999;
   outline: none;
 }

@@ -18,11 +18,21 @@ function ResultsSearchbar({ terms, onSubmit }) {
 
   return (
     <div className="results-search-parent">
-      <form onSubmit={handleSubmit}>
+      <form className="form large" onSubmit={handleSubmit}>
         <input
           type="text"
           className="results-search"
           placeholder="Enter Symptoms e.g. 'Trouble Sleeping'"
+          autoComplete="off"
+          value={searchTerms}
+          onChange={handleChange}
+        />
+      </form>
+      <form className="form small" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="results-search"
+          placeholder="Search"
           autoComplete="off"
           value={searchTerms}
           onChange={handleChange}
