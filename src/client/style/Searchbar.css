@@ -1,5 +1,5 @@
 .search {
-  width: 44%;
+  width: 50%;
   height: 100%;
   padding: 16px 54px;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -15,9 +15,31 @@
 }
 
 .search:focus {
-  width: 47%;
+  width: 55%;
   box-shadow: 0px 3px 12px #999999;
   outline: none;
+}
+
+.search:placeholder-shown {
+  text-overflow: ellipsis;
+  opacity: 1;
+  transition-duration: .5s;
+}
+
+.search:focus::placeholder {
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition-duration: .5s;
+}
+
+@media (max-width: 399px) { 
+  form.large { display: none; }
+  form.small { display: inline-block; }
+}
+
+@media (min-width: 400px) { 
+  form.small { display: none; }
+  form.large { display: inline-block; width: 100%; }
 }
 
 input[type=submit] {

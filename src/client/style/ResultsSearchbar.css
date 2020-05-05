@@ -1,5 +1,5 @@
 .results-search {
-  width: 85%;
+  width: 95%;
   height: 100%;
   margin: auto;
   padding: 1em 4em;
@@ -17,9 +17,21 @@
 }
 
 .results-search:focus {
-  width: 85%;
+  width: 95%;
   box-shadow: 0px 3px 12px #999;
   outline: none;
+}
+
+.results-search:placeholder-shown {
+  text-overflow: ellipsis;
+  opacity: 1;
+  transition-duration: .5s;
+}
+
+.results-search:focus::placeholder {
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition-duration: .5s;
 }
 
 input[type=submit] {
