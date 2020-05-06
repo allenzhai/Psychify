@@ -31,10 +31,10 @@ function Navbar(props) {
   return (
     <div className="top-bar">
       <a className="homepage" href="/">Psychify</a>
-      <nav className="navbar" ref={nav}>
-        <button type="button" className="icon" onClick={() => toggleNav()}>
+      <button type="button" className="icon" onClick={() => toggleNav()}>
           <i className="fas fa-bars" />
-        </button>
+      </button>
+      <nav className="navbar" ref={nav}>
         <a className="nav-item" href="/forum">Forum</a>
         <a className="nav-item" href="/dsm">Index</a>
         {component}

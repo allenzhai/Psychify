@@ -63,30 +63,32 @@
   font-weight: bold;
 }
 
-.navbar .icon {
+.icon {
   display: none;
   font-size: 2rem;
-  text-align: center;
 }
 
 @media (max-width: 1119px) {
-  .navbar a:not(:first-child) {display: none;}
-  .navbar .icon {
-    float: right;
+  .navbar a {display: none;}
+  .icon {
+    position: absolute;
     display: block;
-    margin-top: 1em;
-    margin-bottom: 1rem;
-    margin-right: 1.7rem;
+    right: 1rem;
+    top: 2rem;
+
   }
 
-
   .navbar-responsive {
-    position: relative; 
+    position: absolute; 
     background-color: #ececec;
     border-radius: 20px;
     margin-top: 1em;
-    margin-right: 1em;}
-  .navbar-responsive .icon {
+    margin-right: 1em;
+    top: 3.5rem;
+    right: .5rem;
+  }
+    
+  /* .navbar-responsive .icon {
     position: relative;
     margin-top: 0.5em;
     margin-bottom: 1rem;
@@ -94,7 +96,8 @@
     font-size: 2rem;
     text-align: right;
     float: right;
-  }
+  } */
+
   .navbar-responsive a {
     float: none;
     display: block;
