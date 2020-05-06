@@ -1,6 +1,4 @@
 .home-content {
-  /* text-align: center; */
-  /* padding-bottom: 10vh; */
   background-image: url('./images/blue-books@2x.png');
   background-repeat: no-repeat;
   background-position: 30vw 40vh;
@@ -23,10 +21,6 @@
 .landing-title {
   font-family: 'Merriweather', Arial, sans-serif;
   width: 50vw;
-  /* font-size: 72px;
-  margin-top: 2vh;
-  margin-bottom: 10px;
-  margin-left: 16px; */
   font-size: 4rem;
   margin-top: 2vh;
   margin-bottom: 1rem;
@@ -36,10 +30,7 @@
 
 .landing-subtitle {
   font-family: 'Open Sans', Arial, sans-serif;
-  /* font-size: 24px; */
   color: #888;
-  /* margin-bottom: 40px;
-  margin-left: 16px; */
   font-size: 1rem;
   margin-bottom: 2rem;
   margin-left: 1rem;

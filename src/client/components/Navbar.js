@@ -5,7 +5,6 @@ import '../style/Navbar.css';
 
 function Navbar(props) {
   const { loggedIn, username } = props;
-  // console.log(props);
   const component = loggedIn
     ? (
       <nav className="profile">
@@ -32,7 +31,7 @@ function Navbar(props) {
     <div className="top-bar">
       <a className="homepage" href="/">Psychify</a>
       <button type="button" className="icon" onClick={() => toggleNav()}>
-          <i className="fas fa-bars" />
+        <i className="fas fa-bars" />
       </button>
       <nav className="navbar" ref={nav}>
         <a className="nav-item" href="/forum">Forum</a>
