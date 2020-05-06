@@ -84,7 +84,8 @@
     position: relative; 
     background-color: #ececec;
     border-radius: 20px;
-    margin-top: 1em;}
+    margin-top: 1em;
+    margin-right: 1em;}
   .navbar-responsive .icon {
     position: relative;
     margin-top: 0.5em;
