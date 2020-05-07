@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS ForumPosts (
 );
 
 -- Create Table for Forum Comments
-CREATE TABLE IF NOT EXISTS ForumPosts (
+CREATE TABLE IF NOT EXISTS ForumComments (
   ID INT primary key AUTO_INCREMENT,
   Body VARCHAR(10000),
   Author INT,
