@@ -17,9 +17,17 @@ exports.queryName = (disorderName, sortBy) => {
 };
 
 exports.registerUser = (user) => {
-  const stm = `INSERT INTO LoginInfo(user, password, email, type, salt) VALUES("${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
-  console.log(stm);
-  return pool.query(stm);
+  let stm = `INSERT INTO Accounts(Username, Email) VALUES("${user.username}", "${user.email}")`;
+  pool.query(stm, () => {
+    stm = `SELECT ID FROM Accounts\nWHERE Username="${user.username}"`;
+    pool.query(stm, (err, rows) => {
+      if (err) throw err;
+      console.log(rows);
+      stm = `INSERT INTO LoginInfo(id, user, password, email, type, salt) VALUES(${rows[0].ID}, "${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
+      console.log(stm);
+      return pool.query(stm);
+    });
+  });
 };
 
 exports.getUser = (username) => {
