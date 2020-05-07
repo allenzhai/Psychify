@@ -34,3 +34,23 @@ CREATE TABLE IF NOT EXISTS Accounts (
   DOB VARCHAR(100),
   Type INT NOT NULL
 );
+
+-- Create Table for Forum Posts
+CREATE TABLE IF NOT EXISTS ForumPosts (
+  ID INT primary key AUTO_INCREMENT,
+  Title VARCHAR(300) NOT NULL, 
+  Body VARCHAR(10000),
+  Category VARCHAR(1000),
+  Author INT,
+  Date DATETIME,
+  Likes INT
+);
+
+-- Create Table for Forum Comments
+CREATE TABLE IF NOT EXISTS ForumPosts (
+  ID INT primary key AUTO_INCREMENT,
+  Body VARCHAR(10000),
+  Author INT,
+  Date DATETIME,
+  Post INT
+);
