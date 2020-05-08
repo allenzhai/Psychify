@@ -23,7 +23,6 @@ export default function App() {
   }
   // user context
   const UserContext = React.createContext({
-    username: { username },
     token: { token }
   });
 
