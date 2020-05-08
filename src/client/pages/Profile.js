@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import useFetch from '../hooks/useFetch';
 
 import Button from '../components/Button';
@@ -8,8 +7,6 @@ import Button from '../components/Button';
 import '../style/Profile.css';
 
 function Profile() {
-  const location = useLocation();
-  const history = useHistory();
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [about, setAbout] = useState();
@@ -17,10 +14,10 @@ function Profile() {
   const [loc, setLocation] = useState();
   const [verified, setVerified] = useState();
   const [DOB, setDOB] = useState();
-  const [ID, setID] = useState(2);
+  const [ID] = useState(2);
 
   const endPoint = `/api/getProfile/${ID}`;
-  const [isLoading, data, error] = useFetch(endPoint);
+  const [data, error] = useFetch(endPoint);
   const dataList = data || [];
 
 
