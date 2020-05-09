@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
 import '../style/Navbar.css';
 
 
 function Navbar(props) {
   const { loggedIn, username } = props;
-  console.log(props);
   const component = loggedIn
     ? (
       <nav className="profile">
@@ -18,11 +17,23 @@ function Navbar(props) {
         <a href="#registration" className="nav-item signup">Sign Up</a>
       </>
     );
+  const nav = useRef(null);
+
+  function toggleNav() {
+    if (nav.current.className === 'navbar') {
+      nav.current.className += '-responsive';
+    } else {
+      nav.current.className = 'navbar';
+    }
+  }
 
   return (
     <div className="top-bar">
       <a className="homepage" href="/">Psychify</a>
-      <nav className="navbar">
+      <button type="button" className="icon" onClick={() => toggleNav()}>
+        <i className="fas fa-bars" />
+      </button>
+      <nav className="navbar" ref={nav}>
         <a className="nav-item" href="/forum">Forum</a>
         <a className="nav-item" href="/dsm">Index</a>
         {component}

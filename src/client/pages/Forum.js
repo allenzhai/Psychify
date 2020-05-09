@@ -143,7 +143,7 @@ function Forum() {
           <p className="new-post-text">Body</p>
           <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" value={newPostBody} onChange={handleNewPostBodyChange} />
           <p className="new-post-text">Category</p>
-          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange}/>
+          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange} />
           <button className="new-post-submit" type="submit" onClick={handlePostSubmit}>Post</button>
         </div>
       </ReactModal>

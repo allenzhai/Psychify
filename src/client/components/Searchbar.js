@@ -24,11 +24,21 @@ export default function Searchbar() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="form large" onSubmit={handleSubmit}>
         <input
           type="text"
           className="search"
           placeholder="Enter Symptoms e.g. 'Trouble Sleeping'"
+          autoComplete="off"
+          value={searchTerms}
+          onChange={handleChange}
+        />
+      </form>
+      <form className="form small" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="search"
+          placeholder="Search"
           autoComplete="off"
           value={searchTerms}
           onChange={handleChange}
