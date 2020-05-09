@@ -9,10 +9,11 @@ import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import UserContext from './userContext';
 
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [username, changeUsername, token] = React.useState('');
+  const [username, changeUsername] = React.useState('');
 
   function loginUser() {
     setLoggedIn(true);
@@ -21,15 +22,12 @@ export default function App() {
   function setUsername(user) {
     changeUsername(user);
   }
-  // user context
-  const UserContext = React.createContext({
-    token: { token }
-  });
+
 
   return (
     <>
-      <Navbar loggedIn={loggedIn} username={username} />
-      <UserContext.Provider value={token}>
+      <UserContext.Provider value={UserContext.token}>
+        <Navbar loggedIn={loggedIn} username={username} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/forum" component={Forum} />
