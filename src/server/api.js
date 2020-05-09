@@ -38,13 +38,15 @@ exports.updateProfile = (profile) => {
 };
 
 exports.listPosts = () => {
-
+  //Returns all forum posts
+  const stm = 'SELECT * FROM ForumPosts';
+  return pool.query(stm);
 };
 
-exports.createPost = () => {
-  // Database insertion goes here
-  console.log('New Post Created');
-  return true;
+exports.createPost = (post) => {
+  const stm = `INSERT INTO ForumPosts(Title, Body, Category, Author, Date) VALUES("${post.title}", "${post.body}", "${post.category}", "${post.Author}", "${post.date}")`;
+  console.log(stm);
+  return pool.query(stm);
 };
 
 exports.createComment = () => {
