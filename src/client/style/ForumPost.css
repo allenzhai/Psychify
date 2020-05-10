@@ -126,6 +126,12 @@
   color: #666;
 }
 
+.no-comments {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+
 .new-comment {
   display: flex;
   flex-direction: column;

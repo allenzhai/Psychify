@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
+import useFetch from '../hooks/useFetch';
 import ForumPost from '../components/ForumPost';
 
 import '../style/Forum.css';
 
 function Forum() {
   const [showModal, setShowModal] = useState(false);
-  const [posts, setPosts] = useState();
-  const [isLoaded, setLoaded] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState();
   const [newPostBody, setNewPostBody] = useState();
   const [newPostCategory, setNewPostCategory] = useState();
+
+  const endPoint = '/api/forum/posts';
+  const [isLoading, data, error] = useFetch(endPoint);
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -33,36 +35,16 @@ function Forum() {
     setNewPostCategory(event.target.value);
   }
 
-  function queryPosts() {
-    fetch('/api/forum/posts')
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
-          setPosts(serverResult);
-          setLoaded(true);
-        }
-      )
-      .catch(() => {
-        console.log('Post query failed');
-      });
-  }
-
   function handlePostSubmit() {
+    const newPostData = {
+      title: newPostTitle,
+      body: newPostBody,
+      category: newPostCategory,
+    };
     const request = {
       method: 'POST',
-      mode: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: {
-        title: newPostTitle,
-        body: newPostBody,
-        category: newPostCategory
-      }
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify(newPostData),
     };
     setNewPostTitle('');
     setNewPostBody('');
@@ -83,11 +65,7 @@ function Forum() {
     setShowModal(false);
   }
 
-  useEffect(() => {
-    if (!isLoaded) {
-      queryPosts();
-    }
-  });
+  const posts = data || [];
 
   return (
     <div>
@@ -99,15 +77,16 @@ function Forum() {
           </button>
         </div>
         <div className="forum-posts-container">
-          {isLoaded ? posts.map((e, i) => {
+          {!isLoading ? posts.map((e, i) => {
             let post = (
               <ForumPost
                 className="post"
-                title={e.title}
-                author={e.author}
-                age={e.age}
-                category={e.category}
-                likes={e.likes}
+                title={e.Title}
+                author={e.Author}
+                date={e.Date}
+                category={e.Category}
+                likes={e.Likes}
+                postID={e.ID}
               />
             );
             // Displays dividing line after post if not the last post

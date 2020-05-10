@@ -46,13 +46,18 @@ exports.updateProfile = (profile) => {
 };
 
 exports.listPosts = () => {
-  //Returns all forum posts
+  // Returns all forum posts
   const stm = 'SELECT * FROM ForumPosts';
   return pool.query(stm);
 };
 
+exports.getComments = (postID) => {
+  const stm = `SELECT * FROM ForumComments WHERE Post = ${postID}`;
+  return pool.query(stm);
+}
+
 exports.createPost = (post) => {
-  const stm = `INSERT INTO ForumPosts(Title, Body, Category, Author, Date) VALUES("${post.title}", "${post.body}", "${post.category}", "${post.Author}", "${post.date}")`;
+  const stm = `INSERT INTO ForumPosts(Title, Body, Category, Author) VALUES("${post.title}", "${post.body}", "${post.category}", "${post.Author}")`;
   console.log(stm);
   return pool.query(stm);
 };

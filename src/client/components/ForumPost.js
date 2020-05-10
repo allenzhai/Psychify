@@ -2,20 +2,23 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
-
+import useFetch from '../hooks/useFetch';
+import CommentList from './CommentList';
 
 import '../style/ForumPost.css';
 
 function ForumPost(props) {
   const {
-    title, author, age, category, likes
+    title, author, date, category, likes, postID
   } = props;
 
-  const [comments, setComments] = useState();
   const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
   const [newCommentBody, setNewCommentBody] = useState();
+
+  const endPoint = `/api/forum/post/comments/${postID}`;
+  const [isLoading, data, error] = useFetch(endPoint);
 
   function handleCloseModal() {
     setShowModal(false);
@@ -32,7 +35,7 @@ function ForumPost(props) {
   }
 
   function queryComments() {
-    fetch('/api/forum/post/comments/postID')
+    fetch(`/api/forum/post/comments/${postID}`)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
@@ -47,7 +50,7 @@ function ForumPost(props) {
         }
       )
       .catch(() => {
-        console.log('Post query failed');
+        console.log('Comments query failed');
       });
   }
 
@@ -80,11 +83,7 @@ function ForumPost(props) {
       });
   }
 
-  useEffect(() => {
-    if (!isLoaded) {
-      queryComments();
-    }
-  });
+  const comments = data || [];
 
   return (
     <div className="forum-post">
@@ -100,7 +99,7 @@ function ForumPost(props) {
           <p className="likes-number">{likes}</p>
         </div>
       </div>
-      <p className="post-information">{`${author}   |   ${age}`}</p>
+      <p className="post-information">{`${author}   |   ${date}`}</p>
       <ReactModal
         isOpen={showModal}
         contentLabel="onRequestClose Modal"
@@ -113,28 +112,9 @@ function ForumPost(props) {
             <h3 className="post-title-modal">{title}</h3>
             <p className="post-category">{category}</p>
           </div>
-          <p className="post-information-modal">{`${author}   |   ${age}`}</p>
+          <p className="post-information-modal">{`${author}   |   ${date}`}</p>
         </div>
-        <div className="post-comments">
-          {isLoaded ? comments.map((e, i) => {
-            let comment = (
-              <div className="comment">
-                <p className="comment-text">{e.text}</p>
-                <p className="comment-information">{`${e.author}   |   ${e.age}`}</p>
-              </div>
-            );
-              // Displays dividing line after post if not the last comment
-            if (i < comments.length - 1) {
-              comment = (
-                <div>
-                  {comment}
-                  <hr />
-                </div>
-              );
-            }
-            return comment;
-          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
-        </div>
+        <CommentList datasource={comments} />
         <div className="new-comment">
           <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" value={newCommentBody} onChange={handleNewCommentBodyUpdate} />
           <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit}>Comment</button>
@@ -146,10 +126,11 @@ function ForumPost(props) {
 
 ForumPost.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  author: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  likes: PropTypes.string.isRequired
+  likes: PropTypes.number.isRequired,
+  postID: PropTypes.number.isRequired
 };
 
 
