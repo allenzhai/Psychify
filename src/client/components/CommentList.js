@@ -1,21 +1,17 @@
-import React from 'react';
+import React, from 'react';
 import PropTypes from 'prop-types';
 
-import DisorderResult from './DisorderResult';
+import ForumComment from './ForumComment.js'
 
-function CommentList({ datasource }) {
+funcdtion CommentList({ datasource }) {
   console.log(datasource);
   const dataset = datasource;
+
 
   const uiList = (
     <div className="post-comments">
       {dataset.map((e, i) => {
-        let comment = (
-          <div className="comment">
-            <p className="comment-text">{e.Body}</p>
-            <p className="comment-information">{`${e.Author}   |   ${e.Date}`}</p>
-          </div>
-        );
+        let comment = <ForumComment body={e.Body} author={e.Author} date={e.Date} />;
         // Displays dividing line after post if not the last comment
         if (i < dataset.length - 1) {
           comment = (
@@ -23,7 +19,7 @@ function CommentList({ datasource }) {
               {comment}
               <hr />
             </div>
-          );
+          )
         }
         return comment;
       })}
@@ -33,6 +29,8 @@ function CommentList({ datasource }) {
   if (dataset.length === 0) {
     return (<p className="no-comments">No comments</p>);
   }
+
+
 
   return (
     <div className="comments-list">

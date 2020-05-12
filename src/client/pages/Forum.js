@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import useFetch from '../hooks/useFetch';
 import ForumPost from '../components/ForumPost';
@@ -40,6 +40,7 @@ function Forum() {
       title: newPostTitle,
       body: newPostBody,
       category: newPostCategory,
+      date: new Date(Date.now()),
     };
     const request = {
       method: 'POST',
@@ -58,6 +59,7 @@ function Forum() {
       })
       .then(() => {
         console.log('Post successful');
+        window.location.reload(true);
       })
       .catch(() => {
         console.log('Post failed');
@@ -82,6 +84,7 @@ function Forum() {
               <ForumPost
                 className="post"
                 title={e.Title}
+                body={e.Body}
                 author={e.Author}
                 date={e.Date}
                 category={e.Category}
@@ -123,7 +126,7 @@ function Forum() {
           <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" value={newPostBody} onChange={handleNewPostBodyChange} />
           <p className="new-post-text">Category</p>
           <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange} />
-          <button className="new-post-submit" type="submit" onClick={handlePostSubmit}>Post</button>
+          <button className="new-post-submit" type="submit" onClick={handlePostSubmit} disabled={newPostTitle === undefined || !newPostTitle.length}>Post</button>
         </div>
       </ReactModal>
     </div>

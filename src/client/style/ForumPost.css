@@ -107,6 +107,17 @@
   color: #fff;
 }
 
+.post-body {
+  text-align: left;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  margin-left: 0%;
+  margin-bottom: 0%;
+  padding: 0%;
+  padding-bottom: 1%;
+  color: #fff;
+}
+
 .post-comments {
   display: flex;
   flex-direction: column;
@@ -124,6 +135,7 @@
 
 .comment-information {
   color: #666;
+  font-size: .7em;
 }
 
 .no-comments {

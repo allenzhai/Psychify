@@ -79,6 +79,7 @@ app.post('/api/forum/create/post', (req, res) => {
     body: req.body.body,
     category: req.body.category,
     author: req.body.author,
+    date: req.body.date,
   };
   api.createPost(post);
   res.json(post);
@@ -87,6 +88,9 @@ app.post('/api/forum/create/post', (req, res) => {
 app.post('/api/forum/create/comment', (req, res) => {
   const comment = {
     body: req.body.body,
+    date: req.body.date,
+    author: req.body.author,
+    linkedPost: req.body.linkedPost,
   };
   api.createComment(comment);
   res.json(comment);

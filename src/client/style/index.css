@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  background: rgb(165, 165, 165);
+}
+
+button:disabled:hover {
+  background: rgb(165, 165, 165);
+}
