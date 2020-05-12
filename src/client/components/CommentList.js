@@ -1,9 +1,9 @@
-import React, from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import ForumComment from './ForumComment.js'
+import ForumComment from './ForumComment.js';
 
-funcdtion CommentList({ datasource }) {
+function CommentList({ datasource }) {
   console.log(datasource);
   const dataset = datasource;
 
