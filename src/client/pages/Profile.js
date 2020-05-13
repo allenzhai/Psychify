@@ -17,7 +17,7 @@ function Profile() {
   const [ID] = useState(2);
 
   const endPoint = `/api/getProfile/${ID}`;
-  const [data, error] = useFetch(endPoint);
+  const [isLoading, data, error] = useFetch(endPoint);
   const dataList = data || [];
 
 
