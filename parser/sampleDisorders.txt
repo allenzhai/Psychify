@@ -1,0 +1,54 @@
+c Neurodevelopmental Disorders
+s Intellectual Disabilities
+Intellectual Disability (Intellectual Developmental Disorder)
+Global Developmental Delay
+Unspecified Intellectual Disability (Intellectual Developmental Disorder)
+s Communication Disorders
+Language Disorder
+Speech Sound Disorder (previously Phonological Disorder)
+Childhood-Onset Fluency Disorder (Stuttering)
+Social (Pragmatic) Communication Disorder
+Unspecified Communication Disorder
+s Autism Spectrum Disorder
+Autism Spectrum Disorder
+s Deficit/Hyperactivity Disorder
+Attention-Deficit/Hyperactivity Disorder
+Other Specified Attention-Deficit/Hyperactivity Disorder
+Unspecified Attention-Deficit/Hyperactivity Disorder
+s Specific Learning Disorder
+Specific Learning Disorder
+s Motor Disorders
+Developmental Coordination Disorder
+Stereotypic Movement Disorder
+Tic Disorders
+Tourette’s Disorder
+Persistent (Chronic) Motor or Vocal Tic Disorder
+Provisional Tic Disorder
+Other Specified Tic Disorder
+Unspecified Tic Disorder
+s Other Neurodevelopmental Disorders
+Other Specified Neurodevelopmental Disorder
+Unspecified Neurodevelopmental Disorder
+c Schizophrenia Spectrum and Other Psychotic Disorders
+Schizotypal (Personality) Disorder
+Delusional Disorder
+Brief Psychotic Disorder
+Schizophreniform Disorder
+Schizophrenia
+Schizoaffective Disorder
+Substance/Medication-Induced Psychotic Disorder
+Psychotic Disorder Due to Another Medical Condition
+s Catatonia
+Catatonia Associated With Another Mental Disorder (Catatonia Specifier)
+Catatonic Disorder Due to Another Medical Condition
+Unspecified Catatonia
+Other Specified Schizophrenia Spectrum and Other Psychotic Disorder
+Unspecified Schizophrenia Spectrum and Other Psychotic Disorder
+c Bipolar and Related Disorders
+Bipolar I Disorder
+Bipolar II Disorder
+Cyclothymic Disorder
+Substance/Medication-Induced Bipolar and Related Disorder
+Bipolar and Related Disorder Due to Another Medical Condition
+Other Specified Bipolar and Related Disorder
+Unspecified Bipolar and Related Disorder
