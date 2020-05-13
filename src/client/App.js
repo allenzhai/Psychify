@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import DisorderPage from './pages/DisorderPage';
 
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/dsm" component={DSM} />
         <Route path="/profile" component={Profile} />
         <Route path="/results" component={SearchResults} />
+        <Route path="/disorderPage" component={DisorderPage} />
       </Switch>
       <Route path="/" render={props => <LoginModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
       <Route path="/" render={props => <RegistrationModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
