@@ -168,8 +168,6 @@ function Profile() {
           <div className="col-right">
             <h3 className="profile-modal-section-header">About</h3>
             <textarea className="about" value={about} onChange={handleAboutChange} />
-            <br />
-            <br />
             <h3 className="profile-modal-section-header">Personal Information</h3>
             <div className="profile-personal-info">
               <h3 className="profile-modal-section-header">Name</h3>
