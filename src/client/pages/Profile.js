@@ -17,7 +17,7 @@ function Profile() {
   const [ID] = useState(2);
 
   const endPoint = `/api/getProfile/${ID}`;
-  const [data, error] = useFetch(endPoint);
+  const [isLoading, data, error] = useFetch(endPoint);
   const dataList = data || [];
 
 
@@ -91,6 +91,21 @@ function Profile() {
     console.log(error);
   }
 
+  const uploadedImage = React.useRef(null);
+  const imageUploader = React.useRef(null);
+
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      const reader = new FileReader();
+      const { current } = uploadedImage;
+      current.file = file;
+      reader.onload = (e) => {
+        current.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div>
@@ -98,26 +113,61 @@ function Profile() {
         <div className="profile-modal-body">
           <div className="col-left">
             <h3 className="profile-modal-section-header">Profile picture</h3>
-            <img src="/src/client/style/images/sample_profile_pic.png" alt="profile pic" />
-            <br />
-            <a href="#profilePicEdit">Edit</a>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              ref={imageUploader}
+              style={{
+                display: 'none'
+              }}
+            />
+            <div
+              className="profile-user-image-display"
+              role="button"
+              tabIndex={0}
+              onClick={() => imageUploader.current.click()}
+              onKeyDown={() => imageUploader.current.click()}
+            >
+              <img
+                alt="ProfilePicture"
+                ref={uploadedImage}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </div>
+            <button
+              className="profile-user-image-edit-button"
+              type="button"
+              onClick={() => imageUploader.current.click()}
+            >
+              Edit
+            </button>
             {' '}
             |
             {' '}
-            <a href="#profilePicRemove">Remove</a>
-            <br />
-            <br />
-            {dataList.Username}
-            <br />
-            {dataList.Email}
-            <br />
-            <br />
+            <button
+              className="profile-user-image-edit-button"
+              type="button"
+              onClick={() => imageUploader.current.click()}
+            >
+              Remove
+            </button>
+            <pre>
+              <div className="profile-div-white-space">
+                {dataList.Username}
+              </div>
+
+              <div className="profile-div-white-space">
+                {dataList.Email}
+              </div>
+            </pre>
           </div>
           <div className="col-right">
             <h3 className="profile-modal-section-header">About</h3>
             <textarea className="about" value={about} onChange={handleAboutChange} />
-            <br />
-            <br />
             <h3 className="profile-modal-section-header">Personal Information</h3>
             <div className="profile-personal-info">
               <h3 className="profile-modal-section-header">Name</h3>
@@ -131,10 +181,10 @@ function Profile() {
               {verifiedStatus}
               <h3 className="profile-modal-section-header">Date of birth</h3>
               <input value={DOB} onChange={handleDOBChange} type="text" className="form-control" name="profile-dob" />
-              <br />
-              <br />
-              <br />
-              <Button className="button-update-info" onClick={handleUpdate}>Update Information</Button>
+
+              <div className="profile-update-info-button">
+                <Button className="button-update-info" onClick={handleUpdate}>Update Information</Button>
+              </div>
             </div>
           </div>
         </div>

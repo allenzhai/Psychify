@@ -43,7 +43,11 @@ app.put('/api/updateProfile/:ID', (req) => {
     ID: req.body.ID
   };
   console.log('profile', profile);
-  api.updateProfile(profile);
+  api.updateProfile(profile).then((rows) => {
+    console.log(rows);
+  }).catch((err) => {
+    console.log(err);
+  });
 });
 
 //  Forum
