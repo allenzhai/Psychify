@@ -85,17 +85,21 @@ const LoginForm = ({ onSubmit, setUsername, setPassword }) => {
     <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="username">
-          Username
+          <div>
+            Username
+          </div>
           <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="password">
-          Password
+          <div>
+            Password
+          </div>
           <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
         </label>
       </div>
-      <div>
+      <div className="registration-link">
         <a href="#registration">Registration </a>
       </div>
       <div className="form-group" id="login-button-div">
