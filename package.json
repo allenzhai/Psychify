@@ -10,8 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "test": "jest --detectOpenHandles --forceExit",
-    "lint": "eslint ./src --cache --ignore-pattern .eslintignore",
-    "lint-fix": "eslint ./ --cache --ignore-pattern .gitignore --fix",
+    "lint": "eslint ./ --cache --ignore-path .gitignore",
+    "lint-fix": "eslint ./ --cache --ignore-path .gitignore --fix",
     "heroku-postbuild": "webpack -p"
   },
   "proxy": "http://localhost:5000",
