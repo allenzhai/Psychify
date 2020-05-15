@@ -1,0 +1,293 @@
+c Neurodevelopmental Disorders
+s Intellectual Disabilities
+Intellectual Disability (Intellectual Developmental Disorder)
+Global Developmental Delay
+Unspecified Intellectual Disability (Intellectual Developmental Disorder)
+s Communication Disorders
+Language Disorder
+Speech Sound Disorder (previously Phonological Disorder)
+Childhood-Onset Fluency Disorder (Stuttering)
+Social (Pragmatic) Communication Disorder
+Unspecified Communication Disorder
+s Autism Spectrum Disorder
+Autism Spectrum Disorder
+s Attention-Deficit/Hyperactivity Disorder
+Attention-Deficit/Hyperactivity Disorder
+Other Specified Attention-Deficit/Hyperactivity Disorder
+Unspecified Attention-Deficit/Hyperactivity Disorder
+s Specific Learning Disorder
+Specific Learning Disorder
+s Motor Disorders
+Developmental Coordination Disorder
+Stereotypic Movement Disorder
+Tic Disorders
+Tourette’s Disorder
+Persistent (Chronic) Motor or Vocal Tic Disorder
+Provisional Tic Disorder
+Other Specified Tic Disorder
+Unspecified Tic Disorder
+s Other Neurodevelopmental Disorders
+Other Specified Neurodevelopmental Disorder
+Unspecified Neurodevelopmental Disorder
+c Schizophrenia Spectrum and Other Psychotic Disorders
+Schizotypal (Personality) Disorder
+Delusional Disorder
+Brief Psychotic Disorder
+Schizophreniform Disorder
+Schizophrenia
+Schizoaffective Disorder
+Substance/Medication-Induced Psychotic Disorder
+Psychotic Disorder Due to Another Medical Condition
+s Catatonia
+Catatonia Associated With Another Mental Disorder (Catatonia Specifier)
+Catatonic Disorder Due to Another Medical Condition
+Unspecified Catatonia
+Other Specified Schizophrenia Spectrum and Other Psychotic Disorder
+Unspecified Schizophrenia Spectrum and Other Psychotic Disorder
+c Bipolar and Related Disorders
+Bipolar I Disorder
+Bipolar II Disorder
+Cyclothymic Disorder
+Substance/Medication-Induced Bipolar and Related Disorder
+Bipolar and Related Disorder Due to Another Medical Condition
+Other Specified Bipolar and Related Disorder
+Unspecified Bipolar and Related Disorder
+c Depressive Disorders
+Disruptive Mood Dysregulation Disorder
+Major Depressive Disorder, Single and Recurrent Episodes
+Persistent Depressive Disorder (Dysthymia)
+Premenstrual Dysphoric Disorder
+Substance/Medication-Induced Depressive Disorder
+Depressive Disorder Due to Another Medical Condition
+Other Specified Depressive Disorder
+Unspecified Depressive Disorder
+c Anxiety Disorders
+Separation Anxiety Disorder
+Selective Mutism
+Specific Phobia
+Social Anxiety Disorder (Social Phobia)
+Panic Disorder
+Panic Attack (Specifier)
+Agoraphobia
+Generalized Anxiety Disorder
+Substance/Medication-Induced Anxiety Disorder
+Anxiety Disorder Due to Another Medical Condition
+Other Specified Anxiety Disorder
+Unspecified Anxiety Disorder
+c Obsessive-Compulsive and Related Disorders
+Obsessive-Compulsive Disorder
+Body Dysmorphic Disorder
+Hoarding Disorder
+Trichotillomania (Hair-Pulling Disorder)
+Excoriation (Skin-Picking) Disorder
+Substance/Medication-Induced Obsessive-Compulsive and Related Disorder
+Obsessive-Compulsive and Related Disorder Due to Another Medical Condition
+Other Specified Obsessive-Compulsive and Related Disorder
+Unspecified Obsessive-Compulsive and Related Disorder
+c Trauma- and Stressor-Related Disorders
+Reactive Attachment Disorder
+Disinhibited Social Engagement Disorder
+Posttraumatic Stress Disorder
+Acute Stress Disorder
+Adjustment Disorders
+Other Specified Trauma- and Stressor-Related Disorder
+Unspecified Trauma- and Stressor-Related Disorder
+c Dissociative Disorders
+Dissociative Identity Disorder
+Dissociative Amnesia
+Depersonalization/Derealization Disorder
+Other Specified Dissociative Disorder
+Unspecified Dissociative Disorder
+c Somatic Symptom and Related Disorders
+Somatic Symptom Disorder
+Illness Anxiety Disorder
+Conversion Disorder (Functional Neurological Symptom Disorder)
+Psychological Factors Affecting Other Medical Conditions
+Factitious Disorder
+Other Specified Somatic Symptom and Related Disorder
+Unspecified Somatic Symptom and Related Disorder
+c Feeding and Eating Disorders
+Pica
+Rumination Disorder
+Avoidant/Restrictive Food Intake Disorder
+Anorexia Nervosa
+Bulimia Nervosa
+Binge-Eating Disorder
+Other Specified Feeding or Eating Disorder
+Unspecified Feeding or Eating Disorder
+c Elimination Disorders
+Enuresis
+Encopresis
+Other Specified Elimination Disorder
+Unspecified Elimination Disorder
+c Sleep-Wake Disorders
+Insomnia Disorder
+Hypersomnolence Disorder
+Narcolepsy
+s Breathing-Related Sleep Disorders
+Obstructive Sleep Apnea Hypopnea
+Central Sleep Apnea
+Sleep-Related Hypoventilation
+Circadian Rhythm Sleep-Wake Disorders
+s Parasomnias
+Non–Rapid Eye Movement Sleep Arousal Disorders
+Sleepwalking
+Sleep Terrors
+Nightmare Disorder
+Rapid Eye Movement Sleep Behavior Disorder
+Restless Legs Syndrome
+Substance/Medication-Induced Sleep Disorder
+Other Specified Insomnia Disorder
+Unspecified Insomnia Disorder
+Other Specified Hypersomnolence Disorder
+Unspecified Hypersomnolence Disorder
+Other Specified Sleep-Wake Disorder
+Unspecified Sleep-Wake Disorder
+c Sexual Dysfunctions
+Delayed Ejaculation
+Erectile Disorder
+Female Orgasmic Disorder
+Female Sexual Interest/Arousal Disorder
+Genito-Pelvic Pain/Penetration Disorder
+Male Hypoactive Sexual Desire Disorder
+Premature (Early) Ejaculation
+Substance/Medication-Induced Sexual Dysfunction
+Other Specified Sexual Dysfunction
+Unspecified Sexual Dysfunction
+c Gender Dysphoria
+Gender Dysphoria
+Other Specified Gender Dysphoria
+Unspecified Gender Dysphoria
+c Disruptive, Impulse-Control, and Conduct Disorders
+Oppositional Defiant Disorder
+Intermittent Explosive Disorder
+Conduct Disorder
+Antisocial Personality Disorder
+Pyromania
+Kleptomania
+Other Specified Disruptive, Impulse-Control, and Conduct Disorder
+Unspecified Disruptive, Impulse-Control, and Conduct Disorder
+c Substance-Related and Addictive Disorders
+s Substance-Related Disorders
+Substance Use Disorders
+Substance-Induced Disorders
+Substance Intoxication and Withdrawal
+Substance/Medication-Induced Mental Disorders
+s Alcohol-Related Disorders
+Alcohol Use Disorder
+Alcohol Intoxication
+Alcohol Withdrawal
+Other Alcohol-Induced Disorders
+Unspecified Alcohol-Related Disorder
+s Caffeine-Related Disorders
+Caffeine Intoxication
+Caffeine Withdrawal
+Other Caffeine-Induced Disorders
+Unspecified Caffeine-Related Disorder
+s Cannabis-Related Disorders
+Cannabis Use Disorder
+Cannabis Intoxication
+Cannabis Withdrawal
+Other Cannabis-Induced Disorders
+Unspecified Cannabis-Related Disorder
+s Hallucinogen-Related Disorders
+Phencyclidine Use Disorder
+Other Hallucinogen Use Disorder
+Phencyclidine Intoxication
+Other Hallucinogen Intoxication
+Hallucinogen Persisting Perception Disorder
+Other Phencyclidine-Induced Disorders
+Other Hallucinogen-Induced Disorders
+Unspecified Phencyclidine-Related Disorder
+Unspecified Hallucinogen-Related Disorder
+s Inhalant-Related Disorders
+Inhalant Use Disorder
+Inhalant Intoxication
+Other Inhalant-Induced Disorders
+Unspecified Inhalant-Related Disorder
+s Opioid-Related Disorders
+Opioid Use Disorder
+Opioid Intoxication
+Opioid Withdrawal
+Other Opioid-Induced Disorders
+Unspecified Opioid-Related Disorder
+s Sedative-, Hypnotic-, or Anxiolytic-Related Disorders
+Sedative, Hypnotic, or Anxiolytic Use Disorder
+Sedative, Hypnotic, or Anxiolytic Intoxication
+Sedative, Hypnotic, or Anxiolytic Withdrawal
+Other Sedative-, Hypnotic-, or Anxiolytic-Induced Disorders
+Unspecified Sedative-, Hypnotic-, or Anxiolytic-Related Disorder
+Stimulant-Related Disorders
+Stimulant Use Disorder
+Stimulant Intoxication
+Stimulant Withdrawal
+Other Stimulant-Induced Disorders
+Unspecified Stimulant-Related Disorder
+s Tobacco-Related Disorders
+Tobacco Use Disorder
+Tobacco Withdrawal
+Other Tobacco-Induced Disorders
+Unspecified Tobacco-Related Disorder
+s Other (or Unknown) Substance–Related Disorders
+Other (or Unknown) Substance Use Disorder
+Other (or Unknown) Substance Intoxication
+Other (or Unknown) Substance Withdrawal
+Other (or Unknown) Substance–Induced Disorders
+Unspecified Other (or Unknown) Substance–Related Disorder
+s Non-Substance-Related Disorders
+Gambling Disorder
+c Neurocognitive Disorders
+Delirium
+Other Specified Delirium
+Unspecified Delirium
+s Major and Mild Neurocognitive Disorders
+Major Neurocognitive Disorder
+Mild Neurocognitive Disorder
+Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease
+Major or Mild Frontotemporal Neurocognitive Disorder
+Major or Mild Neurocognitive Disorder With Lewy Bodies
+Major or Mild Vascular Neurocognitive Disorder
+Major or Mild Neurocognitive Disorder Due to Traumatic Brain Injury
+Substance/Medication-Induced Major or Mild Neurocognitive Disorder
+Major or Mild Neurocognitive Disorder Due to HIV Infection
+Major or Mild Neurocognitive Disorder Due to Prion Disease
+Major or Mild Neurocognitive Disorder Due to Parkinson’s Disease
+Major or Mild Neurocognitive Disorder Due to Huntington’s Disease
+Major or Mild Neurocognitive Disorder Due to Another Medical Condition
+Major or Mild Neurocognitive Disorder Due to Multiple Etiologies
+Unspecified Neurocognitive Disorder
+c Personality Disorders
+General Personality Disorder
+s Cluster A Personality Disorders
+Paranoid Personality Disorder
+Schizoid Personality Disorder
+Schizotypal Personality Disorder
+s Cluster B Personality Disorders
+Antisocial Personality Disorder
+Borderline Personality Disorder
+Histrionic Personality Disorder
+Narcissistic Personality Disorder
+s Cluster C Personality Disorders
+Avoidant Personality Disorder
+Dependent Personality Disorder
+Obsessive-Compulsive Personality Disorder
+s Other Personality Disorders
+Personality Change Due to Another Medical Condition
+Other Specified Personality Disorder
+Unspecified Personality Disorder
+c Paraphilic Disorders
+Voyeuristic Disorder
+Exhibitionistic Disorder
+Frotteuristic Disorder
+Sexual Masochism Disorder
+Sexual Sadism Disorder
+Pedophilic Disorder
+Fetishistic Disorder
+Transvestic Disorder
+Other Specified Paraphilic Disorder
+Unspecified Paraphilic Disorder
+c Other Mental Disorders
+Other Specified Mental Disorder Due to Another Medical Condition
+Unspecified Mental Disorder Due to Another Medical Condition
+Other Specified Mental Disorder
+Unspecified Mental Disorder
