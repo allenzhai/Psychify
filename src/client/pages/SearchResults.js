@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import ReactModal from 'react-modal';
-import { createBrowserHistory } from 'history';
 import ResultsSearchbar from '../components/ResultsSearchbar';
 import ResultList from '../components/ResultList';
 
