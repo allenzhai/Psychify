@@ -56,69 +56,12 @@ app.put('/api/updateProfile/:ID', (req) => {
 //  Forum
 app.get('/api/forum/posts', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.json([{
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  },
-  {
-    title: 'Lorem ispsum this is a post title',
-    author: 'username',
-    age: '20h',
-    category: 'Anxiety',
-    likes: '1'
-  }]);
+  api.listPosts().then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
 });
 
 app.get('/api/forum/post/:id', (req, res) => {
@@ -126,12 +69,15 @@ app.get('/api/forum/post/:id', (req, res) => {
   res.json({ post: 'request for specific post - to display on its own page' });
 });
 
-app.get('/api/forum/post/comments/:id', (req, res) => {
+app.get('/api/forum/post/comments/:postID', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.json([{ author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-  { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-  { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' },
-  { author: 'username', age: '2h', text: 'sample comment text lorem ipsum dolem blah blah lots of text' }]);
+  const { postID } = req.params;
+  api.getComments(postID).then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
 });
 
 app.post('/api/forum/create/post', (req, res) => {
@@ -139,6 +85,8 @@ app.post('/api/forum/create/post', (req, res) => {
     title: req.body.title,
     body: req.body.body,
     category: req.body.category,
+    author: req.body.author,
+    date: req.body.date,
   };
   api.createPost(post);
   res.json(post);
@@ -147,6 +95,9 @@ app.post('/api/forum/create/post', (req, res) => {
 app.post('/api/forum/create/comment', (req, res) => {
   const comment = {
     body: req.body.body,
+    date: req.body.date,
+    author: req.body.author,
+    linkedPost: req.body.linkedPost,
   };
   api.createComment(comment);
   res.json(comment);
