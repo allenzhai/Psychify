@@ -7,8 +7,7 @@ export default function useAge(date) {
     // Takes in a UTC date string and calculates how long ago it was, returning a formatted string
     // Mainly used in ForumPost and ForumComment to show timestamp, but can be used anywhere
     const now = new Date(new Date(Date.now()).toUTCString());
-    let dateDelta = now - new Date(date) + 25200000;
-    // Compensating for GMT 7hr time difference. Probably will run into issues with niche timezones.
+    let dateDelta = now - new Date(date);
     let ageString = '';
     let years = 0;
     let months = 0;
