@@ -114,11 +114,9 @@
 }
 
 .profile-user-image-edit-button{
-  background: none!important;
+  background: none;
   border: none;
-  padding: 0!important;
-  /*optional*/
-  /*input has OS specific font-family*/
+  padding: 0;
   color: #0000EE;
   text-decoration: underline;
   cursor: pointer;
