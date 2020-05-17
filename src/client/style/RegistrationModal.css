@@ -42,6 +42,10 @@
 
 }
 
+#verified {
+  width: 3.5em;
+}
+
 #button-registration:hover {
   text-decoration: none;
   padding: 0.5rem 1.5rem;

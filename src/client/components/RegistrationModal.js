@@ -81,13 +81,14 @@ function RegistrationModal(props) {
 }
 
 const RegistrationForm = ({
-  onSubmit, setUsername, setEmail, setPassword
+  onSubmit, setUsername, setEmail, setPassword, setVerfifed
 }) => {
   RegistrationForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     setUsername: PropTypes.func.isRequired,
     setEmail: PropTypes.func.isRequired,
     setPassword: PropTypes.func.isRequired,
+    setVerfifed: PropTypes.func.isRequired
   };
 
   const uploadedImage = React.useRef(null);
@@ -135,10 +136,7 @@ const RegistrationForm = ({
           />
         </div>
       </div>
-
       <div className="col-right">
-
-
         <div className="form-group">
           <label htmlFor="username">
             <div>
@@ -167,6 +165,17 @@ const RegistrationForm = ({
               onChange={e => setEmail(e.target.value)}
               placeholder="name@example.com"
             />
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="verified">
+            <div>
+              Are you a doctor?
+            </div>
+            <select type="verified" className="form-control" id="verified">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
           </label>
         </div>
         <div className="form-group">
