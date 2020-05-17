@@ -94,19 +94,25 @@ const RegistrationForm = ({
     <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="username">
-          Username
+          <div>
+            Username
+          </div>
           <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="password">
-          Password
+          <div>
+            Password
+          </div>
           <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="email">
-          Email address
+          <div>
+            Email address
+          </div>
           <input
             type="email"
             className="form-control"
@@ -117,7 +123,7 @@ const RegistrationForm = ({
         </label>
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
+        <button className="form-control btn btn-primary" type="submit" id="button-registration">
           Submit
         </button>
       </div>
