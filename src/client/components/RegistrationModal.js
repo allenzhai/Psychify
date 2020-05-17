@@ -90,42 +90,90 @@ const RegistrationForm = ({
     setPassword: PropTypes.func.isRequired,
   };
 
+  const uploadedImage = React.useRef(null);
+  const imageUploader = React.useRef(null);
+
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      const reader = new FileReader();
+      const { current } = uploadedImage;
+      current.file = file;
+      reader.onload = (e) => {
+        current.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">
-          <div>
-            Username
-          </div>
-          <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
-        </label>
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">
-          <div>
-            Password
-          </div>
-          <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">
-          <div>
-            Email address
-          </div>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            onChange={e => setEmail(e.target.value)}
-            placeholder="name@example.com"
+      <div className="col-left">
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          ref={imageUploader}
+          style={{
+            display: 'none'
+          }}
+        />
+        <div
+          className="profile-user-image-display"
+          role="button"
+          tabIndex={0}
+          onClick={() => imageUploader.current.click()}
+          onKeyDown={() => imageUploader.current.click()}
+        >
+          <img
+            alt="ProfilePicture"
+            ref={uploadedImage}
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
           />
-        </label>
+        </div>
       </div>
-      <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit" id="button-registration">
-          Submit
-        </button>
+
+      <div className="col-right">
+
+
+        <div className="form-group">
+          <label htmlFor="username">
+            <div>
+              Username
+            </div>
+            <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">
+            <div>
+              Password
+            </div>
+            <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">
+            <div>
+              Email address
+            </div>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              onChange={e => setEmail(e.target.value)}
+              placeholder="name@example.com"
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <button className="form-control btn btn-primary" type="submit" id="button-registration">
+            Submit
+          </button>
+        </div>
       </div>
     </form>
   );

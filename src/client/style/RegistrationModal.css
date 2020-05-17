@@ -1,3 +1,17 @@
+.col-left{
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding-top: 2.1rem;
+}
+
+.col-right{
+  width: 80%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .registration-title-modal{
   font-family: 'Merriweather', Times, serif;
   font-size: 1.5rem;
@@ -35,6 +49,13 @@
   color: #fff;
   background: rgb(158,219,213);
   background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+}
+
+.profile-user-image-display{
+  float: center;
+  height: 8em;
+  width: 8em;
+  border: 1px solid black;
 }
 
 @media only screen and (max-width: 987px){
