@@ -66,7 +66,7 @@ function LoginModal(props) {
         <Button className="close" onClick={handleClose}>X</Button>
       </div>
       <div className="login-modal-header">
-        <h3 className="login-title-modal">Login with your email address</h3>
+        <h3 className="login-title-modal">Login with your Username</h3>
       </div>
       <div className="login-modal-body">
         <LoginForm onSubmit={handleSubmit} setUsername={setUsername} setPassword={setPassword} />
@@ -85,18 +85,25 @@ const LoginForm = ({ onSubmit, setUsername, setPassword }) => {
     <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="username">
-          Username
+          <div>
+            Username
+          </div>
           <input className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="password">
-          Password
+          <div>
+            Password
+          </div>
           <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
         </label>
       </div>
-      <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
+      <div className="registration-link">
+        <a href="#registration">Registration </a>
+      </div>
+      <div className="form-group" id="login-button-div">
+        <button className="form-control btn btn-primary" type="submit" id="button-login">
           Submit
         </button>
       </div>

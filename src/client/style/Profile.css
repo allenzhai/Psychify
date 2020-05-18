@@ -97,6 +97,13 @@
 .profile-verified-yes {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size:  1rem;
+  color: green;
+}
+
+.profile-verified-no {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size:  1rem;
+  color: red;
 }
 
 .profile-user-image-display{
@@ -107,11 +114,9 @@
 }
 
 .profile-user-image-edit-button{
-  background: none!important;
+  background: none;
   border: none;
-  padding: 0!important;
-  /*optional*/
-  /*input has OS specific font-family*/
+  padding: 0;
   color: #0000EE;
   text-decoration: underline;
   cursor: pointer;

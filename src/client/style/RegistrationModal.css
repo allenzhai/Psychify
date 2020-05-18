@@ -1,42 +1,69 @@
+.col-left{
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding-top: 2.1rem;
+}
+
+.col-right{
+  width: 80%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .registration-title-modal{
   font-family: 'Merriweather', Times, serif;
-  font-size: 24px;
-  margin-bottom: 6px;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
   color: #fff;
 }
 
 .registration-modal-header{
   /* background-color: #222; */
   background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
-  padding: 6px 50px;
+  padding: 0.4rem 4rem;
 }
 
 .registration-modal-body {
-  padding: 16px 50px;
+  padding: 1rem 3rem;
 }
 
-.registration-modal-section-header {
-  font-family: 'Merriweather', Times, serif;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
 
-.button-registration {
+#button-registration {
   text-decoration: none;
-  padding: 8px 25px;
-  border-radius: 90px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
   color:#fff;
   background: rgb(71,221,206);
   background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
-  font-size: 16px;
+  font-size:  1rem;
+  width: 15%;
 
 }
 
-.button-registration:hover {
+#verified {
+  width: 3.5em;
+}
+
+#button-registration:hover {
   text-decoration: none;
-  padding: 8px 25px;
-  border-radius: 90px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
   color: #fff;
   background: rgb(158,219,213);
   background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+}
+
+.profile-user-image-display{
+  float: center;
+  height: 8em;
+  width: 8em;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 987px){
+  #button-registration {
+    width:60%;
+  }
 }
