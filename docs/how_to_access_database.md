@@ -1,6 +1,4 @@
-## Database Setup
-
-### How to access datebase?
+## How to access datebase?
 
 #### Apporach 1: Through phpMyAdmin (Recommended)
 
@@ -46,9 +44,6 @@ mysql -h db_endpoint -u username -p
 
 - [mysql](https://www.npmjs.com/package/mysql)
 - [dotenv](https://www.npmjs.com/package/mysql)
-
-**Configuration**
-`dotenv` is used for environment configuration. Look for the file `.env_sample` for example. You need to make a copy of `.env_sample` and name the copy `.env`, then make necessary change in the `.env` file. (DO NOT COMMIT YOUR `.env` FILE!!!)
 
 ### Tentative Data Format
 
