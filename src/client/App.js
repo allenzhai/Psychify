@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal';
 import RegistrationModal from './components/RegistrationModal';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import DisorderPage from './pages/DisorderPage';
 
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);

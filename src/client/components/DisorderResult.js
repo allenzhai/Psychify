@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../style/DisorderResult.css';
 import ReactModal from 'react-modal';
@@ -25,7 +26,7 @@ function DisorderResult({ result }) {
   };
 
   const {
-    name, category, description
+    name, category, description, sub_category, diagnostic_criteria
   } = result;
 
   return (
@@ -44,14 +45,22 @@ function DisorderResult({ result }) {
           <div className="modal-header">
             <h3 className="disorder-title-modal">{name}</h3>
             <p className="disorder-category-modal">{category}</p>
-            <p className="disorder-sub-category-modal">{result.sub_category}</p>
+            <p className="disorder-sub-category-modal">{sub_category}</p>
           </div>
           <div className="modal-body">
             <h3 className="disorder-section-header">Diagnostic Criteria</h3>
-            <p className="disorder-diagnostic-criteria">{result.diagnostic_criteria}</p>
+            <p className="disorder-diagnostic-criteria">{diagnostic_criteria}</p>
             <h3 className="disorder-section-header">Diagnostic Features</h3>
             <p className="disorder-description">{description}</p>
           </div>
+          <Link
+            to={{
+              pathname: '/disorderPage',
+              data: result
+            }}
+          >
+            more
+          </Link>
         </div>
       </ReactModal>
     </div>
@@ -59,8 +68,8 @@ function DisorderResult({ result }) {
 }
 
 DisorderResult.propTypes = {
-  result: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+        result: PropTypes.shape({
+        name: PropTypes.string.isRequired,
     category: PropTypes.string,
     sub_category: PropTypes.string,
     diagnostic_criteria: PropTypes.string,
