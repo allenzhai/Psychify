@@ -76,7 +76,7 @@
 }
 
 .profile-title-modal{
-  font-family: 'Merriweather', Times, serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size:  2rem;
   margin-bottom: 1rem;
   color: #fff;
@@ -90,14 +90,43 @@
 
 
 .profile-modal-section-header {
-  font-family: 'Merriweather', Times, serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size:  1rem;
-  margin-bottom: 6px;
 }
 
 .profile-verified-yes {
-  font-family: 'Merriweather', Times, serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size:  1rem;
+}
+
+.profile-user-image-display{
+  margin: auto;
+  height: 8em;
+  width: 8em;
+  border: 1px solid black;
+}
+
+.profile-user-image-edit-button{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  /*input has OS specific font-family*/
+  color: #0000EE;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1 rem;
+}
+
+.profile-div-white-space {
+  display: block;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size:  1rem;
+}
+
+.profile-update-info-button {
+  white-space: pre;
+  padding-top: 2rem;
 }
 
 @media only screen and (max-width: 1314px){

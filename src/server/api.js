@@ -41,22 +41,34 @@ exports.getProfile = (ID) => {
 };
 
 exports.updateProfile = (profile) => {
-  const stm = `UPDATE Accounts SET Email="${profile.email}", Username="${profile.username}", About="${profile.about}", FirstName="${profile.name}", Local="${profile.loc}", DOB="${profile.DOB}" WHERE ID = ${profile.ID}`;
+  const stm = `UPDATE Accounts SET Email="${profile.email}", 
+               Username="${profile.username}", 
+               About="${profile.about}", 
+               FirstName="${profile.name}", 
+               DOB="${profile.DOB}" 
+               WHERE ID ="${profile.ID}"`;
   return pool.query(stm);
 };
 
 exports.listPosts = () => {
-
+  // Returns all forum posts
+  const stm = 'SELECT * FROM ForumPosts ORDER BY Date DESC';
+  return pool.query(stm);
 };
 
-exports.createPost = () => {
-  // Database insertion goes here
-  console.log('New Post Created');
-  return true;
+exports.getComments = (postID) => {
+  const stm = `SELECT * FROM ForumComments WHERE Post = ${postID}`;
+  return pool.query(stm);
 };
 
-exports.createComment = () => {
-  // Database insertion goes here
-  console.log('New Comment Created');
-  return true;
+exports.createPost = (post) => {
+  const stm = `INSERT INTO ForumPosts(Title, Body, Category, Author, Date) VALUES("${post.title}", "${post.body}", "${post.category}", "${post.author}", "${post.date}")`;
+  console.log(stm);
+  return pool.query(stm);
+};
+
+exports.createComment = (comment) => {
+  const stm = `INSERT INTO ForumComments(Body, Author, Date, Post) VALUES("${comment.body}", "${comment.author}", "${comment.date}", "${comment.linkedPost}")`;
+  console.log(stm);
+  return pool.query(stm);
 };

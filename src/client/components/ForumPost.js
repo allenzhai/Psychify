@@ -1,25 +1,43 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
+import { createBrowserHistory } from 'history';
 
+import useFetch from '../hooks/useFetch';
+import useAge from '../hooks/useAge';
+import CommentList from './CommentList';
 
 import '../style/ForumPost.css';
 
 function ForumPost(props) {
   const {
-    title, author, age, category, likes
+    title, body, author, date, category, likes, postID
   } = props;
 
-  const [comments, setComments] = useState();
-  const [showModal, setShowModal] = useState(false);
+  const history = createBrowserHistory({
+    forceRefresh: false,
+  });
+  const params = new URLSearchParams(history.location.search);
+
+  const [showModal, setShowModal] = useState(params.get('post') === String(postID));
   const [liked, setLiked] = useState(false);
-  const [isLoaded, setLoaded] = useState(false);
   const [newCommentBody, setNewCommentBody] = useState();
+
+  const endPoint = `/api/forum/post/comments/${postID}`;
+  const [isLoading, data, error] = useFetch(endPoint);
+
+  const dateString = useAge(date);
+  const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category">{category}</p> : null;
+  const bodyText = body.length > 0 && body !== 'undefined' ? <p className="post-body">{body}</p> : null;
+
+  const comments = data || [];
 
   function handleCloseModal() {
     setShowModal(false);
     document.body.style.overflowY = 'unset';
+    history.push();
   }
 
   function handleLike(e) {
@@ -29,26 +47,10 @@ function ForumPost(props) {
 
   function handleOpenModal() {
     if (!showModal) setShowModal(true);
-  }
-
-  function queryComments() {
-    fetch('/api/forum/post/comments/postID')
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(res => res.json())
-      .then(
-        (serverResult) => {
-          setComments(serverResult);
-          setLoaded(true);
-        }
-      )
-      .catch(() => {
-        console.log('Post query failed');
-      });
+    history.push({
+      pathname: '/forum',
+      search: `?post=${postID}`,
+    });
   }
 
   function handleNewCommentBodyUpdate(event) {
@@ -56,13 +58,15 @@ function ForumPost(props) {
   }
 
   function handleCommentSubmit() {
+    const newPostData = {
+      body: newCommentBody,
+      date: new Date(Date.now()),
+      linkedPost: postID,
+    };
     const request = {
       method: 'POST',
-      mode: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: {
-        body: document.getElementById('new-comment-field'),
-      }
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify(newPostData),
     };
     setNewCommentBody('');
     fetch('/api/forum/create/comment', request)
@@ -74,24 +78,19 @@ function ForumPost(props) {
       })
       .then(() => {
         console.log('Comment successful');
+        window.location.reload(false);
       })
       .catch(() => {
         console.log('Comment failed');
       });
   }
 
-  useEffect(() => {
-    if (!isLoaded) {
-      queryComments();
-    }
-  });
-
   return (
     <div className="forum-post">
       <div className="line-1">
         <div className="title">
-          <href className="post-title" onClick={handleOpenModal} role="button" tabIndex="-1">{title}</href>
-          <p className="post-category">{category}</p>
+          <p className="post-title" onClick={handleOpenModal} role="button" tabIndex="-1">{title}</p>
+          {categoryFlair}
         </div>
         <div className="likes">
           {liked
@@ -100,7 +99,7 @@ function ForumPost(props) {
           <p className="likes-number">{likes}</p>
         </div>
       </div>
-      <p className="post-information">{`${author}   |   ${age}`}</p>
+      <p className="post-information">{`${author}   |   ${dateString}`}</p>
       <ReactModal
         isOpen={showModal}
         contentLabel="onRequestClose Modal"
@@ -111,33 +110,15 @@ function ForumPost(props) {
         <div className="modal-header">
           <div className="line-1-modal">
             <h3 className="post-title-modal">{title}</h3>
-            <p className="post-category">{category}</p>
+            {categoryFlair}
           </div>
-          <p className="post-information-modal">{`${author}   |   ${age}`}</p>
+          {bodyText}
+          <p className="post-information-modal">{`${author}   |   ${dateString}`}</p>
         </div>
-        <div className="post-comments">
-          {isLoaded ? comments.map((e, i) => {
-            let comment = (
-              <div className="comment">
-                <p className="comment-text">{e.text}</p>
-                <p className="comment-information">{`${e.author}   |   ${e.age}`}</p>
-              </div>
-            );
-              // Displays dividing line after post if not the last comment
-            if (i < comments.length - 1) {
-              comment = (
-                <div>
-                  {comment}
-                  <hr />
-                </div>
-              );
-            }
-            return comment;
-          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
-        </div>
+        <CommentList datasource={comments} />
         <div className="new-comment">
           <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" value={newCommentBody} onChange={handleNewCommentBodyUpdate} />
-          <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit}>Comment</button>
+          <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit} disabled={newCommentBody === undefined || !newCommentBody.length}>Comment</button>
         </div>
       </ReactModal>
     </div>
@@ -146,10 +127,12 @@ function ForumPost(props) {
 
 ForumPost.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  author: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  likes: PropTypes.string.isRequired
+  likes: PropTypes.number.isRequired,
+  postID: PropTypes.number.isRequired
 };
 
 
