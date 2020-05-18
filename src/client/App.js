@@ -58,6 +58,7 @@ export default function App() {
           <Route path="/dsm" component={DSM} />
           <Route path="/profile" component={Profile} />
           <Route path="/results" component={SearchResults} />
+          <Route path="/disorderPage" component={DisorderPage} />
         </Switch>
         <Route path="/" render={props => <LoginModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
         <Route path="/" render={props => <RegistrationModal {...props} loginUser={loginUser} setUsername={setUsername} />} />
