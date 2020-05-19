@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -12,9 +12,9 @@ import Navbar from './components/Navbar';
 import DisorderPage from './pages/DisorderPage';
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [username, changeUsername] = React.useState('');
-  const [token, changeToken] = React.useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, changeUsername] = useState('');
+  const [token, changeToken] = useState('');
 
   function loginUser() {
     setLoggedIn(true);
@@ -51,7 +51,10 @@ export default function App() {
   return (
     <>
       <UserContext.Provider value={token}>
-        <Navbar loggedIn={loggedIn} username={username} />
+        <Navbar
+          loggedIn={loggedIn}
+          username={username}
+        />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/forum" component={Forum} />

@@ -1,15 +1,11 @@
 import React from 'react';
-import Searchbar from '../components/Searchbar';
 
 import '../style/DSM.css';
 
 export default function DSM() {
   // Blank placeholder component for the DSM Index
   return (
-    <body>
-      <div className="landing-content">
-        <Searchbar className="searchbar-home" />
-      </div>
+    <div>
       <div className="index-list-con">
         <h1 className="index-header">Diagnostic Criteria and Codes Index</h1>
         <div className="col">
@@ -43,6 +39,6 @@ export default function DSM() {
           </ul>
         </div>
       </div>
-    </body>
+    </div>
   );
 }

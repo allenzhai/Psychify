@@ -3,7 +3,9 @@ import { createBrowserHistory } from 'history';
 
 import '../style/Searchbar.css';
 
-export default function Searchbar() {
+export default function Searchbar(props) {
+  const {show} = props;
+  console.log(show);
   const [searchTerms, setSearchTerms] = useState('');
   const history = createBrowserHistory({
     forceRefresh: true
@@ -23,7 +25,7 @@ export default function Searchbar() {
   };
 
   return (
-    <div>
+    <div className={show}>
       <form className="form large" onSubmit={handleSubmit}>
         <input
           type="text"

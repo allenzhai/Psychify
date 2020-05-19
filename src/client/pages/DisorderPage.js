@@ -5,7 +5,7 @@ import '../style/DSM.css';
 
 export default function DisorderPage() {
   const location = useLocation();
-  console.log(location.data);
+  console.log(location);
   const {
     name, category, description, sub_category, diagnostic_criteria
   } = location.data;
