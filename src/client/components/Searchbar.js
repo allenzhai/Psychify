@@ -5,7 +5,6 @@ import '../style/Searchbar.css';
 
 export default function Searchbar(props) {
   const {show} = props;
-  console.log(show);
   const [searchTerms, setSearchTerms] = useState('');
   const history = createBrowserHistory({
     forceRefresh: true

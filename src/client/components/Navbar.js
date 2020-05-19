@@ -9,7 +9,7 @@ import '../style/Navbar.css';
 
 
 function Navbar(props) {
-  const path = useLocation().pathname;
+  const path = useLocation();
   const {loggedIn, username} = props;
   const component = loggedIn
     ? (
@@ -51,7 +51,7 @@ function Navbar(props) {
           {component}
         </nav>
       </div>
-      <Searchbar show={path} />
+      <Searchbar show={path.pathname} />
     </div>
   );
 }
