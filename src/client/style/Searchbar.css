@@ -45,3 +45,13 @@
 input[type=submit] {
   visibility: hidden;
 }
+
+.\/forum, .\/dsm, .\/profile{
+  display: block;
+  margin: auto;
+  margin-left: 10vw;
+  margin-bottom: 1rem;
+}
+.\/, .\/results{
+  display: none;
+}
