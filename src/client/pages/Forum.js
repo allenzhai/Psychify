@@ -1,18 +1,37 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
+import { createBrowserHistory } from 'history';
+
 import useFetch from '../hooks/useFetch';
 import ForumPost from '../components/ForumPost';
 
 import '../style/Forum.css';
 
 function Forum() {
+  const defaultCategories = [{ name: 'Other' }];
+
   const [showModal, setShowModal] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState();
   const [newPostBody, setNewPostBody] = useState();
-  const [newPostCategory, setNewPostCategory] = useState();
+  const [newPostCategory, setNewPostCategory] = useState(defaultCategories[0].name);
 
-  const endPoint = '/api/forum/posts';
+  const history = createBrowserHistory({
+    forceRefresh: false,
+  });
+  const params = new URLSearchParams(history.location.search);
+  const [category] = useState(params.get('category') || null);
+  console.log(category);
+  const endPoint = category ? `/api/forum/posts/${category}` : 'api/forum/posts/';
+  // If a category is set, make category request, otherwise make generic request
+  // Hooks must be declared the same way each DOM render which is the reason for this awfulness
+  // The useFetch hook call cannot be conditional, but the endPoint parameter can be apparently
   const [isLoading, data, error] = useFetch(endPoint);
+  const disorderNamesEndpoint = 'api/disorder/names';
+  const [isLoadingNames, dataNames, errorNames] = useFetch(disorderNamesEndpoint);
+
+
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -67,13 +86,30 @@ function Forum() {
     setShowModal(false);
   }
 
+  function handleCategoryClearClick() {
+    history.push({
+      pathname: '/forum',
+    });
+    window.location.reload(true);
+  }
+
   const posts = data || [];
+  const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
+  const categoryHeader = category ? (
+    <div className="category-header">
+      <i className="fas fa-times-circle" onClick={handleCategoryClearClick}/>
+      <p className="category-header-text">{category}</p>
+    </div>
+  ) : null;
 
   return (
     <div>
       <div className="forum-content">
         <div className="forum-header">
-          <h1 className="forum-title">Forum</h1>
+          <div className="header-text">
+            <h1 className="forum-title">Forum</h1>
+            {categoryHeader}
+          </div>
           <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
             Create Post
           </button>
@@ -125,7 +161,13 @@ function Forum() {
           <p className="new-post-text">Body</p>
           <textarea className="new-post-field body" rows="10" placeholder="(Optional) Enter post body" value={newPostBody} onChange={handleNewPostBodyChange} />
           <p className="new-post-text">Category</p>
-          <textarea className="new-post-field category" rows="1" placeholder="Select a category that fits your post" value={newPostCategory} onChange={handleNewPostCategoryChange} />
+          <select className="new-post-field category" onChange={handleNewPostCategoryChange}>
+            {!isLoadingNames ? disorderNames.map((e) => {
+              const option = (<option value={e.name}>{e.name}</option>);
+              return option;
+            })
+              : null}
+          </select>
           <button className="new-post-submit" type="submit" onClick={handlePostSubmit} disabled={newPostTitle === undefined || !newPostTitle.length}>Post</button>
         </div>
       </ReactModal>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -29,7 +30,6 @@ function ForumPost(props) {
   const [isLoading, data, error] = useFetch(endPoint);
 
   const dateString = useAge(date);
-  const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category">{category}</p> : null;
   const bodyText = body.length > 0 && body !== 'undefined' ? <p className="post-body">{body}</p> : null;
 
   const comments = data || [];
@@ -85,12 +85,23 @@ function ForumPost(props) {
       });
   }
 
+  function handleCategoryClick() {
+    history.push({
+      pathname: '/forum',
+      search: `?category=${category}`,
+    });
+    window.location.reload(true);
+  }
+
+  const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category" onClick={handleCategoryClick} type="button">{category}</p> : null;
+
+
   return (
     <div className="forum-post">
       <div className="line-1">
         <div className="title">
           <p className="post-title" onClick={handleOpenModal} role="button" tabIndex="-1">{title}</p>
-          {categoryFlair}
+          
         </div>
         <div className="likes">
           {liked
@@ -99,7 +110,10 @@ function ForumPost(props) {
           <p className="likes-number">{likes}</p>
         </div>
       </div>
-      <p className="post-information">{`${author}   |   ${dateString}`}</p>
+      <div className="post-information-container">
+        <p className="post-information">{`${author}   |   ${dateString}`}</p>
+        {categoryFlair}
+      </div>
       <ReactModal
         isOpen={showModal}
         contentLabel="onRequestClose Modal"
@@ -110,10 +124,12 @@ function ForumPost(props) {
         <div className="modal-header">
           <div className="line-1-modal">
             <h3 className="post-title-modal">{title}</h3>
-            {categoryFlair}
           </div>
           {bodyText}
-          <p className="post-information-modal">{`${author}   |   ${dateString}`}</p>
+          <div className="post-information-container">
+            <p className="post-information-modal">{`${author}   |   ${dateString}`}</p>
+            {categoryFlair}
+          </div>
         </div>
         <CommentList datasource={comments} />
         <div className="new-comment">

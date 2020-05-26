@@ -55,18 +55,38 @@
   color: #666666;
 }
 
+.post-information-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
 .post-category {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1em;
   margin: 0%;
-  /* margin-top: 1.7%; */
-  margin-left: 2vw;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  margin-left: 1vw;
   color: #fff;
   /* background-color: #e0e0e0; */
   background: linear-gradient(90deg, rgb(104, 221, 209) 0%, rgb(83, 221, 157) 100%);
-  padding: 0.75% 2vw;
-  max-height: 1.5em;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  line-height: 0em;
+  max-height: 2em;
   border-radius: 90px;
+  border-width: 0px;
+  cursor: pointer;
+  max-width: 33vw;
+  /* min-width: 20vw; */
+  max-height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .post-modal {
