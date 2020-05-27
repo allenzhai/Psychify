@@ -1,20 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Searchbar from './Searchbar';
-
+import UserContext from '../context/UserContext';
 
 import '../style/Navbar.css';
 
+function Navbar() {
+  const userContext = useContext(UserContext);
 
-function Navbar(props) {
   const path = useLocation();
-  const {loggedIn, username} = props;
-  const component = loggedIn
+  const { token, user } = userContext;
+  const component = token
     ? (
       <>
-        <a href="/profile" className="nav-item registration">{username}</a>
+        <a href="/profile" className="nav-item registration">{user}</a>
       </>
     ) : (
       <>
@@ -22,11 +22,6 @@ function Navbar(props) {
         <a href="#registration" className="nav-item signup">Sign Up</a>
       </>
     );
-
-  Navbar.propTypes = {
-    loggedIn: PropTypes.bool.isRequired,
-    username: PropTypes.string.isRequired
-  };
 
   const nav = useRef(null);
 
@@ -41,7 +36,7 @@ function Navbar(props) {
   return (
     <div>
       <div className="top-bar">
-        <a className="homepage" href="/" >Psychify</a>
+        <a className="homepage" href="/">Psychify</a>
         <button type="button" className="icon" onClick={() => toggleNav()}>
           <i className="fas fa-bars" />
         </button>
