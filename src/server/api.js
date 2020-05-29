@@ -56,6 +56,13 @@ exports.listPosts = () => {
   return pool.query(stm);
 };
 
+exports.listPostsFromCategory = (Category) => {
+  // Returns all forum posts
+  console.log(Category);
+  const stm = `SELECT * FROM ForumPosts WHERE Category LIKE "%${Category}%" ORDER BY Date DESC`;
+  return pool.query(stm);
+};
+
 exports.getComments = (postID) => {
   const stm = `SELECT * FROM ForumComments WHERE Post = ${postID}`;
   return pool.query(stm);
@@ -70,5 +77,10 @@ exports.createPost = (post) => {
 exports.createComment = (comment) => {
   const stm = `INSERT INTO ForumComments(Body, Author, Date, Post) VALUES("${comment.body}", "${comment.author}", "${comment.date}", "${comment.linkedPost}")`;
   console.log(stm);
+  return pool.query(stm);
+};
+
+exports.getDisorderNames = () => {
+  const stm = 'SELECT * FROM DisorderNames';
   return pool.query(stm);
 };

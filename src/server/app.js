@@ -64,6 +64,17 @@ app.get('/api/forum/posts', (req, res) => {
   });
 });
 
+app.get('/api/forum/posts/:category', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const { category } = req.params;
+  api.listPostsFromCategory(category).then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
+});
+
 app.get('/api/forum/post/:id', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.json({ post: 'request for specific post - to display on its own page' });
@@ -101,6 +112,16 @@ app.post('/api/forum/create/comment', (req, res) => {
   };
   api.createComment(comment);
   res.json(comment);
+});
+
+app.get('/api/disorder/names', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  api.getDisorderNames().then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
 });
 
 app.get('/*', (req, res) => {
