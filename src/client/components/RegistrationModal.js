@@ -7,18 +7,13 @@ import Modal from './Modal';
 
 import '../style/RegistrationModal.css';
 
-function RegistrationModal(props) {
+function RegistrationModal() {
   const location = useLocation();
   const history = useHistory();
 
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
-
-  RegistrationModal.propTypes = {
-    loginUser: PropTypes.func.isRequired,
-    setUsername: PropTypes.func.isRequired
-  };
 
   const handleClose = () => {
     history.push({ ...location, hash: '' });
@@ -46,8 +41,6 @@ function RegistrationModal(props) {
     fetch('/api/register', request)
       .then(() => {
         console.log('registration successful');
-        props.loginUser();
-        props.setUsername(username);
         handleClose();
       })
       .catch((err) => {

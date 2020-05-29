@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-
 import PropTypes from 'prop-types';
+
 import Button from './Button';
 import Modal from './Modal';
+import UserContext from '../context/UserContext';
+import UserService from '../service/UserService';
 
 import '../style/LoginModal.css';
 
-function LoginModal(props) {
+function LoginModal() {
+  const userContext = useContext(UserContext);
+
   const location = useLocation();
   const history = useHistory();
 
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-
-  LoginModal.propTypes = {
-    loginUser: PropTypes.func.isRequired,
-    setUsername: PropTypes.func.isRequired
-  };
 
   const handleClose = () => {
     history.push({ ...location, hash: '' });
@@ -30,34 +29,12 @@ function LoginModal(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('attempting login');
-    const data = {
-      username,
-      password,
-    };
-    const request = {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': data.toString().length.toString()
-      },
-      body: JSON.stringify(data)
-    };
-    fetch('/api/login', request)
-      .then((response) => {
-        console.log(response);
-        if (response.status === 201) {
-          console.log('login successful');
-          props.loginUser();
-          props.setUsername(username);
-          handleClose();
-        } else {
-          console.log('login unsuccessful');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    UserService.login(username, password).then((user) => {
+      userContext.login(user);
+      handleClose();
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
   return (
