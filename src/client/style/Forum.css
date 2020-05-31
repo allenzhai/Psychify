@@ -8,12 +8,11 @@
 .header-text {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 50%;
 }
 
 .forum-title {
   font-family: 'Merriweather', Arial, sans-serif;
-  /* width: 85vw; */
   font-size: 48px;
   float: left;
   margin: 0px;
@@ -65,9 +64,17 @@
   box-shadow: 0px 0px 8px #bbbbbb;
   color:#111111;
   margin: 16px 24px;
-  font-size: 18px;
+  font-size: 1.25em;
   transition-duration: 200ms;
   height: 25%;
+}
+
+.create-post-logged-out {
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  font-size: 1.5em;
+  color:#111111;
+  cursor: default;
 }
 
 .create-post-button:hover {

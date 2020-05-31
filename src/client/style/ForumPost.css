@@ -53,6 +53,19 @@
   padding: 0%;
   padding-bottom: 1%;
   color: #666666;
+  max-width: 100%;
+}
+
+.delete {
+  cursor: pointer;  
+  border-radius: 90px;
+  background-color: #ddd;
+  padding: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0px;
+  margin-left: 1%;
+
 }
 
 .post-information-container {
@@ -167,7 +180,9 @@
 .new-comment {
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  justify-content: center;
+  align-content: right;
+  align-items: right;
   padding-left: 2%;
   padding-top: 2%;
 }
@@ -195,9 +210,13 @@
   background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
 }
 
+.comment-submit-logged-out {
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+}
+
 .new-comment-submit:hover {
   background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
-  /* box-shadow: 0px 0px 8px #bbbbbb; */
 }
 
 .likes {

@@ -114,9 +114,26 @@ app.post('/api/forum/create/comment', (req, res) => {
   res.json(comment);
 });
 
+app.post('/api/forum/delete/post', (req, res) => {
+  const postID = { id: req.body.id };
+  api.deletePost(postID);
+  res.json(postID);
+});
+
 app.get('/api/disorder/names', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   api.getDisorderNames().then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
+});
+
+app.get('/api/forum/author/:authorID', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const { authorID } = req.params;
+  api.getAuthor(authorID).then((rows) => {
     res.json(rows);
   }).catch((err) => {
     console.log(err);

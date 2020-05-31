@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { createBrowserHistory } from 'history';
@@ -9,6 +9,8 @@ import { createBrowserHistory } from 'history';
 import useFetch from '../hooks/useFetch';
 import useAge from '../hooks/useAge';
 import CommentList from './CommentList';
+import UserContext from '../context/UserContext';
+
 
 import '../style/ForumPost.css';
 
@@ -17,6 +19,8 @@ function ForumPost(props) {
     title, body, author, date, category, likes, postID
   } = props;
 
+  const userContext = useContext(UserContext);
+  const { token, ID } = userContext;
   const history = createBrowserHistory({
     forceRefresh: false,
   });
@@ -24,10 +28,14 @@ function ForumPost(props) {
 
   const [showModal, setShowModal] = useState(params.get('post') === String(postID));
   const [liked, setLiked] = useState(false);
+  const [confirmPostDelete, setConfirmPostDelete] = useState(false);
   const [newCommentBody, setNewCommentBody] = useState();
 
   const endPoint = `/api/forum/post/comments/${postID}`;
-  const [isLoading, data, error] = useFetch(endPoint);
+  const [data] = useFetch(endPoint);
+
+  const endPointAuthor = `/api/forum/author/${author}`;
+  const [dataAuthor] = useFetch(endPointAuthor);
 
   const dateString = useAge(date);
   const bodyText = body.length > 0 && body !== 'undefined' ? <p className="post-body">{body}</p> : null;
@@ -40,9 +48,10 @@ function ForumPost(props) {
     history.push();
   }
 
-  function handleLike(e) {
-    setLiked(!liked);
-    e.stopPropogation();
+  function handleLike() {
+    if (token) {
+      setLiked(!liked);
+    }
   }
 
   function handleOpenModal() {
@@ -93,15 +102,73 @@ function ForumPost(props) {
     window.location.reload(true);
   }
 
-  const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category" onClick={handleCategoryClick} type="button">{category}</p> : null;
+  function handleDeletePostClick() {
+    if (confirmPostDelete) {
+      const postToDelete = {
+        id: postID
+      };
+      const request = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(postToDelete),
+      };
+      setNewCommentBody('');
+      fetch('/api/forum/delete/post', request)
+        .then((response) => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(() => {
+          console.log('Post delete successful');
+          window.location.reload(false);
+        })
+        .catch(() => {
+          console.log('Post Delete failed');
+        });
+    } else {
+      setConfirmPostDelete(true);
+    }
+  }
 
+  const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category" onClick={handleCategoryClick} type="button">{category}</p> : null;
+  const showDeleteButton = () => {
+    if (ID === author || (author === 0 && ID === undefined)) {
+      let deleteText = 'delete';
+      if (confirmPostDelete) {
+        deleteText = 'confirm delete';
+      }
+      return <p className="post-information delete" onClick={handleDeletePostClick}>{deleteText}</p>;
+    }
+    return null;
+  };
+
+  const commentButton = () => {
+    if (token) {
+      return (
+        <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit} disabled={newCommentBody === undefined || !newCommentBody.length}>
+          Comment
+        </button>
+      );
+    }
+    return (
+      <p className="comment-submit-logged-out">Log in or Sign Up to comment!</p>
+    );
+  };
+
+  const username = () => {
+    if (author !== 0 && dataAuthor !== undefined && dataAuthor.length) {
+      return dataAuthor[0].Username;
+    }
+    return '[unknown]';
+  };
 
   return (
     <div className="forum-post">
       <div className="line-1">
         <div className="title">
           <p className="post-title" onClick={handleOpenModal} role="button" tabIndex="-1">{title}</p>
-          
         </div>
         <div className="likes">
           {liked
@@ -111,8 +178,9 @@ function ForumPost(props) {
         </div>
       </div>
       <div className="post-information-container">
-        <p className="post-information">{`${author}   |   ${dateString}`}</p>
+        <p className="post-information">{`${username()}   |   ${dateString}`}</p>
         {categoryFlair}
+        {showDeleteButton()}
       </div>
       <ReactModal
         isOpen={showModal}
@@ -127,14 +195,15 @@ function ForumPost(props) {
           </div>
           {bodyText}
           <div className="post-information-container">
-            <p className="post-information-modal">{`${author}   |   ${dateString}`}</p>
+            <p className="post-information-modal">{`${username()}   |   ${dateString}`}</p>
             {categoryFlair}
+            {showDeleteButton()}
           </div>
         </div>
         <CommentList datasource={comments} />
         <div className="new-comment">
           <textarea className="new-comment-field" rows="5" placeholder="Add to the discussion!" value={newCommentBody} onChange={handleNewCommentBodyUpdate} />
-          <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit} disabled={newCommentBody === undefined || !newCommentBody.length}>Comment</button>
+          {commentButton()}
         </div>
       </ReactModal>
     </div>

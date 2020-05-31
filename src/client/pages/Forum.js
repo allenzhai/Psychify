@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactModal from 'react-modal';
 import { createBrowserHistory } from 'history';
 
 import useFetch from '../hooks/useFetch';
 import ForumPost from '../components/ForumPost';
+import UserContext from '../context/UserContext';
 
 import '../style/Forum.css';
 
 function Forum() {
+
+  const userContext = useContext(UserContext);
+  const { token, user, ID } = userContext;
   const defaultCategories = [{ name: 'Other' }];
 
   const [showModal, setShowModal] = useState(false);
@@ -56,6 +60,7 @@ function Forum() {
 
   function handlePostSubmit() {
     const newPostData = {
+      author: ID,
       title: newPostTitle,
       body: newPostBody,
       category: newPostCategory,
@@ -101,6 +106,18 @@ function Forum() {
       <p className="category-header-text">{category}</p>
     </div>
   ) : null;
+  const createPostButton = () => {
+    if (token) {
+      return (
+        <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
+          Create Post
+        </button>
+      );
+    }
+    return (
+      <p className="create-post-logged-out">Log in or Sign Up to post!</p>
+    );
+  };
 
   return (
     <div>
@@ -110,9 +127,7 @@ function Forum() {
             <h1 className="forum-title">Forum</h1>
             {categoryHeader}
           </div>
-          <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
-            Create Post
-          </button>
+          {createPostButton()}
         </div>
         <div className="forum-posts-container">
           {!isLoading ? posts.map((e, i) => {
