@@ -23,12 +23,18 @@
   border-color: white;
   box-shadow: none;
   border-width: 0;
+  text-align: justify;
+  text-align-last: left; 
+  display: inline-block;
+  padding-left: 0;
+  padding-right: 0.5;
 }
 
 .ac {
   font-size: 18px;
   font-family: 'Open Sans', Arial, sans-serif;
   color: #aaa;
+  text-align: right;
 }
 
 input[type=submit] {

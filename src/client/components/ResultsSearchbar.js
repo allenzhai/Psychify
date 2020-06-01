@@ -103,9 +103,9 @@ function ResultsSearchbar({ terms, onSubmit }) {
     if (event.target.value.length === 0) {
       // eslint-disable-next-line no-param-reassign
       event.target.style.width = '100%';
-    } else {
+    } else if (event.key !== 'Escape') {
       // eslint-disable-next-line no-param-reassign
-      event.target.style.width = `${(event.target.value.length + 1) * 10}px`;
+      event.target.style.width = `${((event.target.value.length + 0.50) * 10)}px`;
     }
   };
 
@@ -115,9 +115,8 @@ function ResultsSearchbar({ terms, onSubmit }) {
       event.preventDefault();
       setSearchTerms(searchTerms + autoComplete);
       setAutoComplete('');
+      event.target.style.width = '100%';
     }
-    // eslint-disable-next-line no-param-reassign
-    event.target.style.width = '100%';
   };
 
   return (
@@ -127,7 +126,7 @@ function ResultsSearchbar({ terms, onSubmit }) {
           <input
             type="text"
             className="results-search"
-            placeholder="Enter Symptoms e.g. 'Trouble Sleeping'"
+            placeholder="Enter Symptoms e.g. 'Trouble Sleeping'                                                'Tab' To Fill Suggestion"
             autoComplete="off"
             value={searchTerms}
             onChange={handleChange}
