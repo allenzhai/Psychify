@@ -9,7 +9,7 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "jest --detectOpenHandles --forceExit --collect-coverage",
     "lint": "eslint ./ --cache --ignore-path .gitignore",
     "lint-fix": "eslint ./ --cache --ignore-path .gitignore --fix",
     "heroku-postbuild": "webpack -p"
