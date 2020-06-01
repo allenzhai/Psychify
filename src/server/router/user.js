@@ -12,7 +12,7 @@ router.post('/api/register', (req, res) => {
   const dynamicSalt = hash.generateSalt();
   const user = {
     username: req.body.username,
-    passwordHash: hash.simpleHash(req.body.password + process.env.STATIC_SALT + dynamicSalt),
+    passwordHash: hash.passwordHash(req.body.password + process.env.STATIC_SALT + dynamicSalt),
     email: req.body.email,
     salt: dynamicSalt
   };
@@ -30,16 +30,16 @@ router.post('/api/login', (req, res) => {
     }
 
     let user = users[0];
-    const checkPass = hash.simpleHash(password + user.salt);
+    const checkPass = hash.passwordHash(password + process.env.STATIC_SALT + user.salt);
     if (user.password !== checkPass) {
       throw new Error('Invalid login credentials.');
     }
-
+    console.log('passwords match');
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
     user = { token, ...user };
-    res.json({ code: Code.SUCCEEDED, message: 'successful login', data: user });
+    res.status(201).json({ code: Code.SUCCEEDED, message: 'successful login', user });
   }).catch((err) => {
-    res.json({ code: Code.FAILED, message: err.message });
+    res.json({ code: Code.LOGIN_FAILED, message: err.message });
   });
 });
 
