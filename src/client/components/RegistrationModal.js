@@ -120,7 +120,7 @@ const RegistrationForm = ({
           onKeyDown={() => imageUploader.current.click()}
         >
           <img
-            alt="ProfilePicture"
+            alt="Click to Upload Profile Pic"
             ref={uploadedImage}
             style={{
               width: '100%',
@@ -143,7 +143,7 @@ const RegistrationForm = ({
             <div>
               Password
             </div>
-            <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
+            <input className="form-control" type="password" id="password" onChange={e => setPassword(e.target.value)} />
           </label>
         </div>
         <div className="form-group">
