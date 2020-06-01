@@ -37,9 +37,9 @@ router.post('/api/login', (req, res) => {
     console.log('passwords match');
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
     user = { token, ...user };
-    res.status(201).json({ code: Code.SUCCEEDED, message: 'successful login', user });
+    res.json({ code: Code.SUCCEEDED, message: 'successful login', data: user });
   }).catch((err) => {
-    res.json({ code: Code.LOGIN_FAILED, message: err.message });
+    res.json({ code: Code.FAILED, message: err.message });
   });
 });
 
