@@ -7,13 +7,18 @@ import Modal from './Modal';
 
 import '../style/RegistrationModal.css';
 
-function RegistrationModal() {
+function RegistrationModal(props) {
   const location = useLocation();
   const history = useHistory();
 
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
+
+  RegistrationModal.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    setUsername: PropTypes.func.isRequired
+  };
 
   const handleClose = () => {
     history.push({ ...location, hash: '' });
@@ -41,6 +46,8 @@ function RegistrationModal() {
     fetch('/api/register', request)
       .then(() => {
         console.log('registration successful');
+        props.loginUser();
+        props.setUsername(username);
         handleClose();
       })
       .catch((err) => {
@@ -120,7 +127,7 @@ const RegistrationForm = ({
           onKeyDown={() => imageUploader.current.click()}
         >
           <img
-            alt="ProfilePicture"
+            alt="Click to Upload ProfilePicture"
             ref={uploadedImage}
             style={{
               width: '100%',
@@ -143,7 +150,7 @@ const RegistrationForm = ({
             <div>
               Password
             </div>
-            <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
+            <input className="form-control" id="password" type="password" onChange={e => setPassword(e.target.value)} />
           </label>
         </div>
         <div className="form-group">
