@@ -1,16 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 
 import Button from '../components/Button';
-import UserContext from '../context/UserContext';
 
 import '../style/Profile.css';
 
 function Profile() {
-  const userContext = useContext(UserContext);
-  const { token, user, ID } = userContext;
-
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [about, setAbout] = useState();
@@ -18,9 +14,7 @@ function Profile() {
   const [loc, setLocation] = useState();
   const [verified, setVerified] = useState();
   const [DOB, setDOB] = useState();
-
-
-  // const [ID] = useState(userContext.ID);
+  const [ID] = useState(2);
 
   const endPoint = `/api/getProfile/${ID}`;
   const [isLoading, data, error] = useFetch(endPoint);
