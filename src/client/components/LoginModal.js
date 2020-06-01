@@ -73,7 +73,7 @@ const LoginForm = ({ onSubmit, setUsername, setPassword }) => {
           <div>
             Password
           </div>
-          <input className="form-control" id="password" onChange={e => setPassword(e.target.value)} />
+          <input className="form-control" type="password" id="password" onChange={e => setPassword(e.target.value)} />
         </label>
       </div>
       <div className="registration-link">
