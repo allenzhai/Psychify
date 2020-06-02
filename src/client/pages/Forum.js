@@ -93,29 +93,15 @@ function Forum() {
     window.location.reload(true);
   }
 
-  const posts = data || [];
-  const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
-  const categoryHeader = category ? (
-    <div className="category-header">
-      <i className="fas fa-times-circle" onClick={handleCategoryClearClick}/>
-      <p className="category-header-text">{category}</p>
-    </div>
-  ) : null;
-
-  return (
-    <div>
-      <div className="forum-content">
-        <div className="forum-header">
-          <div className="header-text">
-            <h1 className="forum-title">Forum</h1>
-            {categoryHeader}
-          </div>
-          <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
-            Create Post
-          </button>
-        </div>
+  function displayForumPosts() {
+    const posts = data || [];
+    if (!isLoading) {
+      if (posts.length === 0) {
+        return <p className="no-results">Nothing here, add something!</p>
+      }
+      return (
         <div className="forum-posts-container">
-          {!isLoading ? posts.map((e, i) => {
+          {posts.map((e, i) => {
             let post = (
               <ForumPost
                 className="post"
@@ -138,8 +124,34 @@ function Forum() {
               );
             }
             return post;
-          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
+          })}
         </div>
+      );
+    }
+    return <div className="loading-icon"><i className="fa fa-circle-notch" /></div>;
+  }
+
+  const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
+  const categoryHeader = category ? (
+    <div className="category-header">
+      <i className="fas fa-times-circle" onClick={handleCategoryClearClick}/>
+      <p className="category-header-text">{category}</p>
+    </div>
+  ) : null;
+
+  return (
+    <div>
+      <div className="forum-content">
+        <div className="forum-header">
+          <div className="header-text">
+            <h1 className="forum-title">Forum</h1>
+            {categoryHeader}
+          </div>
+          <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
+            Create Post
+          </button>
+        </div>
+        {displayForumPosts()}
         <i className="fas fa-stop" />
       </div>
       <ReactModal

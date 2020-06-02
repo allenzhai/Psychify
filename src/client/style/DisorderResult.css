@@ -1,29 +1,58 @@
 .disorder-result {
   display: inline-block;
-  align-self: center;
   text-align: left;
   border-radius: 8px;
-  padding: 0px 16px;
-  box-shadow: 0px 4px 8px #bbbbbb;
-  width: 90%;
+  width: 100%;
   user-select: none;
-  margin-top: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  transition-duration: 200ms;
+  padding: 0px;
 }
 
-.disorder-result:active{
-  transform: translateY(2px);
-  transition-duration: 5ms;
+.disorder-result:hover {
+  transition-duration: 200ms;
+  box-shadow: 0px 0px 8px #bbbbbb;
+  border-radius: 8px;
+}
+
+.disorder-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forum-link {
+  font-family: 'Open Sans', Arial, sans-serif;
+  border-radius: 90px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+  padding: 0px 1em;
+  margin: .75em 1em;
+}
+
+.forum-link:hover {
+  background: linear-gradient(90deg, rgba(158,219,213,1) 0%, rgba(138,217,180,1) 100%);
+  cursor: pointer;
 }
 
 .disorder-title {
   font-family: 'Merriweather', Times, serif;
-  font-size: 18px;
+  font-size: 1.25em;
+  font-weight: bold;
   margin-bottom: 6px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.disorder-title:hover {
+  cursor: pointer;
 }
 
 .disorder-title-modal{
   font-family: 'Merriweather', Times, serif;
-  font-size: 24px;
+  font-size: 2em;
+  font-weight: bold;
   margin-bottom: 6px;
   color: #fff;
 }
@@ -34,6 +63,13 @@
   font-size: 16px;
   margin-top: 0px;
   margin-bottom: 0px;
+  width: 90%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.disorder-category:hover {
+  cursor: pointer;
 }
 
 .disorder-category-modal {
@@ -49,6 +85,13 @@
   color: #999;
   font-size: 16px;
   margin-top: 0px;
+  width: 90%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.disorder-sub-category:hover {
+  cursor: pointer;
 }
 
 .disorder-sub-category-modal{
@@ -114,6 +157,7 @@
 
 .close:hover{
   color: rgb(209, 209, 209);
+  cursor: pointer
 }
 
 .ReactModal__Overlay {
@@ -127,8 +171,4 @@
 
 .ReactModal__Overlay--before-close{
   opacity: 0;
-}
-
-.DisorderResult{
-  margin-top: 50px;
 }

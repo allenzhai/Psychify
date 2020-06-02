@@ -120,7 +120,7 @@ function ForumPost(props) {
         onRequestClose={handleCloseModal}
         className="post-modal"
       >
-        <button className="close" onClick={handleCloseModal} type="button">X</button>
+        <div className="close"><i className="fas fa-times" onClick={handleCloseModal} /></div>
         <div className="modal-header">
           <div className="line-1-modal">
             <h3 className="post-title-modal">{title}</h3>
