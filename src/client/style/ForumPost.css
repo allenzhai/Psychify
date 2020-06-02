@@ -65,7 +65,15 @@
   padding-right: 5px;
   margin: 0px;
   margin-left: 1%;
+}
 
+.delete:hover {
+  color: rgb(241, 18, 18);
+}
+
+.delete:active {
+  transform: scale(.9);
+  transition-duration: 100ms;
 }
 
 .post-information-container {
@@ -169,12 +177,23 @@
 .comment-information {
   color: #666;
   font-size: .7em;
+  height: 0%;
+  margin: 0%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+
+.comment-information-container {
+  display: flex;
+  justify-content: left;
 }
 
 .no-comments {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1em;
   text-align: center;
+  color: #666;
+  margin-top: 3%;
 }
 
 .new-comment {

@@ -32,10 +32,11 @@ function ForumPost(props) {
   const [newCommentBody, setNewCommentBody] = useState();
 
   const endPoint = `/api/forum/post/comments/${postID}`;
-  const [data] = useFetch(endPoint);
+  const [isLoading, data, error] = useFetch(endPoint);
 
+  // get the author of this post
   const endPointAuthor = `/api/forum/author/${author}`;
-  const [dataAuthor] = useFetch(endPointAuthor);
+  const [isLoadingAuthor, dataAuthor, errorAuthor] = useFetch(endPointAuthor);
 
   const dateString = useAge(date);
   const bodyText = body.length > 0 && body !== 'undefined' ? <p className="post-body">{body}</p> : null;
@@ -68,6 +69,7 @@ function ForumPost(props) {
 
   function handleCommentSubmit() {
     const newPostData = {
+      author: ID,
       body: newCommentBody,
       date: new Date(Date.now()),
       linkedPost: postID,
@@ -87,7 +89,7 @@ function ForumPost(props) {
       })
       .then(() => {
         console.log('Comment successful');
-        window.location.reload(false);
+        window.location.reload(true);
       })
       .catch(() => {
         console.log('Comment failed');
@@ -112,7 +114,6 @@ function ForumPost(props) {
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(postToDelete),
       };
-      setNewCommentBody('');
       fetch('/api/forum/delete/post', request)
         .then((response) => {
           if (!response.ok) {
@@ -158,7 +159,10 @@ function ForumPost(props) {
   };
 
   const username = () => {
-    if (author !== 0 && dataAuthor !== undefined && dataAuthor.length) {
+    if (author === 0) {
+      return '[no linked user]';
+    }
+    if (dataAuthor !== undefined && dataAuthor.length) {
       return dataAuthor[0].Username;
     }
     return '[unknown]';

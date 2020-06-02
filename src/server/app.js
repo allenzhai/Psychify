@@ -120,6 +120,12 @@ app.post('/api/forum/delete/post', (req, res) => {
   res.json(postID);
 });
 
+app.post('/api/forum/delete/comment', (req, res) => {
+  const commentID = { id: req.body.id };
+  api.deleteComment(commentID);
+  res.json(commentID);
+});
+
 app.get('/api/disorder/names', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   api.getDisorderNames().then((rows) => {

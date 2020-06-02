@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+button {
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 button:disabled {
   cursor: not-allowed;
   background: rgb(165, 165, 165);

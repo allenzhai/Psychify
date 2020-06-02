@@ -11,7 +11,7 @@ function CommentList({ datasource }) {
   const uiList = (
     <div className="post-comments">
       {dataset.map((e, i) => {
-        let comment = <ForumComment body={e.Body} author={e.Author} date={e.Date} />;
+        let comment = <ForumComment body={e.Body} author={e.Author} date={e.Date} commentID={e.ID} />;
         // Displays dividing line after post if not the last comment
         if (i < dataset.length - 1) {
           comment = (
@@ -27,7 +27,7 @@ function CommentList({ datasource }) {
   );
 
   if (dataset.length === 0) {
-    return (<p className="no-comments">No comments</p>);
+    return (<p className="no-comments">No comments yet. Add one!</p>);
   }
 
 

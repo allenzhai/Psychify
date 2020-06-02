@@ -86,13 +86,18 @@ exports.deletePost = (postID) => {
   return pool.query(stm);
 };
 
+exports.deleteComment = (commentID) => {
+  const stm = `DELETE FROM ForumComments WHERE ID = ${commentID.id}`;
+  console.log(stm);
+  return pool.query(stm);
+};
+
 exports.getAuthor = (authorID) => {
   if (authorID) {
     const stm = `SELECT Username FROM Accounts WHERE ID = ${authorID} LIMIT 1`;
     return pool.query(stm);
   }
 };
-
 
 exports.getDisorderNames = () => {
   const stm = 'SELECT * FROM DisorderNames';
