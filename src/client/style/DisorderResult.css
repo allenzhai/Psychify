@@ -19,6 +19,7 @@
 .disorder-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .forum-link {
@@ -27,8 +28,9 @@
   border: none;
   color: #fff;
   background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
-  padding: 0px 1em;
-  margin: .75em 1em;
+  padding: .3em 1.25em;
+  margin: .75em 1%;
+  /* max-height: 2em; */
 }
 
 .forum-link:hover {
@@ -43,6 +45,7 @@
   margin-bottom: 6px;
   margin-left: 1%;
   margin-right: 1%;
+  margin-top: 1%;
 }
 
 .disorder-title:hover {

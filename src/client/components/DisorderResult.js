@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
@@ -5,8 +6,6 @@ import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../style/DisorderResult.css';
 import ReactModal from 'react-modal';
-
-import Button from './Button';
 
 ReactModal.setAppElement('#root');
 
@@ -21,7 +20,6 @@ function DisorderResult({ result }) {
     if (!showModal) {
       setShowModal(true);
     }
-    // document.body.style.overflowY = 'hidden';
   };
 
   const handleCloseModal = () => {
@@ -54,7 +52,10 @@ function DisorderResult({ result }) {
           <div className="close"><i className="fas fa-times" onClick={handleCloseModal} /></div>
 
           <div className="modal-header">
-            <h3 className="disorder-title-modal">{name}</h3>
+            <div className="disorder-header">
+              <h3 className="disorder-title-modal">{name}</h3>
+              <button className="forum-link" type="button" onClick={handleForumLinkClick}>Discussion</button>
+            </div>
             <p className="disorder-category-modal">{category}</p>
             <p className="disorder-sub-category-modal">{sub_category}</p>
           </div>
@@ -79,8 +80,8 @@ function DisorderResult({ result }) {
 }
 
 DisorderResult.propTypes = {
-        result: PropTypes.shape({
-        name: PropTypes.string.isRequired,
+  result: PropTypes.shape({
+    name: PropTypes.string.isRequired,
     category: PropTypes.string,
     sub_category: PropTypes.string,
     diagnostic_criteria: PropTypes.string,
