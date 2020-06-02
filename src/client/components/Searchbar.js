@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import '../style/Searchbar.css';
 
 export default function Searchbar(props) {
-  const {show} = props;
+  const { show } = props;
   const [searchTerms, setSearchTerms] = useState('');
   const history = createBrowserHistory({
     forceRefresh: true
@@ -14,7 +14,7 @@ export default function Searchbar(props) {
     event.preventDefault();
     history.push({
       pathname: '/results',
-      search: `?terms=${searchTerms.split(' ')}`,
+      search: `?terms=${searchTerms}`
     });
   };
 
