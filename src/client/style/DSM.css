@@ -2,6 +2,7 @@
     background-color: rgb(252, 246, 239);
     border-radius: 30px;
     width: 80vw;
+    min-height: 50vw;
     margin: auto;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size:  1rem;
@@ -21,11 +22,24 @@
 
 .index-list li a{
     color: black;
-    
+
 }
 
 @media only screen and (max-width: 768px){
     .col{
         width: 100%;
     }
+}
+
+.dsm-index {
+  padding-left: 0.5em;
+  font-weight: 700;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #007998;
+}
+
+.dsm-index::after {
+  content: "  |";
 }
