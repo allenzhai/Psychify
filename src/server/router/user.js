@@ -36,10 +36,9 @@ router.post('/api/login', (req, res) => {
     }
 
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
-    const expiresIn = new Date(Date.now() + process.env.EXPIRESIN);
     res.cookie('token', token, {
       httpOnly: true,
-      expires: expiresIn
+      maxAge: process.env.EXPIRESIN
     });
     res.json({
       code: Code.SUCCEEDED,
@@ -57,7 +56,6 @@ router.post('/api/login', (req, res) => {
 });
 
 router.get('/api/me', verifyToken, (req, res) => {
-  console.log(req.authData);
   const { user } = req.payload;
   res.json({
     code: Code.SUCCEEDED,
@@ -68,6 +66,14 @@ router.get('/api/me', verifyToken, (req, res) => {
       email: user.email,
       type: user.type
     }
+  });
+});
+
+router.get('/api/logout', (req, res) => {
+  res.clearCookie('token');
+  res.json({
+    code: Code.SUCCEEDED,
+    message: 'successful logout'
   });
 });
 

@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Searchbar from './Searchbar';
 import UserContext from '../context/UserContext';
@@ -8,26 +8,37 @@ import UserService from '../service/UserService';
 import '../style/Navbar.css';
 
 function Navbar() {
+  const location = useLocation();
+  const history = useHistory();
   const userContext = useContext(UserContext);
-  const { user, login } = userContext;
+  const { user, login, logout } = userContext;
+
+  // if there is logout hash tag in url, then log out
+  if (location.hash === '#logout') {
+    UserService.logout().then(() => {
+      history.push({ ...location, hash: '' });
+      logout();
+    });
+  }
+
   if (!user) {
     // user is not logged in.
     // attemp to use token in cookie to identify the current user
     UserService.identify().then((userData) => {
-      console.log(userData);
+      console.log('Retrieved user log in data.');
       login(userData);
-    }).catch((err) => {
+    }).catch(() => {
       // user not logged in.
-      console.log(err);
+      console.log('User not logged in.');
     });
   }
-
 
   const path = useLocation();
   const component = user
     ? (
       <>
         <a href="/profile" className="nav-item registration">{user}</a>
+        <a href="#logout" className="nav-item">Log out</a>
       </>
     ) : (
       <>

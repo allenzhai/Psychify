@@ -48,10 +48,21 @@ function identify() {
     });
 }
 
+function logout() {
+  return fetch('/api/logout').then(res => res.json())
+    .then((response) => {
+      if (response.code !== 0) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    });
+}
+
 const UserService = {
   login,
   getProfile,
-  identify
+  identify,
+  logout
 };
 
 export default UserService;
