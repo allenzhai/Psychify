@@ -16,7 +16,7 @@ function Navbar() {
   // if there is logout hash tag in url, then log out
   if (location.hash === '#logout') {
     UserService.logout().then(() => {
-      history.push({ ...location, hash: '' });
+      history.push({ pathname: '/' });
       logout();
     });
   }
