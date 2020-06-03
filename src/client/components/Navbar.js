@@ -3,15 +3,28 @@ import { useLocation } from 'react-router-dom';
 
 import Searchbar from './Searchbar';
 import UserContext from '../context/UserContext';
+import UserService from '../service/UserService';
 
 import '../style/Navbar.css';
 
 function Navbar() {
   const userContext = useContext(UserContext);
+  const { user, login } = userContext;
+  if (!user) {
+    // user is not logged in.
+    // attemp to use token in cookie to identify the current user
+    UserService.identify().then((userData) => {
+      console.log(userData);
+      login(userData);
+    }).catch((err) => {
+      // user not logged in.
+      console.log(err);
+    });
+  }
+
 
   const path = useLocation();
-  const { token, user } = userContext;
-  const component = token
+  const component = user
     ? (
       <>
         <a href="/profile" className="nav-item registration">{user}</a>

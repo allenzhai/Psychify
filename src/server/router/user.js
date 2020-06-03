@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const api = require('../api');
+const api = require('../api/user');
 const hash = require('../hash');
 const Code = require('./code');
 const verifyToken = require('./verifyToken');
@@ -29,17 +29,45 @@ router.post('/api/login', (req, res) => {
       throw new Error('Invalid login credentials.');
     }
 
-    let user = users[0];
+    const user = users[0];
     const checkPass = hash.passwordHash(password + process.env.STATIC_SALT + user.salt);
     if (user.password !== checkPass) {
       throw new Error('Invalid login credentials.');
     }
-    console.log('passwords match');
+
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
-    user = { token, ...user };
-    res.json({ code: Code.SUCCEEDED, message: 'successful login', data: user });
+    const expiresIn = new Date(Date.now() + process.env.EXPIRESIN);
+    res.cookie('token', token, {
+      httpOnly: true,
+      expires: expiresIn
+    });
+    res.json({
+      code: Code.SUCCEEDED,
+      message: 'successful login',
+      data: {
+        user: user.user,
+        id: user.ID,
+        email: user.email,
+        type: user.type
+      }
+    });
   }).catch((err) => {
     res.json({ code: Code.FAILED, message: err.message });
+  });
+});
+
+router.get('/api/me', verifyToken, (req, res) => {
+  console.log(req.authData);
+  const { user } = req.payload;
+  res.json({
+    code: Code.SUCCEEDED,
+    message: 'successful login',
+    data: {
+      user: user.user,
+      id: user.ID,
+      email: user.email,
+      type: user.type
+    }
   });
 });
 
@@ -64,7 +92,11 @@ router.put('/api/updateProfile/:ID', (req) => {
     ID: req.body.ID
   };
   console.log('profile', profile);
-  api.updateProfile(profile);
+  api.updateProfile(profile).then((rows) => {
+    console.log(rows);
+  }).catch((err) => {
+    console.log(err);
+  });
 });
 
 module.exports = router;
