@@ -40,7 +40,7 @@ function LoginModal() {
   return (
     <Modal>
       <div className="modal-close-button">
-        <Button className="close" onClick={handleClose}>X</Button>
+        <div className="close"><i className="fas fa-times" onClick={handleClose} /></div>
       </div>
       <div className="login-modal-header">
         <h3 className="login-title-modal">Login with your Username</h3>
