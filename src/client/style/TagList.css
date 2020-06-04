@@ -1,30 +1,38 @@
 .taglist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-left: 3em;
+  margin-right: 3em;
   text-align: left;
 }
 
 .taglist .tag-btn {
+  font-family: 'Open Sans', Arial, sans-serif;
   color:#000000;
   background-color: #dddddd;
-  padding: 5px 5px;
-  margin-right: 2em;
+  padding: 5px 10px;
+  margin-right: 1em;
   margin-bottom: 0.5em;
   border-radius: 1px;
   font-size: 1em;
   border-style: none;
+  border-radius: 90px;
   cursor: pointer;
 }
 
 .taglist .tag-btn:hover {
   color:#fffff0;
-  background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
+  background: #666;
+  transition-duration: 200ms;
 }
 
 .taglist .tag-btn-selected {
   color:#fffff0;
-  background: linear-gradient(90deg, rgb(23, 128, 117) 0%, rgb(19, 156, 92) 100%);
+  background: linear-gradient(90deg, rgba(71,221,206,1) 0%, rgba(36,221,135,1) 100%);
+  transition-duration: 200ms;
 }
 
 .taglist .tag-btn span {

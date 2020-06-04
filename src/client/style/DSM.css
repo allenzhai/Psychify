@@ -1,27 +1,47 @@
 .index-list-con{
-    background-color: rgb(252, 246, 239);
-    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
     width: 80vw;
     min-height: 50vw;
     margin: auto;
+    margin-bottom: 5vh;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size:  1rem;
     box-shadow: 0px 4px 8px #bbbbbb;
-    padding: 2rem;
+    padding: 1rem;
+}
+
+.index-header {
+    text-align: center;
+    font-family: 'Merriweather', Times, serif;
+    font-size: 2em;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .col{
-    width: 50%;
+    width: 90%;
     display: inline-block;
     vertical-align: top;
 }
 
+.letters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
 .index-list li{
-    margin: 2rem;
+    margin: 1rem;
 }
 
 .index-list li a{
     color: black;
+    font-family: 'Merriweather', Times, serif;
+    font-size: 1.25em;
 
 }
 
@@ -42,4 +62,5 @@
 
 .dsm-index::after {
   content: "  |";
+  color: #bbb
 }
