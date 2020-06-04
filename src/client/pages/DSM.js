@@ -13,7 +13,7 @@ export default function DSM() {
   const [isLoading, data, error] = useFetch(endPoint);
   const entries = data || [];
 
-  const loading = isLoading && (<p>Loading</p>);
+  const loading = isLoading && (<div className="loading-icon"><i className="fa fa-circle-notch" /></div>);
   const err = error && (<p>{error}</p>);
 
   const letters = [...'abcdefghijklmnopqrstuvwxyz'];
@@ -49,13 +49,15 @@ export default function DSM() {
     <div>
       <div className="index-list-con">
         <h1 className="index-header">Diagnostic Criteria and Codes Index</h1>
-        {lettterList}
+        <div className="letters">
+          {lettterList}
+          <hr className="line"/>
+        </div>
         <div className="col">
           {loading}
           {err}
           {nameList}
         </div>
-
       </div>
     </div>
   );

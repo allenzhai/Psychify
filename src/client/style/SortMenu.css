@@ -1,20 +1,24 @@
 .sortbyList {
     list-style: none;
     position: absolute;
-    background-color: rgb(243, 241, 241);
+    background-color: #fff;
     padding: 0;
     width: 160px;
     box-shadow: 0px 4px 8px #bbbbbb;
-    border-radius: 16px;
+    border-radius: 20px;
 }
 
 .sortbyList li {
     padding: 0.5rem 0;
-    border-radius: 16px;
+    margin: .2em;
+    border-radius: 90px;
+    transition-duration: 100ms;
 }
 
 .sortbyList li:hover {
    background-color: rgba(71,221,206,1);
+   transition-duration: 100ms;
+   color: #fff;
 }
 
 .sortbyList li:active{

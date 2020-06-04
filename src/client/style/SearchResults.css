@@ -23,6 +23,7 @@
   align-items: center;
   align-content: center;
   text-align: center;
+  margin-bottom: 5%;
 }
 
 h1 {
@@ -71,5 +72,4 @@ hr {
   text-align: right;
   margin-right: 6em;
   margin-bottom: 1em;
-
 }
