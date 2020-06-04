@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import UserContext from '../context/UserContext';
 
 import Button from '../components/Button';
 
@@ -14,9 +16,12 @@ function Profile() {
   const [loc, setLocation] = useState();
   const [verified, setVerified] = useState();
   const [DOB, setDOB] = useState();
-  const [ID] = useState(2);
+  const [ID, setID] = useState();
 
-  const endPoint = `/api/getProfile/${ID}`;
+  const userContext = useContext(UserContext);
+  const { id } = userContext;
+
+  const endPoint = `/api/getProfile/${id}`;
   const [isLoading, data, error] = useFetch(endPoint);
   const dataList = data || [];
 
@@ -40,7 +45,7 @@ function Profile() {
   }
 
   const handleUpdate = (event) => {
-    const updatePoint = `/api/updateProfile/${ID}`;
+    const updatePoint = `/api/updateProfile/${id}`;
     event.preventDefault();
     const profileData = {
       email,
@@ -49,7 +54,7 @@ function Profile() {
       name,
       loc,
       DOB,
-      ID
+      id
     };
     const request = {
       method: 'PUT',

@@ -24,6 +24,6 @@ exports.updateProfile = (profile) => {
                About="${profile.about}",
                FirstName="${profile.name}",
                DOB="${profile.DOB}"
-               WHERE ID ="${profile.ID}"`;
+               WHERE ID ="${profile.id}"`;
   return pool.query(stm);
 };
