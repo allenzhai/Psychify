@@ -10,6 +10,11 @@ const router = express.Router();
 router.post('/api/register', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { username, email, password } = req.body;
+  if (username === undefined || email === undefined || password === undefined) {
+    res.json({ code: Code.FAILED, message: 'Invalid registration inputs.' });
+    return;
+  }
+
   api.registerUser(username, email, password)
     .then(() => api.getUser(username))
     .then((rows) => {
