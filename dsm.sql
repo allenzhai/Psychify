@@ -21,24 +21,27 @@ CREATE TABLE IF NOT EXIST Disorders (
 -- B. Deficits in adaptive functioning that result in failure to meet developmental and sociocultural standards for personal independence and social responsibility. Without ongoing support, the adaptive deficits limit functioning in one or more activities of daily life, such as communication, social participation, and independent living, across multiple environments, such as home, school, work, and community.
 -- C. Onset of intellectual and adaptive deficits during the developmental period.");
 
+DROP TABLE IF EXISTS Accounts;
 -- Create Table for User Accounts
 -- Password should be hashed
 CREATE TABLE IF NOT EXISTS Accounts (
   ID INT primary key AUTO_INCREMENT,
-  Password VARCHAR(30) NOT NULL, 
-  Email VARCHAR(100),
-  Username VARCHAR(100),
+  Pass VARCHAR(100) NOT NULL,
+  Email VARCHAR(100) NOT NULL,
+  Username VARCHAR(100) NOT NULL,
   About VARCHAR(2000),
   FirstName VARCHAR(100),
   Locat VARCHAR(100),
   DOB VARCHAR(100),
-  Type INT NOT NULL
+  Salt VARCHAR(8) NOT NULL,
+  Type INT NOT NULL,
+  Unique key (Username, Email)
 );
 
 -- Create Table for Forum Posts
 CREATE TABLE IF NOT EXISTS ForumPosts (
   ID INT primary key AUTO_INCREMENT,
-  Title VARCHAR(300) NOT NULL, 
+  Title VARCHAR(300) NOT NULL,
   Body VARCHAR(10000),
   Category VARCHAR(1000),
   Author INT,

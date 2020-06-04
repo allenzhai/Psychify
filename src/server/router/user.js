@@ -9,15 +9,40 @@ const router = express.Router();
 
 router.post('/api/register', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  const dynamicSalt = hash.generateSalt();
-  const user = {
-    username: req.body.username,
-    passwordHash: hash.passwordHash(req.body.password + process.env.STATIC_SALT + dynamicSalt),
-    email: req.body.email,
-    salt: dynamicSalt
-  };
-  api.registerUser(user);
-  res.json(user);
+  const { username, email, password } = req.body;
+  api.registerUser(username, email, password)
+    .then(() => api.getUser(username))
+    .then((rows) => {
+      const userData = {
+        user: rows[0].username,
+        id: rows[0].id,
+        email: rows[0].email,
+        type: rows[0].type
+      };
+
+      const token = jwt.sign({ userData }, process.env.SECRET_KEY);
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: process.env.EXPIRESIN
+      });
+      res.json({
+        code: Code.SUCCEEDED,
+        message: 'successful registration',
+        data: userData
+      });
+    }).catch((err) => {
+      let message = '';
+      console.log(err);
+      switch (err.code) {
+        case 'ER_DUP_ENTRY':
+          message = 'User already exists';
+          break;
+        default:
+          message = 'Registration Failed';
+          break;
+      }
+      res.json({ code: Code.FAILED, message });
+    });
 });
 
 router.post('/api/login', (req, res) => {
@@ -31,11 +56,17 @@ router.post('/api/login', (req, res) => {
 
     const user = users[0];
     const checkPass = hash.passwordHash(password + process.env.STATIC_SALT + user.salt);
-    if (user.password !== checkPass) {
+    if (user.pass !== checkPass) {
       throw new Error('Invalid login credentials.');
     }
 
-    const token = jwt.sign({ user }, process.env.SECRET_KEY);
+    const userData = {
+      user: user.username,
+      id: user.id,
+      email: user.email,
+      type: user.type
+    };
+    const token = jwt.sign({ userData }, process.env.SECRET_KEY);
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: process.env.EXPIRESIN
@@ -43,12 +74,7 @@ router.post('/api/login', (req, res) => {
     res.json({
       code: Code.SUCCEEDED,
       message: 'successful login',
-      data: {
-        user: user.user,
-        id: user.ID,
-        email: user.email,
-        type: user.type
-      }
+      data: userData
     });
   }).catch((err) => {
     res.json({ code: Code.FAILED, message: err.message });
@@ -56,16 +82,11 @@ router.post('/api/login', (req, res) => {
 });
 
 router.get('/api/me', verifyToken, (req, res) => {
-  const { user } = req.payload;
+  const { userData } = req.payload;
   res.json({
     code: Code.SUCCEEDED,
     message: 'successful login',
-    data: {
-      user: user.user,
-      id: user.ID,
-      email: user.email,
-      type: user.type
-    }
+    data: userData
   });
 });
 

@@ -1,3 +1,24 @@
+function register(username, email, password) {
+  const data = { username, email, password };
+  const request = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': data.toString().length.toString()
+    },
+    body: JSON.stringify(data)
+  };
+  return fetch('/api/register', request).then(res => res.json())
+    .then((response) => {
+      console.log('registration succeeded');
+      if (response.code !== 0) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    });
+}
+
 // response.code == 0 //succeeded
 // response.code == 1 //failed
 // response.code == 2 //invalid_token
@@ -15,14 +36,11 @@ function login(username, password) {
   };
   return fetch('/api/login', request).then(res => res.json())
     .then((response) => {
-      console.log('login successful');
+      console.log('login succeeded');
       if (response.code !== 0) {
         throw new Error(response.message);
       }
       return response.data;
-    }).catch((err) => {
-      console.log('login unsuccessful');
-      console.log(err);
     });
 }
 
@@ -59,6 +77,7 @@ function logout() {
 }
 
 const UserService = {
+  register,
   login,
   getProfile,
   identify,
