@@ -13,3 +13,4 @@ Psychology Group 1
 + [How To Access Database](docs/how_to_access_database.md)
 + [How To Test](docs/how_to_test.md)
 + [How To Deploy](docs/how_to_deploy.md)
++ [How To Manage User Token](docs/how_to_manage_user_token.md)
