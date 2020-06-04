@@ -32,12 +32,12 @@
   transition-duration: .5s;
 }
 
-@media (max-width: 399px) { 
+@media (max-width: 399px) {
   form.large { display: none; }
   form.small { display: inline-block; }
 }
 
-@media (min-width: 400px) { 
+@media (min-width: 400px) {
   form.small { display: none; }
   form.large { display: inline-block; width: 100%; }
 }
@@ -52,6 +52,6 @@ input[type=submit] {
   margin-left: 10vw;
   margin-bottom: 1rem;
 }
-.\/, .\/results{
+.\/, .\/results, .\/login{
   display: none;
 }
