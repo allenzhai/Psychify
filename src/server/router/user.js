@@ -108,19 +108,22 @@ router.get('/api/getProfile/:ID', verifyToken, (req, res) => {
   });
 });
 
-router.put('/api/updateProfile/:ID', (req) => {
+router.put('/api/updateProfile/:ID', (req, res) => {
   const profile = {
     email: req.body.email,
     username: req.body.username,
     about: req.body.about,
     name: req.body.name,
     loc: req.body.loc,
-    DOB: req.body.DOB
+    DOB: req.body.DOB,
+    id: req.body.id
   };
   console.log('profile', profile);
   api.updateProfile(profile).then((rows) => {
+    res.json(rows);
     console.log(rows);
   }).catch((err) => {
+    res.json({ code: Code.FAILED, message: 'Failed to update user profile' });
     console.log(err);
   });
 });
