@@ -1,7 +1,12 @@
 const pool = require('./database');
 
 exports.listDisorders = () => {
-  const stm = 'SELECT * FROM Disorders';
+  const stm = 'SELECT  FROM Disorders';
+  return pool.query(stm);
+};
+
+exports.listIndexOfDisorders = (letter) => {
+  const stm = `SELECT id, name FROM DisorderNames where name Like '${letter}%' order by name`;
   return pool.query(stm);
 };
 
@@ -41,11 +46,11 @@ exports.getProfile = (ID) => {
 };
 
 exports.updateProfile = (profile) => {
-  const stm = `UPDATE Accounts SET Email="${profile.email}", 
-               Username="${profile.username}", 
-               About="${profile.about}", 
-               FirstName="${profile.name}", 
-               DOB="${profile.DOB}" 
+  const stm = `UPDATE Accounts SET Email="${profile.email}",
+               Username="${profile.username}",
+               About="${profile.about}",
+               FirstName="${profile.name}",
+               DOB="${profile.DOB}"
                WHERE ID ="${profile.ID}"`;
   return pool.query(stm);
 };

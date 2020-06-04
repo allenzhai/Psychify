@@ -1,43 +1,61 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../style/DSM.css';
+import useFetch from '../hooks/useFetch';
 
 export default function DSM() {
-  // Blank placeholder component for the DSM Index
+  // const [isLoading, data, error] = useFetch(endPoint);
+  const history = useHistory();
+  const params = new URLSearchParams(history.location.search);
+  const index = !params.has('letter') ? 'a' : params.get('letter');
+  const endPoint = `/api/disorder/${index}`;
+  const [isLoading, data, error] = useFetch(endPoint);
+  const entries = data || [];
+
+  const loading = isLoading && (<p>Loading</p>);
+  const err = error && (<p>{error}</p>);
+
+  const letters = [...'abcdefghijklmnopqrstuvwxyz'];
+  const lettterList = (
+    <div>
+      {
+        letters.map(
+          (letter) => {
+            const link = `/dsm?letter=${letter}`;
+            return (
+              <a key={letter} className="dsm-index" href={link}>
+                {letter}
+              </a>
+            );
+          }
+        )
+      }
+    </div>
+  );
+
+  const nameList = (
+    <ul className="index-list" style={{ listStyleType: 'none' }}>
+      {
+        entries.map((entry) => {
+          const link = `/results?terms=${entry.name}`;
+          return (<li key={entry.id}><a href={link}>{entry.name}</a></li>);
+        })
+      }
+    </ul>
+  );
+
   return (
     <div>
       <div className="index-list-con">
         <h1 className="index-header">Diagnostic Criteria and Codes Index</h1>
+        {lettterList}
         <div className="col">
-          <ul className="index-list" style={{ listStyleType: 'none' }}>
-            <li><a href="/">Anxiety Disorders</a></li>
-            <li><a href="/">Bipolar and Related Disorders</a></li>
-            <li><a href="/">Depressive Disorders</a></li>
-            <li><a href="/">Disruptive, Impulse-Control, and Conduct Disorders</a></li>
-            <li><a href="/">Dissociative Disorders</a></li>
-            <li><a href="/">Elimination Disorders</a></li>
-            <li><a href="/">Feeding and Eating Disorders</a></li>
-            <li><a href="/">Gender Dysphoria</a></li>
-            <li><a href="/">Medication-Induced Movement Disorders and Other Adverse Effects of Medication</a></li>
-            <li><a href="/">Neurocognitive Disorders</a></li>
-            <li><a href="/">Neurodevelopmental Disorders</a></li>
-          </ul>
+          {loading}
+          {err}
+          {nameList}
         </div>
-        <div className="col">
-          <ul className="index-list" style={{ listStyleType: 'none' }}>
-            <li><a href="/">Obsessive-Compulsive and Related Disorders</a></li>
-            <li><a href="/">Other Conditions That May Be a Focus of Clinical Attention</a></li>
-            <li><a href="/">Other Mental Disorders and Additional Codes</a></li>
-            <li><a href="/">Paraphilic Disorders</a></li>
-            <li><a href="/">Personality Disorders</a></li>
-            <li><a href="/">Schizophrenia Spectrum and Other Psychotic Disorders</a></li>
-            <li><a href="/">Sexual Dysfunctions</a></li>
-            <li><a href="/">Sleep-Wake Disorders</a></li>
-            <li><a href="/">Somatic Symptom and Related Disorders</a></li>
-            <li><a href="/">Substance-Related and Addictive Disorders</a></li>
-            <li><a href="/">Trauma- and Stressor-Related Disorders</a></li>
-          </ul>
-        </div>
+
       </div>
     </div>
   );

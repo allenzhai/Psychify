@@ -124,6 +124,17 @@ app.get('/api/disorder/names', (req, res) => {
   });
 });
 
+app.get('/api/disorder/:letter', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const { letter } = req.params;
+  api.listIndexOfDisorders(letter).then((rows) => {
+    res.json(rows);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dist/index.html'));
 });
