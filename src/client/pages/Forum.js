@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactModal from 'react-modal';
 import { createBrowserHistory } from 'history';
 
 import useFetch from '../hooks/useFetch';
 import ForumPost from '../components/ForumPost';
+import UserContext from '../context/UserContext';
 
 import '../style/Forum.css';
 
 function Forum() {
+
+  const userContext = useContext(UserContext);
+  const { user, id } = userContext;
   const defaultCategories = [{ name: 'Other' }];
 
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +26,6 @@ function Forum() {
   });
   const params = new URLSearchParams(history.location.search);
   const [category] = useState(params.get('category') || null);
-  console.log(category);
   const endPoint = category ? `/api/forum/posts/${category}` : 'api/forum/posts/';
   // If a category is set, make category request, otherwise make generic request
   // Hooks must be declared the same way each DOM render which is the reason for this awfulness
@@ -30,8 +33,6 @@ function Forum() {
   const [isLoading, data, error] = useFetch(endPoint);
   const disorderNamesEndpoint = 'api/disorder/names';
   const [isLoadingNames, dataNames, errorNames] = useFetch(disorderNamesEndpoint);
-
-
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -56,6 +57,7 @@ function Forum() {
 
   function handlePostSubmit() {
     const newPostData = {
+      author: id,
       title: newPostTitle,
       body: newPostBody,
       category: newPostCategory,
@@ -131,6 +133,7 @@ function Forum() {
     return <div className="loading-icon"><i className="fa fa-circle-notch" /></div>;
   }
 
+  const posts = data || [];
   const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
   const categoryHeader = category ? (
     <div className="category-header">
@@ -138,6 +141,19 @@ function Forum() {
       <p className="category-header-text">{category}</p>
     </div>
   ) : null;
+
+  const createPostButton = () => {
+    if (user) {
+      return (
+        <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
+          Create Post
+        </button>
+      );
+    }
+    return (
+      <p className="create-post-logged-out">Log in or Sign Up to post!</p>
+    );
+  };
 
   return (
     <div>
@@ -147,9 +163,7 @@ function Forum() {
             <h1 className="forum-title">Forum</h1>
             {categoryHeader}
           </div>
-          <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
-            Create Post
-          </button>
+          {createPostButton()}
         </div>
         {displayForumPosts()}
         <i className="fas fa-stop" />
