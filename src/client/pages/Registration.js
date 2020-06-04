@@ -7,18 +7,18 @@ import Button from '../components/Button';
 import UserContext from '../context/UserContext';
 import UserService from '../service/UserService';
 
-import '../style/Login.css';
+import '../style/Registration.css';
 
-export default function Login() {
+export default function Registration() {
   const userContext = useContext(UserContext);
   const history = useHistory();
   const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('attempting login');
-    UserService.login(username, password).then((user) => {
+    UserService.register(username, email, password).then((user) => {
       userContext.login(user);
       history.push({ pathname: '/' });
     }).catch((err) => {
@@ -27,9 +27,9 @@ export default function Login() {
   };
 
   return (
-    <div className="login-body">
-      <h1>Sign In to Psychify</h1>
-      <div className="login-content mt-3 px-2 py-1">
+    <div className="registration-body">
+      <h1>Create your account</h1>
+      <div className="registration-content mt-3">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="inputUsername" className="form-control-required">Username</label>
@@ -40,6 +40,20 @@ export default function Login() {
               onChange={e => setUsername(e.target.value)}
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="inputEmail" className="form-control-required">Email</label>
+            <input
+              className="form-control"
+              id="inputEmail"
+              type="email"
+              placeholder="email"
+              required
+              autoComplete="off"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="intputPassword" className="form-control-required">Password</label>
             <input
@@ -54,17 +68,19 @@ export default function Login() {
           </div>
 
           <div className="form-group">
-            <Button className="btn btn-block" type="submit" onClick={handleSubmit}>Sign In</Button>
+            <label htmlFor="verified">Are you a doctor?</label>
+            <select type="verified" className="form-control" id="verified">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <Button className="btn btn-block" type="submit" onClick={handleSubmit}>Sign Up</Button>
           </div>
         </form>
       </div>
 
-      <div className="login-foot mt-2 px-1 py-1">
-        <span className="mr-1">New to Psychify?</span>
-        <a className="btn-link" href="/registration">
-          Register
-        </a>
-      </div>
     </div>
   );
 }

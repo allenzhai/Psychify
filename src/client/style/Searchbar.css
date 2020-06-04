@@ -52,6 +52,6 @@ input[type=submit] {
   margin-left: 10vw;
   margin-bottom: 1rem;
 }
-.\/, .\/results, .\/login{
+.\/, .\/results, .\/login, .\/registration{
   display: none;
 }
