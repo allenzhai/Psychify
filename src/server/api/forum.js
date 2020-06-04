@@ -29,8 +29,3 @@ exports.createComment = (comment) => {
   console.log(stm);
   return pool.query(stm);
 };
-
-exports.getDisorderNames = () => {
-  const stm = 'SELECT * FROM DisorderNames';
-  return pool.query(stm);
-};

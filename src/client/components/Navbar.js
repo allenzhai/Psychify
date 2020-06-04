@@ -42,7 +42,7 @@ function Navbar() {
       </>
     ) : (
       <>
-        <a href="#login" className="nav-item">Login</a>
+        <a href="/login" className="nav-item">Login</a>
         <a href="#registration" className="nav-item signup">Sign Up</a>
       </>
     );
