@@ -13,7 +13,7 @@ function ForumComment(props) {
   const { body, author, date, commentID } = props;
 
   const userContext = useContext(UserContext);
-  const { token, ID } = userContext;
+  const { user, id } = userContext;
 
   const [confirmCommentDelete, setConfirmCommentDelete] = useState(false);
 
@@ -51,8 +51,7 @@ function ForumComment(props) {
   }
 
   const showDeleteButton = () => {
-    console.log('delete id: ' + commentID);
-    if (ID === author || (author === 0 && ID === undefined)) {
+    if (id === author || (author === 0 && id === undefined)) {
       let deleteText = 'delete';
       if (confirmCommentDelete) {
         deleteText = 'confirm delete';

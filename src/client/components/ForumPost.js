@@ -20,7 +20,7 @@ function ForumPost(props) {
   } = props;
 
   const userContext = useContext(UserContext);
-  const { token, ID } = userContext;
+  const { user, id } = userContext;
   const history = createBrowserHistory({
     forceRefresh: false,
   });
@@ -31,6 +31,7 @@ function ForumPost(props) {
   const [confirmPostDelete, setConfirmPostDelete] = useState(false);
   const [newCommentBody, setNewCommentBody] = useState();
 
+  // get comments under this post
   const endPoint = `/api/forum/post/comments/${postID}`;
   const [isLoading, data, error] = useFetch(endPoint);
 
@@ -50,7 +51,7 @@ function ForumPost(props) {
   }
 
   function handleLike() {
-    if (token) {
+    if (user) {
       setLiked(!liked);
     }
   }
@@ -69,7 +70,7 @@ function ForumPost(props) {
 
   function handleCommentSubmit() {
     const newPostData = {
-      author: ID,
+      author: id,
       body: newCommentBody,
       date: new Date(Date.now()),
       linkedPost: postID,
@@ -135,7 +136,7 @@ function ForumPost(props) {
 
   const categoryFlair = category.length > 0 && category !== 'undefined' ? <p className="post-category" onClick={handleCategoryClick} type="button">{category}</p> : null;
   const showDeleteButton = () => {
-    if (ID === author || (author === 0 && ID === undefined)) {
+    if (id === author || (author === 0 && id === undefined)) {
       let deleteText = 'delete';
       if (confirmPostDelete) {
         deleteText = 'confirm delete';
@@ -146,7 +147,7 @@ function ForumPost(props) {
   };
 
   const commentButton = () => {
-    if (token) {
+    if (user) {
       return (
         <button className="new-comment-submit" type="submit" onClick={handleCommentSubmit} disabled={newCommentBody === undefined || !newCommentBody.length}>
           Comment
@@ -178,7 +179,7 @@ function ForumPost(props) {
           {liked
             ? <i className="fas fa-heart" onClick={handleLike} role="button" tabIndex="-1" />
             : <i className="far fa-heart" onClick={handleLike} role="button" tabIndex="-1" />}
-          <p className="likes-number">{likes}</p>
+          <p className="likes-number">{likes + 1 + (liked ? 1 : 0)}</p>
         </div>
       </div>
       <div className="post-information-container">

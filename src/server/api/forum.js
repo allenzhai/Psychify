@@ -29,3 +29,23 @@ exports.createComment = (comment) => {
   console.log(stm);
   return pool.query(stm);
 };
+
+exports.getAuthor = (authorID) => {
+  if (authorID) {
+    const stm = `SELECT Username FROM Accounts WHERE ID = ${authorID} LIMIT 1`;
+    return pool.query(stm);
+  }
+};
+
+exports.deletePost = (postID) => {
+  // TODO: Leaves orphaned comments in the database. Fix by deleting all comments where column 'Post' = postID. crunched for time - will fix later
+  const stm = `DELETE FROM ForumPosts WHERE ID = ${postID.id}`;
+  console.log(stm);
+  return pool.query(stm);
+};
+
+exports.deleteComment = (commentID) => {
+  const stm = `DELETE FROM ForumComments WHERE ID = ${commentID.id}`;
+  console.log(stm);
+  return pool.query(stm);
+};

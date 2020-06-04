@@ -21,17 +21,6 @@ app.use(disorderRouter);
 app.use(forumRouter);
 
 
-app.get('/api/forum/author/:authorID', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  const { authorID } = req.params;
-  api.getAuthor(authorID).then((rows) => {
-    res.json(rows);
-  }).catch((err) => {
-    console.log(err);
-    res.json(err);
-  });
-});
-
 app.get('/*', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dist/index.html'));
 });

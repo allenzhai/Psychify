@@ -13,7 +13,7 @@ import '../style/Forum.css';
 function Forum() {
 
   const userContext = useContext(UserContext);
-  const { token, user, ID } = userContext;
+  const { user, id } = userContext;
   const defaultCategories = [{ name: 'Other' }];
 
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +26,6 @@ function Forum() {
   });
   const params = new URLSearchParams(history.location.search);
   const [category] = useState(params.get('category') || null);
-  console.log(category);
   const endPoint = category ? `/api/forum/posts/${category}` : 'api/forum/posts/';
   // If a category is set, make category request, otherwise make generic request
   // Hooks must be declared the same way each DOM render which is the reason for this awfulness
@@ -34,8 +33,6 @@ function Forum() {
   const [isLoading, data, error] = useFetch(endPoint);
   const disorderNamesEndpoint = 'api/disorder/names';
   const [isLoadingNames, dataNames, errorNames] = useFetch(disorderNamesEndpoint);
-
-
 
   function handleCreatePostClick() {
     if (!showModal) setShowModal(true);
@@ -60,7 +57,7 @@ function Forum() {
 
   function handlePostSubmit() {
     const newPostData = {
-      author: ID,
+      author: id,
       title: newPostTitle,
       body: newPostBody,
       category: newPostCategory,
@@ -144,8 +141,9 @@ function Forum() {
       <p className="category-header-text">{category}</p>
     </div>
   ) : null;
+
   const createPostButton = () => {
-    if (token) {
+    if (user) {
       return (
         <button className="create-post-button" type="button" onClick={handleCreatePostClick}>
           Create Post

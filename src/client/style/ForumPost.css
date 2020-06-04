@@ -258,9 +258,12 @@
 }
 
 @keyframes liked {
-  33% {color: rgb(241, 18, 18); transform: scale(0.8); animation-timing-function: ease-out;}
-  67% {color: rgb(241, 23, 23); transform: scale(1.3); animation-timing-function: ease-in-out;}
-  100% {color: rgb(214, 58, 92); transform: scale(1); animation-timing-function: ease-in-out;}
+  0% {color: rgb(241, 18, 18); transform: scale(0); animation-timing-function: ease-out;}
+  30% {color: rgb(214, 58, 92); transform: scale(1); animation-timing-function: ease-in;}
+  50% {color: rgb(214, 58, 92); transform: scale(0.7); animation-timing-function: ease-out;}
+  80% {color: rgb(214, 58, 92); transform: scale(1); animation-timing-function: ease-in;}
+  90% {color: rgb(214, 58, 92); transform: scale(.9); animation-timing-function: ease-out;}
+  100% {color: rgb(214, 58, 92); transform: scale(1); animation-timing-function: ease-in;}
   /* Make heart beat when clicked */
 }
 
@@ -282,7 +285,7 @@
 
 .fas.fa-heart{
   animation-name: liked;
-  animation-duration: .3s;
+  animation-duration: .5s;
   
 }
 
