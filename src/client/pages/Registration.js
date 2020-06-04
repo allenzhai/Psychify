@@ -12,9 +12,9 @@ import '../style/Registration.css';
 export default function Registration() {
   const userContext = useContext(UserContext);
   const history = useHistory();
-  const [username, setUsername] = useState('test');
-  const [email, setEmail] = useState('test@test.com');
-  const [password, setPassword] = useState('test');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [err, setErr] = useState();
 
   const handleSubmit = (event) => {
