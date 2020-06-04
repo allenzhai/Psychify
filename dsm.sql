@@ -27,15 +27,14 @@ DROP TABLE IF EXISTS Accounts;
 CREATE TABLE IF NOT EXISTS Accounts (
   ID INT primary key AUTO_INCREMENT,
   Pass VARCHAR(100) NOT NULL,
-  Email VARCHAR(100) NOT NULL,
-  Username VARCHAR(100) NOT NULL,
+  Email VARCHAR(100) NOT NULL Unique,
+  Username VARCHAR(100) NOT NULL Unique,
   About VARCHAR(2000),
   FirstName VARCHAR(100),
   Locat VARCHAR(100),
   DOB VARCHAR(100),
   Salt VARCHAR(8) NOT NULL,
-  Type INT NOT NULL,
-  Unique key (Username, Email)
+  Type INT NOT NULL
 );
 
 -- Create Table for Forum Posts

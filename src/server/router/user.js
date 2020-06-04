@@ -37,12 +37,12 @@ router.post('/api/register', (req, res) => {
       });
     }).catch((err) => {
       let message = '';
-      console.log(err);
       switch (err.code) {
         case 'ER_DUP_ENTRY':
           message = 'User already exists';
           break;
         default:
+          console.log(err);
           message = 'Registration Failed';
           break;
       }
@@ -85,6 +85,8 @@ router.post('/api/login', (req, res) => {
     res.json({ code: Code.FAILED, message: err.message });
   });
 });
+
+
 
 router.get('/api/me', verifyToken, (req, res) => {
   const { userData } = req.payload;

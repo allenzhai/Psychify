@@ -24,6 +24,7 @@
       "error",
       {
         "allow": [
+          "beforeAll",
           "afterAll"
         ]
       }
