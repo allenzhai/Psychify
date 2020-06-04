@@ -9,4 +9,4 @@ exports.passwordHash = (password) => {
   return hash.digest('hex');
 };
 
-exports.generateSalt = () => cryptoRandomString(8);
+exports.generateSalt = () => cryptoRandomString({ length: 8 });

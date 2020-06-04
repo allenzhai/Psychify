@@ -1,21 +1,15 @@
 const pool = require('../database');
+const hash = require('../hash');
 
-exports.registerUser = (user) => {
-  let stm = `INSERT INTO Accounts(Username, Email) VALUES("${user.username}", "${user.email}")`;
-  pool.query(stm, () => {
-    stm = `SELECT ID FROM Accounts\nWHERE Username="${user.username}"`;
-    pool.query(stm, (err, rows) => {
-      if (err) throw err;
-      console.log(rows);
-      stm = `INSERT INTO LoginInfo(id, user, password, email, type, salt) VALUES(${rows[0].ID}, "${user.username}", "${user.passwordHash}", "${user.email}", 0, "${user.salt}")`;
-      console.log(stm);
-      return pool.query(stm);
-    });
-  });
+exports.registerUser = (username, email, password) => {
+  const salt = hash.generateSalt();
+  const pass = hash.passwordHash(password + process.env.STATIC_SALT + salt);
+  const stm = `INSERT INTO Accounts(username, email, pass, type, salt) VALUES("${username}", "${email}", "${pass}", 0, "${salt}")`;
+  return pool.query(stm);
 };
 
 exports.getUser = (username) => {
-  const stm = `SELECT * FROM LoginInfo\nWHERE user="${username}"`;
+  const stm = `SELECT id, username, pass, email, salt, type FROM Accounts WHERE Username="${username}"`;
   return pool.query(stm);
 };
 

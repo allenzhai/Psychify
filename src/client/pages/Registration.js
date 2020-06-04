@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -12,19 +12,22 @@ import '../style/Registration.css';
 export default function Registration() {
   const userContext = useContext(UserContext);
   const history = useHistory();
-  const [username, setUsername] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = useState('test');
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('test');
+  const [err, setErr] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     UserService.register(username, email, password).then((user) => {
       userContext.login(user);
       history.push({ pathname: '/' });
-    }).catch((err) => {
-      console.log(err);
+    }).catch((error) => {
+      setErr(error);
     });
   };
+
+  const errUI = err === undefined ? '' : <p className="error">{err.message}</p>;
 
   return (
     <div className="registration-body">
@@ -37,6 +40,7 @@ export default function Registration() {
               className="form-control"
               id="inputUsername"
               placeholder="username"
+              value={username}
               onChange={e => setUsername(e.target.value)}
             />
           </div>
@@ -50,6 +54,7 @@ export default function Registration() {
               placeholder="email"
               required
               autoComplete="off"
+              value={email}
               onChange={e => setEmail(e.target.value)}
             />
           </div>
@@ -63,6 +68,7 @@ export default function Registration() {
               placeholder="Password"
               required
               autoComplete="off"
+              value={password}
               onChange={e => setPassword(e.target.value)}
             />
           </div>
@@ -74,6 +80,8 @@ export default function Registration() {
               <option value="1">Yes</option>
             </select>
           </div>
+
+          {errUI}
 
           <div className="form-group">
             <Button className="btn btn-block" type="submit" onClick={handleSubmit}>Sign Up</Button>

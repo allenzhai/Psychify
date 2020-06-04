@@ -119,3 +119,7 @@ button:disabled:hover {
   text-align: center;
   color: #fff;
 }
+
+.error {
+  color: red;
+}

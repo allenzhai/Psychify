@@ -9,17 +9,13 @@ function register(username, email, password) {
     },
     body: JSON.stringify(data)
   };
-  return fetch('/api/register', request)
+  return fetch('/api/register', request).then(res => res.json())
     .then((response) => {
       console.log('registration succeeded');
       if (response.code !== 0) {
         throw new Error(response.message);
       }
       return response.data;
-    })
-    .catch((err) => {
-      console.log('registration failed');
-      console.log(err);
     });
 }
 
@@ -45,9 +41,6 @@ function login(username, password) {
         throw new Error(response.message);
       }
       return response.data;
-    }).catch((err) => {
-      console.log('login failed');
-      console.log(err);
     });
 }
 
