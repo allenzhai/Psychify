@@ -56,6 +56,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
+      title: 'Psychify',
       template: './src/client/template/index.html',
       favicon: './src/client/template/favicon.ico'
     })

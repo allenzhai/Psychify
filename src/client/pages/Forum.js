@@ -98,6 +98,44 @@ function Forum() {
     window.location.reload(true);
   }
 
+  function displayForumPosts() {
+    const posts = data || [];
+    if (!isLoading) {
+      if (posts.length === 0) {
+        return <p className="no-results">Nothing here, add something!</p>
+      }
+      return (
+        <div className="forum-posts-container">
+          {posts.map((e, i) => {
+            let post = (
+              <ForumPost
+                className="post"
+                title={e.Title}
+                body={e.Body}
+                author={e.Author}
+                date={e.Date}
+                category={e.Category}
+                likes={e.Likes}
+                postID={e.ID}
+              />
+            );
+            // Displays dividing line after post if not the last post
+            if (i < posts.length - 1) {
+              post = (
+                <div>
+                  {post}
+                  <hr />
+                </div>
+              );
+            }
+            return post;
+          })}
+        </div>
+      );
+    }
+    return <div className="loading-icon"><i className="fa fa-circle-notch" /></div>;
+  }
+
   const posts = data || [];
   const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
   const categoryHeader = category ? (
@@ -129,32 +167,7 @@ function Forum() {
           </div>
           {createPostButton()}
         </div>
-        <div className="forum-posts-container">
-          {!isLoading ? posts.map((e, i) => {
-            let post = (
-              <ForumPost
-                className="post"
-                title={e.Title}
-                body={e.Body}
-                author={e.Author}
-                date={e.Date}
-                category={e.Category}
-                likes={e.Likes}
-                postID={e.ID}
-              />
-            );
-            // Displays dividing line after post if not the last post
-            if (i < posts.length - 1) {
-              post = (
-                <div>
-                  {post}
-                  <hr />
-                </div>
-              );
-            }
-            return post;
-          }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>}
-        </div>
+        {displayForumPosts()}
         <i className="fas fa-stop" />
       </div>
       <ReactModal

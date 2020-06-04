@@ -26,8 +26,43 @@ function login(username, password) {
     });
 }
 
+function getProfile(id) {
+  return fetch(`/api/getProfile/${id}`).then(res => res.json())
+    .then((response) => {
+      if (response.code !== 0) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    }).catch((err) => {
+      console.log(err);
+    });
+}
+
+function identify() {
+  return fetch('/api/me').then(res => res.json())
+    .then((response) => {
+      if (response.code !== 0) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    });
+}
+
+function logout() {
+  return fetch('/api/logout').then(res => res.json())
+    .then((response) => {
+      if (response.code !== 0) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    });
+}
+
 const UserService = {
-  login
+  login,
+  getProfile,
+  identify,
+  logout
 };
 
 export default UserService;

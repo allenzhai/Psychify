@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import DisorderResult from './DisorderResult';
 
-function ResultList({ datasource, filter, filterKey }) {
+function ResultList({ isLoading, datasource, filter, filterKey }) {
   console.log(datasource);
   const dataset = datasource.filter((result) => {
     if (filter === null) { // no filter
@@ -13,12 +13,22 @@ function ResultList({ datasource, filter, filterKey }) {
     return result[filterKey] === filter;
   });
 
-  const uiList = dataset.map(data => (
-    <DisorderResult key={data.name} result={data} />
-  ));
+  const uiList = !isLoading ? dataset.map((data, i) => {
+    let result = (
+      <DisorderResult key={data.name} result={data} />
+    );
+    // Displays dividing line before result if not the last post
+    result = (
+      <div>
+        <hr />
+        {result}
+      </div>
+    );
+    return result;
+  }) : <div className="loading-icon"><i className="fa fa-circle-notch" /></div>;
 
-  if (dataset.length === 0) {
-    return (<h2 className="no-results">No results</h2>);
+  if (dataset.length === 0 && !isLoading) {
+    return (<p className="no-results">No results</p>);
   }
 
   return (
