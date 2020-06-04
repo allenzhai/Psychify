@@ -53,8 +53,6 @@ function SearchResults() {
     </p>
   );
 
-  const loading = isLoading && (<p>Loading</p>);
-
   if (error) {
     console.log(error);
   }
@@ -74,8 +72,7 @@ function SearchResults() {
         <ResultsSearchbar terms={terms} onSubmit={handleSearchbarSubmit} />
         {sortedBy}
         <TagList datasource={resultList} filterKey={escapedSortBy} onSelectionChange={tagChange} />
-        {loading}
-        <ResultList datasource={resultList} filterKey={escapedSortBy} filter={selectedTag} />
+        <ResultList datasource={resultList} filterKey={escapedSortBy} filter={selectedTag} isLoading={isLoading}/>
       </div>
     </div>
   );

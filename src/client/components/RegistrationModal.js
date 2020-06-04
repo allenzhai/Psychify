@@ -56,7 +56,7 @@ function RegistrationModal() {
   return (
     <Modal isOpen autoFocus>
       <div className="modal-close-button">
-        <Button className="close" onClick={handleClose}>X</Button>
+        <div className="close"><i className="fas fa-times" onClick={handleClose} /></div>
       </div>
       <div className="registration-modal-header">
         <h3 className="registration-title-modal">Registration</h3>

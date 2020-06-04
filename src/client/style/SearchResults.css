@@ -1,5 +1,4 @@
 .search-results-title {
-  /* text-align: left; */
   float: left;
   font-family: 'Open Sans', Arial, sans-serif;
 }
@@ -16,9 +15,9 @@
 
 .search-results-container{
   border-radius: 8px;
-  padding: .5rem 1rem;
+  padding: 0px;
   box-shadow: 0px 4px 8px #bbbbbb; /* absolutle units don't matter here */
-  width: 85%;
+  width: 90vw;
   align-self: center;
   justify-content: center;
   align-items: center;
@@ -29,6 +28,14 @@
 h1 {
   text-align: center;
   font-size: 24px;
+}
+
+hr {
+  background-color: #e0e0e0;
+  height: 1px;
+  border-width: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .number-of-entries{
@@ -44,22 +51,25 @@ h1 {
   font-family: 'Open Sans', Arial, sans-serif;
   text-align: center;
   font-size: 24px;
-  padding-top: 8px;
+  padding-top: 1%;
+  padding-bottom: 2%; 
+  color: #666;
 }
 
 .resultlist{
   display: flex;
   margin-top: 0px;
+  padding: 0px;
   justify-content: center;
   flex-direction: column;
-  padding-bottom: 24px;
+  padding-bottom: 0px;
 }
 
 .sortedBy {
   font-family: 'Open Sans', Arial, sans-serif;
   color: gray;
-  text-align: left;
-  /* margin-left: 40px; */
-  margin-left: 4em;
-  margin-bottom: 0;
+  text-align: right;
+  margin-right: 6em;
+  margin-bottom: 1em;
+
 }

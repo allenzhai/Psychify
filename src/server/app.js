@@ -20,6 +20,7 @@ app.use(userRouter);
 app.use(disorderRouter);
 app.use(forumRouter);
 
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dist/index.html'));
 });
