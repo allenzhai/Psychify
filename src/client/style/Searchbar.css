@@ -1,5 +1,5 @@
 .search {
-  width: 50%;
+  width: 50vw;
   height: 100%;
   padding: 16px 54px;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -15,7 +15,7 @@
 }
 
 .search:focus {
-  width: 55%;
+  width: 55vw;
   box-shadow: 0px 3px 12px #999999;
   outline: none;
 }
@@ -49,7 +49,8 @@ input[type=submit] {
 .\/forum, .\/dsm, .\/profile{
   display: block;
   margin: auto;
-  margin-left: 10vw;
+  margin-top: 0%;
+  margin-left: 5vw;
   margin-bottom: 1rem;
 }
 .\/, .\/results, .\/login, .\/registration{

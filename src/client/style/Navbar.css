@@ -10,15 +10,14 @@
   font-size: 3rem;
   font-weight: 800;
   color: #000;
-  margin-left: 10vw;
+  margin-left: 5vw;
   margin-top: 22px;
 }
 
 .navbar {
   display: inline-flex;
   flex-wrap: wrap;
-  margin-bottom: 5vh;
-
+  margin-bottom: 2vh;
 }
 
 .navbar a {
