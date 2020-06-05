@@ -22,7 +22,12 @@ Psychology Group 1
 
 + [Sonarcloud Dashboard](https://sonarcloud.io/dashboard?id=allenzhai_Psychify)
 
-### Tests
+### Unit/Integeration Test
+
++ [Code Coverage](Code_coverage_report.pdf)
++ Test Cases: [client](src/client/__test__), [server](src/server/__test__)
+
+### Acceptance Tests
 
 + [Acceptance Tests](cypress/integration/psychify_acceptance.js)
 + [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)

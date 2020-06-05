@@ -11,7 +11,6 @@ import UserContext from '../context/UserContext';
 import '../style/Forum.css';
 
 function Forum() {
-
   const userContext = useContext(UserContext);
   const { user, id } = userContext;
   const defaultCategories = [{ name: 'Other' }];
@@ -137,7 +136,7 @@ function Forum() {
   const disorderNames = dataNames ? defaultCategories.concat(dataNames) : defaultCategories;
   const categoryHeader = category ? (
     <div className="category-header">
-      <i className="fas fa-times-circle" onClick={handleCategoryClearClick}/>
+      <i className="fas fa-times-circle" onClick={handleCategoryClearClick} />
       <p className="category-header-text">{category}</p>
     </div>
   ) : null;

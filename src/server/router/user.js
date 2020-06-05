@@ -10,6 +10,11 @@ const router = express.Router();
 router.post('/api/register', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { username, email, password } = req.body;
+  if (username === undefined || email === undefined || password === undefined) {
+    res.json({ code: Code.FAILED, message: 'Invalid registration inputs.' });
+    return;
+  }
+
   api.registerUser(username, email, password)
     .then(() => api.getUser(username))
     .then((rows) => {
@@ -32,12 +37,12 @@ router.post('/api/register', (req, res) => {
       });
     }).catch((err) => {
       let message = '';
-      console.log(err);
       switch (err.code) {
         case 'ER_DUP_ENTRY':
           message = 'User already exists';
           break;
         default:
+          console.log(err);
           message = 'Registration Failed';
           break;
       }
@@ -80,6 +85,8 @@ router.post('/api/login', (req, res) => {
     res.json({ code: Code.FAILED, message: err.message });
   });
 });
+
+
 
 router.get('/api/me', verifyToken, (req, res) => {
   const { userData } = req.payload;
