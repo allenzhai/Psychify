@@ -15,7 +15,7 @@ Psychology Group 1
 + [How To Deploy](docs/how_to_deploy.md)
 + [How To Manage User Token](docs/how_to_manage_user_token.md)
 
-### Static Source Code Analysis
+### Static Source Code Analysis 
 
 + [Sonarcloud Dashboard](https://sonarcloud.io/dashboard?id=allenzhai_Psychify)
 
