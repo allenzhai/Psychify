@@ -1,6 +1,6 @@
 # Psychify
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=allenzhai_Psychify&metric=alert_status)](https://sonarcloud.io/dashboard?id=allenzhai_Psychify) 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=allenzhai_Psychify&metric=alert_status)](https://sonarcloud.io/dashboard?id=allenzhai_Psychify)
 
 Psychology Group 1
 
@@ -18,7 +18,7 @@ Psychology Group 1
 + [How To Deploy](docs/how_to_deploy.md)
 + [How To Manage User Token](docs/how_to_manage_user_token.md)
 
-### Static Source Code Analysis 
+### Static Source Code Analysis
 
 + [Sonarcloud Dashboard](https://sonarcloud.io/dashboard?id=allenzhai_Psychify)
 
@@ -30,4 +30,10 @@ Psychology Group 1
 ### Acceptance Tests
 
 + [Acceptance Tests](cypress/integration/psychify_acceptance.js)
-+ [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)
++ [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)#
+
+
+### CI & CD
+
++ [Travis CI](https://travis-ci.com/github/allenzhai/Psychify)
++ [Heroku](https://dashboard.heroku.com/apps/psychify)
