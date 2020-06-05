@@ -1,4 +1,4 @@
-# 308-Project
+# Psychify
 Psychology Group 1
 
 ### Prototyping
@@ -14,3 +14,12 @@ Psychology Group 1
 + [How To Test](docs/how_to_test.md)
 + [How To Deploy](docs/how_to_deploy.md)
 + [How To Manage User Token](docs/how_to_manage_user_token.md)
+
+### Static Source Code Analysis
+
++ [Sonarcloud Dashboard](https://sonarcloud.io/dashboard?id=allenzhai_Psychify)
+
+### Tests
+
++ [Acceptance Tests](cypress/integration/psychify_acceptance.js)
++ [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)
