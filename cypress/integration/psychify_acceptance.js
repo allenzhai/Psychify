@@ -1,3 +1,4 @@
+/* sonar.cpd.exclusions */
 /* eslint-disable */
 const cryptoRandomString = require('crypto-random-string');
 
