@@ -30,7 +30,7 @@ Psychology Group 1
 ### Acceptance Tests
 
 + [Acceptance Tests](cypress/integration/psychify_acceptance.js)
-+ [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)#
++ [Acceptance Test Specs](https://docs.google.com/document/d/1gHkG2kfXg0N2NuBBWVlrPrf6gS8uBe9-j1ZZ5dRSm_Y/edit?usp=sharing)
 
 
 ### CI & CD
