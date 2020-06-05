@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Title</title>
-  <meta charset="utf-8">
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-    @import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
-
-    body {
-      font-family: 'Droid Serif';
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Helvetica', sans-serif;
-    }
-
-    .remark-code,
-    .remark-inline-code {
-      font-family: 'Ubuntu Mono';
-    }
-  </style>
-</head>
-
-<body>
-  <textarea id="source">
-
 class: center, middle
 
 # Introduction of React Hooks
@@ -60,18 +28,18 @@ Zhongyuan Zheng
 ### React Hooks
 
 1. Commonly Used Hooks
-  + `useContext`
-  + `useState`
-  + `useEffect`
++ `useContext`
++ `useState`
++ `useEffect`
 
 2. [Rules to use Hooks](https://reactjs.org/docs/hooks-rules.html)
-  + Call Hooks At the Top Level
-  + Call Hooks From React Functions
-  + Call Hooks From custom Hooks
++ Call Hooks At the Top Level
++ Call Hooks From React Functions
++ Call Hooks From custom Hooks
 
 3. Custom Hooks
-  + `useFormInput`
-  + `useAPIRequest`
++ `useFormInput`
++ `useAPIRequest`
 
 4. Plugin Support - `eslint-plugin-react-hooks`
 
@@ -85,7 +53,7 @@ import { Login } from './Login';
 
 // Login.js
 export function Login() {
-  ...
+...
 }
 ```
 
@@ -99,11 +67,11 @@ import Login from './Login';
 
 // Login.js
 export default function Login() {
-  ...
+...
 }
 // or
 function Login() {
-  ...
+...
 }
 export default Login
 ```
@@ -115,15 +83,15 @@ export default Login
 
 ```
 function DisorderResult(props) {
-  ...
-  return (<div>...</div>);
+...
+return (<div>...</div>);
 }
 
 DisorderResult.propTypes = {
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  subCategory: PropTypes.string,
-  other: PropTypes.arrayOf(PropTypes.string)
+title: PropTypes.string.isRequired,
+category: PropTypes.string.isRequired,
+subCategory: PropTypes.string,
+other: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default DisorderResult;
@@ -135,9 +103,9 @@ export default DisorderResult;
 ### ESLint
 
 + Problems:
-  - unused variables,
-  - inconsistent coding style
-  - not following best practice
+- unused variables,
+- inconsistent coding style
+- not following best practice
 + Linter and Formatter
 + `.eslintrc`
 + Demo
@@ -156,17 +124,3 @@ export default DisorderResult;
 class: center, middle
 
 ### Thanks
-
-    </textarea>
-  <script src="https://remarkjs.com/downloads/remark-latest.min.js">
-  </script>
-  <script>
-    var slideshow = remark.create({
-      ratio: "4:3",
-      highlightLanguage: "javascript",
-      highlightStyle: "solarized-dark"
-    });
-  </script>
-</body>
-
-</html>

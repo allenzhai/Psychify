@@ -57,7 +57,7 @@
 }
 
 .delete {
-  cursor: pointer;  
+  cursor: pointer;
   border-radius: 90px;
   background-color: #ddd;
   padding: 0px;
@@ -104,7 +104,6 @@
   cursor: pointer;
   max-width: 33vw;
   /* min-width: 20vw; */
-  max-height: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -286,7 +285,7 @@
 .fas.fa-heart{
   animation-name: liked;
   animation-duration: .5s;
-  
+
 }
 
 .far.fa-heart{

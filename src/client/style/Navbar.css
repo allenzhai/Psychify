@@ -77,7 +77,7 @@
   }
 
   .navbar-responsive {
-    position: absolute; 
+    position: absolute;
     background-color: #ececec;
     border-radius: 20px;
     margin-top: 1em;
@@ -102,7 +102,6 @@
     color:#111111;
     font-size: 1rem;
     transition-duration: 200ms;
-    text-align: left;
   }
   .navbar-responsive a.signup:hover {
     color: #fff;
