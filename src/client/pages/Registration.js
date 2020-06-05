@@ -60,10 +60,10 @@ export default function Registration() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="intputPassword" className="form-control-required">Password</label>
+            <label htmlFor="inputPassword" className="form-control-required">Password</label>
             <input
               className="form-control"
-              id="intputPassword"
+              id="inputPassword"
               type="password"
               placeholder="Password"
               required

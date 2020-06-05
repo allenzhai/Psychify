@@ -25,7 +25,7 @@ export default function Searchbar(props) {
 
   return (
     <div className={show}>
-      <form className="form large" onSubmit={handleSubmit}>
+      <form className="form-large" onSubmit={handleSubmit}>
         <input
           type="text"
           className="search"
@@ -35,7 +35,7 @@ export default function Searchbar(props) {
           onChange={handleChange}
         />
       </form>
-      <form className="form small" onSubmit={handleSubmit}>
+      {/* <form className="form-small" onSubmit={handleSubmit}>
         <input
           type="text"
           className="search"
@@ -44,7 +44,7 @@ export default function Searchbar(props) {
           value={searchTerms}
           onChange={handleChange}
         />
-      </form>
+      </form> */}
     </div>
   );
 }

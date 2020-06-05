@@ -122,7 +122,7 @@ function ResultsSearchbar({ terms, onSubmit }) {
   return (
     <div className="results-search-parent" >
       <div className="bar">
-        <form className="form large" onSubmit={handleSubmit} >
+        <form className="form-large" onSubmit={handleSubmit} >
           <input
             type="text"
             className="results-search"
@@ -135,7 +135,7 @@ function ResultsSearchbar({ terms, onSubmit }) {
           <span className="ac">{autoComplete}</span>
         </form>
       </div>
-      <form className="form small" onSubmit={handleSubmit}>
+      {/* <form className="form-small" onSubmit={handleSubmit}>
         <input
           type="text"
           className="results-search"
@@ -144,7 +144,7 @@ function ResultsSearchbar({ terms, onSubmit }) {
           value={searchTerms}
           onChange={handleChange}
         />
-      </form>
+      </form> */}
     </div>
   );
 }

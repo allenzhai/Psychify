@@ -32,15 +32,15 @@
   transition-duration: .5s;
 }
 
-@media (max-width: 399px) {
-  form.large { display: none; }
-  form.small { display: inline-block; }
+/* @media (max-width: 399px) {
+  .form-large { display: none; }
+  .form-small { display: inline-block; }
 }
 
 @media (min-width: 400px) {
-  form.small { display: none; }
-  form.large { display: inline-block; width: 100%; }
-}
+  .form-small { display: none; }
+  .form-large { display: inline-block; width: 100%; }
+} */
 
 input[type=submit] {
   visibility: hidden;

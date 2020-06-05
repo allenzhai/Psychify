@@ -7,5 +7,4 @@ yarn.lock
 .env
 .DS_Store
 .eslintcache
-cypress/
 coverage/
